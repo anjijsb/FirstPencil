@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstPencilWeb", "FirstPencilWeb\FirstPencilWeb.csproj", "{C906C86D-6FB7-4197-BD47-7A3CC7882675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstPencilService", "FirstPencilService\FirstPencilService.csproj", "{FDD326CF-A65A-4BBB-BC17-863E0856EDB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C906C86D-6FB7-4197-BD47-7A3CC7882675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C906C86D-6FB7-4197-BD47-7A3CC7882675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C906C86D-6FB7-4197-BD47-7A3CC7882675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD326CF-A65A-4BBB-BC17-863E0856EDB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD326CF-A65A-4BBB-BC17-863E0856EDB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD326CF-A65A-4BBB-BC17-863E0856EDB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD326CF-A65A-4BBB-BC17-863E0856EDB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
