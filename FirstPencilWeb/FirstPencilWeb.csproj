@@ -112,12 +112,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
+    <Compile Include="Controllers\FunctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\UserAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helps\VerificationCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +166,8 @@
     <Content Include="Jscript\Helps\masonry.pkgd.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\造字工房劲黑常规体.OTF" />
+    <Content Include="fonts\造字工房映力黑规体.OTF" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -176,6 +180,10 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Styles\StyleSheet.css" />
+    <Content Include="Styles\StyleSheet.min.css" />
+    <Content Include="Styles\StyleSheet_m.css" />
+    <Content Include="Styles\StyleSheet_m.min.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -195,6 +203,11 @@
     <Content Include="Views\Users\Dealerships.cshtml" />
     <Content Include="Views\Business\NewProductRecommend.cshtml" />
     <Content Include="Views\Business\NewProductDetails.cshtml" />
+    <Content Include="Views\Function\FakeComplaints.cshtml" />
+    <Content Include="Views\Function\SecurityCheck.cshtml" />
+    <Content Include="Styles\Site.less" />
+    <Content Include="Styles\StyleSheet.LESS" />
+    <Content Include="Styles\StyleSheet_m.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

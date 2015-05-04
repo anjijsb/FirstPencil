@@ -1,0 +1,351 @@
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/Site\.less;
+    }
+
+    line {
+        font-family: \000032;
+    }
+}
+
+* {
+    font-family: 微软雅黑;
+    margin: 0;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/Site\.less;
+    }
+
+    line {
+        font-family: \000038;
+    }
+}
+
+body {
+    /*background-image: url(../Images/bg.jpg);*/
+    background-repeat: no-repeat;
+    font-size: 100%;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/Site\.less;
+    }
+
+    line {
+        font-family: \0000315;
+    }
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/Site\.less;
+    }
+
+    line {
+        font-family: \0000320;
+    }
+}
+
+.DisplayBlock {
+    display: block;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/Site\.less;
+    }
+
+    line {
+        font-family: \0000325;
+    }
+}
+
+.DisplayNone {
+    display: none;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \000033;
+    }
+}
+
+body {
+    background-size: auto 50%;
+    background-attachment: fixed;
+    background-position: 0 30%;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \000039;
+    }
+}
+
+.Clear {
+    clear: both;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000314;
+    }
+}
+
+#logo {
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000321;
+    }
+}
+
+#Content {
+    display: inline-block;
+    width: 90%;
+    margin-top: 3%;
+    -webkit-border-radius: .625em;
+    -moz-border-radius: .625em;
+    -ms-border-radius: .625em;
+    -o-border-radius: .625em;
+    border-radius: .625em;
+    background-color: #efefef;
+    background-image: -moz-linear-gradient(top,#fdfdfd,#efefef);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fdfdfd),color-stop(1,#efefef));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@staColor', endColorstr='@endColor', GradientType='0');
+    -webkit-box-shadow: 1px 1px .3125em #000;
+    -moz-box-shadow: 1px 1px .3125em #000;
+    -ms-box-shadow: 1px 1px .3125em #000;
+    -o-box-shadow: 1px 1px .3125em #000;
+    box-shadow: 1px 1px .3125em #000;
+    overflow: hidden;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000331;
+    }
+}
+
+#Content hr {
+    border: 0;
+    border: 1px solid #ccc;
+    margin: 1% 0;
+    width: 95%;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000338;
+    }
+}
+
+#Content p {
+    width: 90%;
+    text-indent: 2em;
+    text-align: left;
+    line-height: 2em;
+    font-size: .9em;
+    margin: .3em 0;
+    color: #333;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000349;
+    }
+}
+
+#Content .row {
+    text-align: left;
+    width: 80%;
+    margin: 1em 0;
+    font-weight: 800;
+    position: relative;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000357;
+    }
+}
+
+#Content #txtYzm {
+    float: left;
+    width: 50%;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000362;
+    }
+}
+
+#Content #imgYzm {
+    height: 2.69em;
+    width: auto;
+    float: right;
+    border: 1px solid #ccc;
+    -webkit-border-radius: .3125em;
+    -moz-border-radius: .3125em;
+    -ms-border-radius: .3125em;
+    -o-border-radius: .3125em;
+    border-radius: .3125em;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000370;
+    }
+}
+
+#Content #retnStr {
+    margin-top: 1em;
+    text-indent: 0;
+    padding: 0;
+    color: red;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000377;
+    }
+}
+
+#Content #sub {
+    width: 100%;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \0000383;
+    }
+}
+
+input[type=text], textarea {
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border linear .2s,box-shadow linear .2s;
+    -moz-transition: border linear .2s,box-shadow linear .2s;
+    -o-transition: border linear .2s,box-shadow linear .2s;
+    transition: border linear .2s,box-shadow linear .2s;
+    width: 98%;
+    padding: .375em .1875em;
+    resize: none;
+    font-size: 1em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \00003100;
+    }
+}
+
+input[type=text] {
+    height: 1.875em;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \00003105;
+    }
+}
+
+input[type=button], input[type=submit] {
+    background-color: #725432;
+    background-image: -moz-linear-gradient(top,#725432,#725432);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#725432),color-stop(1,#725432));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@staColor', endColorstr='@endColor', GradientType='0');
+    border: 0;
+    height: 2.5em;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.25em;
+}
+
+@media -sass-debug-info {
+    filename {
+        font-family: file\:\/\/E\:\/项目\/移动应用\/AnjisysQuery - 上海涌泉汽车销售（上实）\/WebApplication\/Styles\/StyleSheet_m\.less;
+    }
+
+    line {
+        font-family: \00003116;
+    }
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+    -webkit-box-shadow: 1px 1px .1875em #000;
+    -moz-box-shadow: 1px 1px .1875em #000;
+    -ms-box-shadow: 1px 1px .1875em #000;
+    -o-box-shadow: 1px 1px .1875em #000;
+    box-shadow: 1px 1px .1875em #000;
+}

@@ -1,0 +1,56 @@
+﻿@ShadowColor:black;
+*
+{
+    font-family:微软雅黑;
+    margin:0;
+}
+
+body
+{
+    /*background-image: url(../Images/bg.jpg);*/
+    background-repeat: no-repeat;
+    font-size: 100%;
+}
+
+.Clear
+{
+    clear: both;
+}
+
+.DisplayBlock
+{
+    display: block;
+}
+
+.DisplayNone
+{
+    display: none;
+}
+
+
+/*自定义样式*/
+.BoxShadow(@cw: 20px)
+{
+    -webkit-box-shadow: 1px 1px @cw @ShadowColor;
+    -moz-box-shadow: 1px 1px @cw @ShadowColor;
+    -ms-box-shadow: 1px 1px @cw @ShadowColor;
+    -o-box-shadow: 1px 1px @cw @ShadowColor;
+    box-shadow: 1px 1px @cw @ShadowColor;
+}
+
+.BorderRadius(@px: 1em)
+{
+    -webkit-border-radius: @px;
+    -moz-border-radius: @px;
+    -ms-border-radius: @px;
+    -o-border-radius: @px;
+    border-radius: @px;
+}
+
+.Filter(@staColor: #FDFDFD,@endColor: #EFEFEF)
+{
+    background-color: @endColor;
+    background-image: -moz-linear-gradient(top, @staColor, @endColor); /* Firefox */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, @staColor), color-stop(1, @endColor)); /* Saf4+, Chrome */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@staColor', endColorstr='@endColor', GradientType='0'); /* IE*/
+}
