@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "防伪查询";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -20,10 +19,16 @@
                 return false;
             }
 
+            $.getScript("/Function/CheckCode?code=" + $("#txtYzm").val(), function (j) {
+                if (eval(j) != true) {
+                    $("#retnStr").empty().append("验证码错误。");
+                    return false;
+                }
+            })
             var flag = false;
             var code = $.trim($("#fwm").val());
             if (code != "" && !isNaN(code) && code.length) {
-                //flag = true;
+
                 $("#retnStr").empty().append('防伪码验证成功，获得一张优惠券！<a href="/Users/Coupons/">点击查看</a>');
             }
             else {
