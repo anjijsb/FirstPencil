@@ -1,0 +1,124 @@
+﻿@import "Site.less";
+
+body {
+    background-size:200%;
+    background-attachment:fixed;
+    background-position: 0 130px;
+   
+}
+
+.Clear
+{
+    clear: both;
+}
+
+@WidthLayout:600px;
+#logo
+{
+    width:@WidthLayout;
+}
+
+#Content {
+    width: @WidthLayout;
+    background-color: white;
+    display: inline-block;
+    .BorderRadius(10px);
+    .Filter;
+    .BoxShadow(5px);
+    overflow: hidden;
+
+    hr {
+        border: 0;
+        border: 1px solid #cccccc;
+        margin: 1% 0;
+        width: 95%;
+    }
+
+    p {
+        width: 90%;
+        text-indent: 2em;
+        text-align: left;
+        line-height:2em;
+        margin: 0 auto;
+        font-size: 0.9em;
+        margin: 0.3em 0;
+        color: #333333;
+    }
+
+    .row {
+        text-align: left;
+        width: 80%;
+        margin: 1em 0;
+        font-weight: 800;
+        position: relative;
+    }
+
+    #txtYzm {
+        float: left;
+        width: 40%;
+    }
+
+    #imgYzm {
+        cursor: pointer;
+        height: 36px;
+        width: auto;
+        margin: -2px;
+        float: right;
+        border: 1px solid #cccccc;
+        .BorderRadius(5px);
+    }
+
+    #retnStr {
+        margin-top: 1em;
+        text-indent: 0;
+        color: red;
+    }
+
+    #sub {
+        width:100%;
+    }
+
+}
+
+input[type=text], textarea
+{
+    border: 1px solid #cccccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+    width: 98%;
+    padding: 6px 3px;
+    resize: none;
+    font-size: 1em;
+    .BorderRadius(5px);
+}
+
+input[type=text]
+{
+    height: 20px;
+}
+
+input[type=submit],input[type=button]
+{
+     .Filter(#f0f4f1,#a2b700);
+    border: 0;
+    height: 50px;
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+    input[type=submit]:hover,input[type=button]:hover
+    {
+         .BoxShadow(3px);
+    }
+
+img
+{
+    margin: 0 auto;
+    width:100%;
+}

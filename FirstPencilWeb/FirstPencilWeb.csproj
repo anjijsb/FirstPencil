@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorJS.0.4.3\lib\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorJS">
+      <HintPath>..\packages\RazorJS.0.4.3\lib\RazorJS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -111,10 +117,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BusinessController.cs" />
+    <Compile Include="Controllers\FunctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Filters\UserAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helps\VerificationCode.cs" />
+    <Compile Include="Models\SessionKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,8 +136,46 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\1751526_152016025711_2.jpg" />
+    <Content Include="Images\bg.jpg" />
+    <Content Include="Images\bg_01.jpg" />
+    <Content Include="Images\bj\jt.png" />
+    <Content Include="Images\bj\jt1.png" />
+    <Content Include="Images\bj\jxbj.png" />
+    <Content Include="Images\bj\msq.png" />
+    <Content Include="Images\bj\pmbj.png" />
+    <Content Include="Images\ceshi\jinxiaoshagn.png" />
+    <Content Include="Images\ceshi\touxiagn.jpg" />
+    <Content Include="Images\commodity\adv.png" />
+    <Content Include="Images\commodity\IMG_0705.PNG" />
+    <Content Include="Images\commodity\prod1.jpg" />
+    <Content Include="Images\commodity\prod2.jpg" />
+    <Content Include="Images\commodity\touxiagn.jpg" />
+    <Content Include="Images\Coupons\Q_00001.jpg" />
+    <Content Include="Images\firepen.jpg" />
+    <Content Include="Images\guanzhu.jpg" />
+    <Content Include="Images\hg\s_crown_1.gif" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logo1.png" />
+    <Content Include="Images\Words\word001.jpg" />
+    <Content Include="Jscript\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Jscript\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Jscript\bootstrap\css\bootstrap.css" />
+    <Content Include="Jscript\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Jscript\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Jscript\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Jscript\bootstrap\js\bootstrap.js" />
+    <Content Include="Jscript\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Jscript\bootstrap\js\jquery-1.11.2.js" />
+    <Content Include="Jscript\Helps\Helps.js" />
+    <Content Include="Jscript\Helps\jquerysession.js" />
+    <Content Include="Jscript\Helps\main.js" />
+    <Content Include="Jscript\Helps\masonry-docs.min.js" />
+    <Content Include="Jscript\Helps\masonry.pkgd.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\造字工房劲黑常规体.OTF" />
+    <Content Include="fonts\造字工房映力黑规体.OTF" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -138,6 +188,10 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Styles\StyleSheet.css" />
+    <Content Include="Styles\StyleSheet.min.css" />
+    <Content Include="Styles\StyleSheet_m.css" />
+    <Content Include="Styles\StyleSheet_m.min.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -153,10 +207,18 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Business\Auction.cshtml" />
+    <Content Include="Views\Users\Dealerships.cshtml" />
+    <Content Include="Views\Business\NewProductRecommend.cshtml" />
+    <Content Include="Views\Business\NewProductDetails.cshtml" />
+    <Content Include="Views\Function\FakeComplaints.cshtml" />
+    <Content Include="Views\Function\SecurityCheck.cshtml" />
+    <Content Include="Styles\Site.less" />
+    <Content Include="Styles\StyleSheet.LESS" />
+    <Content Include="Styles\StyleSheet_m.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

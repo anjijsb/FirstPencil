@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "新品推荐";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    #divtitle {
+        width: 100%;
+        height: 5em;
+        line-height: 5em;
+        text-align: center;
+        padding: 0;
+        margin: auto;
+    }
+
+    .text-c {
+        display: inline-block;
+        width: 70%;
+        height: 1.3em;
+        line-height: 1.3em;
+        background-color: #e7eeea;
+        font-size: 2.5em;
+        margin: 2em 0 1.2em 0;
+        padding: 0px;
+        color: #488a95;
+    }
+
+    .container-fluid {
+        background-color: #e7eeea;
+        padding: 0px;
+    }
+
+    .box {
+        margin: 2px;
+        float: left;
+        width: 32%;
+    }
+
+        .box img {
+            max-width: 100%;
+        }
+</style>
+<div class="text-center">
+    <span class="img-circle text-c">新品推荐</span>
+</div>
+<div id="masonry" class="container-fluid">
+    <div class="box"><img src="/Images/commodity/adv.png"></div>
+    <div class="box"><img src="/Images/commodity/IMG_0705.png"></div>
+    <div class="box"><img src="/Images/commodity/prod1.jpg"></div>
+    <div class="box"><img src="/Images/commodity/prod2.jpg"></div>
+    <div class="box"><img src="/Images/commodity/touxiagn.jpg"></div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var $container = $('#masonry');
+        $container.imagesLoaded(function () {
+            $container.masonry({
+                itemSelector: '.box',
+                gutterWidth: 20,
+                isAnimated: true,
+            });
+        });
+    });
+
+    $("img").click(function () {
+        var id = $(this).attr("id");
+        location.href = "/Shop/ProductDetails";
+    })
+</script>
