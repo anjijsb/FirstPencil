@@ -22,5 +22,23 @@ namespace FirstPencilWeb.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 新品推荐
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewProductRecommend()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 新品详情
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewProductDetails()
+        {
+            return View();
+        }
     }
 }

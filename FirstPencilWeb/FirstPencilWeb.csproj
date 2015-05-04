@@ -193,6 +193,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Business\Auction.cshtml" />
     <Content Include="Views\Users\Dealerships.cshtml" />
+    <Content Include="Views\Business\NewProductRecommend.cshtml" />
+    <Content Include="Views\Business\NewProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
