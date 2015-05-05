@@ -2,7 +2,6 @@
     ViewBag.Title = "防伪查询";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <link id="Link1" rel="stylesheet" href="~/Styles/StyleSheet_m.min.css" />
 <script type="text/javascript">
     $(document).ready(function () {
@@ -19,11 +18,15 @@
                 return false;
             }
 
-            $.getScript("/Function/CheckCode?code=" + $("#txtYzm").val(), function (j) {
+            var co = $("#txtYzm").val();
+            $.getScript("CheckCode?code=" + co, function (j) {
                 if (eval(j) != true) {
                     $("#retnStr").empty().append("验证码错误。");
                     return false;
                 }
+            })
+            $.getScript("Function/CheckCode?code=" + co, function (j) {
+                alert(eval(j));
             })
             var flag = false;
             var code = $.trim($("#fwm").val());
@@ -42,9 +45,8 @@
         });
     });
 </script>
-
 <div align="center">
-    <form id="forms" method="POST" runat="server">
+    <form id="forms" method="POST">
         <div><img src="~/Images/logo1.png" /></div>
         <div align="center" id="Content">
             <div class="row">
@@ -53,7 +55,7 @@
             </div>
             <div class="row">
                 请输入验证码:<br />
-                <input id="txtYzm" name="yzm" type="text" maxlength="4" /><img id="imgYzm" alt="看不清?点击刷新验证码" title="看不清?点击刷新验证码" src="/Function/VerificationCode" />
+                <input id="txtYzm" name="yzm" type="text" maxlength="4" /><img id="imgYzm" alt="看不清?点击刷新验证码" title="看不清?点击刷新验证码" src="~/Function/VerificationCode" />
                 <div class="Clear"></div>
             </div>
             <br />
@@ -65,4 +67,3 @@
         </div>
     </form>
 </div>
-

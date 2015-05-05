@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FirstPencilWeb.Helps;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,23 @@ namespace FirstPencilWeb.Controllers
         public ActionResult Dealerships()
         {
             return View();
+        }
+
+        public ActionResult DealershipsOpenId()
+        {
+            if (Request.QueryString["code"].ToString() != null && Request.QueryString["code"].ToString() != "")
+            {
+                string DealerShipsCode = Request.QueryString["code"].ToString();
+
+                string info = WeiXinHelpers.GetUserOpenId(DealerShipsCode);
+
+                return Content("22");
+            }
+            else
+            {
+                return Content("0");
+            }
+
         }
 
     }
