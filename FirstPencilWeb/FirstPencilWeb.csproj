@@ -126,6 +126,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helps\VerificationCode.cs" />
+    <Compile Include="Helps\WeiXinHelpers.cs" />
     <Compile Include="Models\SessionKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
