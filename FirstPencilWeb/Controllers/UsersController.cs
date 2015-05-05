@@ -19,20 +19,27 @@ namespace FirstPencilWeb.Controllers
         /// 经销商中心
         /// </summary>
         /// <returns></returns>
-        public ActionResult Dealerships()
+        public ActionResult Dealerships(string code)
         {
+            if (!string.IsNullOrEmpty(code))
+            {
+                string co = WeiXinHelpers.GetUserOpenId(code);
+                if (string.IsNullOrEmpty(co))
+                {
+                    co = "11";
+                }
+                ViewBag.openid = co;
+            }
             return View();
         }
 
-        public ActionResult DealershipsOpenId()
+        public ActionResult DealershipsOpenId(string code)
         {
-            if (Request.QueryString["code"].ToString() != null && Request.QueryString["code"].ToString() != "")
+            if (code != null && code != "")
             {
-                string DealerShipsCode = Request.QueryString["code"].ToString();
+                string info = WeiXinHelpers.GetUserOpenId(code);
 
-                string info = WeiXinHelpers.GetUserOpenId(DealerShipsCode);
-
-                return Content("22");
+                return Content(info);
             }
             else
             {
