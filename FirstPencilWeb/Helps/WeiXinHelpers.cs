@@ -38,6 +38,7 @@ namespace FirstPencilWeb.Helps
             return GetUserSamplerInfo(code).OpenId;
         }
 
+
         /// <summary>
         /// 根据OpenId获取用户基本信息（需关注公众号）
         /// </summary>
