@@ -233,6 +233,8 @@
     <Content Include="Jscript\Helps\masonry-docs.min.js" />
     <Content Include="Jscript\Helps\masonry.pkgd.min.js" />
     <Content Include="Jscript\Helps\script.js" />
+    <Content Include="Jscript\Helps\Touchwipe.js" />
+    <Content Include="mp3\bg.mp3" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\造字工房劲黑常规体.OTF" />
