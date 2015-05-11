@@ -136,6 +136,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="CSS\Enterprise-index\idangerous.swiper.css" />
     <Content Include="CSS\Enterprise-index\style.css" />
+    <Content Include="CSS\jquery.fullPage.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -210,6 +211,7 @@
     <Content Include="Images\jiangshi\003.jpg" />
     <Content Include="Images\jiangshi\004.jpg" />
     <Content Include="Images\jiangshi\01.png" />
+    <Content Include="Images\js\02.png" />
     <Content Include="Images\js\1.jpg" />
     <Content Include="Images\js\2.jpg" />
     <Content Include="Images\js\3.jpg" />
@@ -218,6 +220,7 @@
     <Content Include="Images\js\6.jpg" />
     <Content Include="Images\js\7.jpg" />
     <Content Include="Images\js\8.jpg" />
+    <Content Include="Images\js\9.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo1.png" />
     <Content Include="Images\mrtx.jpg" />
@@ -246,13 +249,19 @@
     <Content Include="Jscript\Helps\Helps.js" />
     <Content Include="Jscript\Helps\idangerous.swiper.min.js" />
     <Content Include="Jscript\Helps\jgestures.js" />
+    <Content Include="Jscript\Helps\jquery.fullPage.js" />
     <Content Include="Jscript\Helps\jquerysession.js" />
     <Content Include="Jscript\Helps\main.js" />
     <Content Include="Jscript\Helps\masonry-docs.min.js" />
     <Content Include="Jscript\Helps\masonry.pkgd.min.js" />
+    <Content Include="Jscript\Helps\modernizr.custom.79639.js" />
     <Content Include="Jscript\Helps\script.js" />
     <Content Include="Jscript\Helps\Touchwipe.js" />
     <Content Include="mp3\bg.mp3" />
+    <Content Include="mp3\bg1.mp3" />
+    <Content Include="mp3\bg2.wma" />
+    <Content Include="mp3\off.png" />
+    <Content Include="mp3\on.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\造字工房劲黑常规体.OTF" />
