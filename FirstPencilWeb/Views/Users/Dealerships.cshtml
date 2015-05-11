@@ -75,32 +75,49 @@
         top: 0;
         left: 57%;
     }
+    #lvdiv{
+        position:relative;
+    }
+    #lv{
+        position:absolute;
+        top:0;
+        left:41%;
+    }
 </style>
 <img src="~/Images/bj/jxbj.png" class="bj" />
 <div class="hero-unit1" style="text-align:center">
     <br />
     <div id="imgdiv">
-        <img src="~/Images/ceshi/touxiagn.jpg" id="img0" class="img-circle" width="30%" />
+        <img src="~/Images/mrtx.jpg" id="img0" class="img-circle" width="30%" />
         <img src="~/Images/hg/s_crown_1.gif" id="img1" />
     </div>
     <h5>经销商中心</h5>
-    <div class="progress progress-striped active" style="height:0.6em;line-height:0.6em;">
-        <div class="bar" style="width:20%;">20/100</div>
+    <div id="lvdiv" class="progress progress-striped active" style="height:0.9em;line-height:0.9em;">
+        <div class="bar" style="width:30%;"></div><div id="lv">30/100</div>
     </div>
-    <pre>
-@ViewBag.OpenId
+    <pre>经销商姓名：张三
+联系电话：13061960808
+联系地址：上海市静安区长乐路1226号
+所在单位：第一铅笔经销商
 </pre>
 </div>
-<div class="lxts"><a id="lianxi">联系我们</a><span>|</span><a id="tousu">投诉建议</a> </div>
+<div class="lxts"><a id="lianxi">联系我们</a><span>|</span><a id="tousu">升级规则</a> </div>
 <script type="text/javascript">
-    $("a").on({
+    $("#lianxi").on({
         "mouseout": function () {
-            $(this).css("color", "red");
+
         },
         "click": function () {
-            alert("click");
+            alert("请拨打客服电话：021-62493972");
         }
     })
+    $("#tousu").on({
+        "mouseout": function () {
 
+        },
+        "click": function () {
+            alert("敬请期待");
+        }
+    })
 </script>
 
