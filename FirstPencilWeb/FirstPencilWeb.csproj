@@ -137,6 +137,7 @@
     <Content Include="CSS\Enterprise-index\idangerous.swiper.css" />
     <Content Include="CSS\Enterprise-index\style.css" />
     <Content Include="CSS\jquery.fullPage.css" />
+    <Content Include="CSS\MessageWall.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -307,6 +308,7 @@
     <Content Include="Styles\StyleSheet.LESS" />
     <Content Include="Styles\StyleSheet_m.less" />
     <Content Include="Views\Enterprise\Index.cshtml" />
+    <Content Include="Views\Function\Messagewall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

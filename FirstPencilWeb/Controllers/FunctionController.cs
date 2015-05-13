@@ -8,6 +8,9 @@ using FirstPencilWeb.Models;
 
 namespace FirstPencilWeb.Controllers
 {
+    /// <summary>
+    /// 功能
+    /// </summary>
     public class FunctionController : Controller
     {
         // GET: Function
@@ -71,6 +74,16 @@ namespace FirstPencilWeb.Controllers
             {
                 return Content("false");
             }
+        }
+
+
+        /// <summary>
+        /// 留言墙
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Messagewall()
+        {
+            return View();
         }
     }
 }
