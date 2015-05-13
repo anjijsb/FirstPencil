@@ -1,0 +1,29 @@
+﻿@{
+    List<FirstPencilWeb.Models.Deler> cl = ViewBag["d"] as List<FirstPencilWeb.Models.Deler>;
+}
+@{
+    ViewBag.Title = "签到";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="hero-unit">
+    <select>
+        @{
+            foreach (var c in cl)
+            {
+                <option value="@Html.Encode(c.FirmId)">@Html.Encode(c.Name)</option>
+            }
+        }
+    </select><br />
+    <div class="input-prepend">
+        <span class="add-on">..</span>
+        <input class="span2" id="prependedInput" type="text" placeholder="Username">
+    </div><br />
+    <div class="input-prepend">
+        <span class="add-on">..</span>
+        <input class="span2" id="prependedInput" type="text" placeholder="Username">
+    </div><br />
+    <div class="input-prepend">
+        <span class="add-on">..</span>
+        <input class="span2" id="prependedInput" type="text" placeholder="Username">
+    </div><br />
+</div>

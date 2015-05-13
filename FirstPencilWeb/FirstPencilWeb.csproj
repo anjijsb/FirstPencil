@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="Helps\VerificationCode.cs" />
     <Compile Include="Helps\WeiXinHelpers.cs" />
+    <Compile Include="Models\Deler.cs" />
     <Compile Include="Models\SessionKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -318,6 +319,7 @@
     <Content Include="Views\Enterprise\Index.cshtml" />
     <Content Include="Views\Function\Messagewall.cshtml" />
     <Content Include="Views\Function\Ernie.cshtml" />
+    <Content Include="Views\Users\DealerSgin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
