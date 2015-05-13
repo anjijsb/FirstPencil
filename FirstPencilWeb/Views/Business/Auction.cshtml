@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "拍卖详情";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -57,27 +56,25 @@
     }
 
     .imgleft {
-        margin-left: -35%;
+        margin-left: -25%;
     }
 
     .imgright {
-        margin-right: -35%;
+        margin-right: -25%;
     }
 
     .carousel-control {
         margin-top: 5%;
     }
-
-    .hero-unit1 {
-        margin-top: 15%;
-    }
-
     .divimg {
         width: 100%;
         position: fixed;
         bottom: 0.8em;
     }
-
+    #myCarousel{
+        margin:0;
+        padding:0;
+    }
     .divimg1 {
         width: 100%;
         position: fixed;
@@ -93,6 +90,13 @@
     #centent {
         position: absolute;
         width: 100%;
+        background-color:white;
+    }
+    #centent table{
+        border-bottom:1px solid #ccc;
+    }
+    #centent img{
+        width:100%;
     }
 
     #num {
@@ -109,14 +113,18 @@
         #num > .close {
             margin-right: 0.5em;
         }
+
+    .item img {
+        height: 12em;
+    }
 </style>
 <img src="~/Images/bj/pmbj.png" class="bj" />
 <div class="hero-unit1">
     <div id="myCarousel" class="carousel slide">
         <div class="carousel-inner">
-            <div class="active item"><img src="~/Images/ceshi/touxiagn.jpg" /></div>
-            <div class="item"><img src="~/Images/ceshi/touxiagn.jpg" /></div>
-            <div class="item"><img src="~/Images/ceshi/touxiagn.jpg" /></div>
+            <div class="active item"><img src="~/Images/sp/sp01/1.jpg" /></div>
+            <div class="item"><img src="~/Images/sp/sp01/2.jpg" /></div>
+            <div class="item"><img src="~/Images/sp/sp01/3.jpg" /></div>
         </div>
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -148,55 +156,47 @@
     </div>
 </div>
 <div id="centent">
-    内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-    <br />内容
-
+  <table class="table table-striped">
+      <tr>
+          <td>产品名称</td>
+          <td>中华 6700</td>
+      </tr>
+      <tr>
+          <td>品牌</td>
+          <td>中华</td>
+      </tr>
+      <tr>
+          <td>中华型号</td>
+          <td>6700</td>
+      </tr>
+      <tr>
+          <td>笔类型</td>
+          <td>石墨/普通铅笔</td>
+      </tr>
+      <tr>
+          <td>规格</td>
+          <td>1盒12支装</td>
+      </tr>
+      <tr>
+          <td>笔芯硬度:</td>
+          <td>HB</td>
+      </tr>
+  </table>
+    <img src="~/Images/sp/sp01/001.png" />
 </div>
 <div class="text-center divimg" id="btn">
-    <img src="/Images/bj/jt.png" />
+    <img src="~/Images/bj/jt.png" />
 </div>
 <div class="text-right divimg1" id="btn1">
-    <img src="/Images/bj/jt1.png" />
+    <img src="~/Images/bj/jt1.png" />
 </div>
-
 
 <script type="text/javascript">
     $(document).ready(function () {
         $("#num").hide();
         var hei = $(window).height();
         $("#centent").css("top", hei);
+        $("#centent").css("height", hei);
     })
     var topn = 0;
     $(".divimg").click(function () {
@@ -245,4 +245,3 @@
         $("#num").show();
     })
 </script>
-

@@ -25,6 +25,7 @@
                     return false;
                 }
             })
+
             $.getScript("Function/CheckCode?code=" + co, function (j) {
                 alert(eval(j));
             })

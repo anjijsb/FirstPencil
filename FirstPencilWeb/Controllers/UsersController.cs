@@ -21,15 +21,14 @@ namespace FirstPencilWeb.Controllers
         /// <returns></returns>
         public ActionResult Dealerships(string code)
         {
+            WeiXinUserInfo info = new WeiXinUserInfo();
             if (!string.IsNullOrEmpty(code))
             {
                 string co = WeiXinHelpers.GetUserOpenId(code);
-                if (string.IsNullOrEmpty(co))
-                {
-                    co = "11";
-                }
-                ViewBag.openid = co;
+
+                info = WeiXinHelpers.GetUserInfo(co);
             }
+            ViewBag.OpenId = info.OpenId;
             return View();
         }
 
