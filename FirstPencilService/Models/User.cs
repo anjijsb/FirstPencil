@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,6 @@ namespace FirstPencilService.Models
         public string UserName { get; set; }
 
         public string OpenId { get; set; }
-
-        public int? CardId { get; set; }
 
         public string NickName { get; set; }
 
@@ -37,6 +36,13 @@ namespace FirstPencilService.Models
         public DateTime? SubscribeTime { get; set; }
 
         public string Headimgurl { get; set; }
+
+        public bool IsSalesman { get; set; }
+
+        public int? SalesmanId { get; set; }
+
+        [ForeignKey("SalesmanId")]
+        public Salesman Salesman { get; set; }
 
         public string Remarks { get; set; }
     }
