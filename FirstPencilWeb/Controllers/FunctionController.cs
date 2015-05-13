@@ -85,5 +85,14 @@ namespace FirstPencilWeb.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 摇奖
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Ernie()
+        {
+            return View();
+        }
     }
 }

@@ -136,6 +136,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="CSS\Enterprise-index\idangerous.swiper.css" />
     <Content Include="CSS\Enterprise-index\style.css" />
+    <Content Include="CSS\Ernie.css" />
     <Content Include="CSS\jquery.fullPage.css" />
     <Content Include="CSS\MessageWall.css" />
     <Content Include="favicon.ico" />
@@ -238,6 +239,12 @@
     <Content Include="Images\xp\5.jpg" />
     <Content Include="Images\xp\6.jpg" />
     <Content Include="Images\xp\7.jpg" />
+    <Content Include="Images\yaojiang\body_bg.jpg" />
+    <Content Include="Images\yaojiang\btn_start.png" />
+    <Content Include="Images\yaojiang\main_bg.jpg" />
+    <Content Include="Images\yaojiang\main_bg.png" />
+    <Content Include="Images\yaojiang\num.png" />
+    <Content Include="Images\yaojiang\num_mask.png" />
     <Content Include="Jscript\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Jscript\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Jscript\bootstrap\css\bootstrap.css" />
@@ -247,6 +254,7 @@
     <Content Include="Jscript\bootstrap\js\bootstrap.js" />
     <Content Include="Jscript\bootstrap\js\bootstrap.min.js" />
     <Content Include="Jscript\bootstrap\js\jquery-1.11.2.js" />
+    <Content Include="Jscript\Helps\easing.js" />
     <Content Include="Jscript\Helps\Helps.js" />
     <Content Include="Jscript\Helps\idangerous.swiper.min.js" />
     <Content Include="Jscript\Helps\jgestures.js" />
@@ -309,6 +317,7 @@
     <Content Include="Styles\StyleSheet_m.less" />
     <Content Include="Views\Enterprise\Index.cshtml" />
     <Content Include="Views\Function\Messagewall.cshtml" />
+    <Content Include="Views\Function\Ernie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
