@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -13,6 +14,7 @@ namespace FirstPencilWeb.Controllers
 {
     public class UsersController : Controller
     {
+        public string ip = System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"].ToString();
         // GET: Users
         public ActionResult Index()
         {
@@ -63,11 +65,24 @@ namespace FirstPencilWeb.Controllers
         public ActionResult DealerSgin()
         {
             HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Salesman/GetFirms", System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"])).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/Salesman/GetFirms", this.ip)).Result;
             List<Deler> d = JsonHelp.todui<List<Deler>>(cl);
-            return View(d);
+            ViewBag.list = d;
+            ViewBag.ip = this.ip;
+            return View();
         }
+
+        public JsonResult TiJiao(string firmId, string name, string phone, string position)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Salesman/AddSalesman?firmId={1}&name={2}&phone={3}&Position={4}", this.ip, firmId, name, phone, position)).Result;
+            return Json(new { url = cl.ToString() }, JsonRequestBehavior.AllowGet);
+        }
+
     }
+
+
+    #region Json帮助
 
     public static class JsonHelp
     {
@@ -76,5 +91,8 @@ namespace FirstPencilWeb.Controllers
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
         }
     }
+
+
+    #endregion
 }
 

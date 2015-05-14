@@ -1,29 +1,53 @@
 ﻿@{
-    List<FirstPencilWeb.Models.Deler> cl = ViewBag["d"] as List<FirstPencilWeb.Models.Deler>;
-}
-@{
     ViewBag.Title = "签到";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="hero-unit">
-    <select>
+    <select name="firmId" id="firmId">
         @{
-            foreach (var c in cl)
+            foreach (FirstPencilWeb.Models.Deler s in @ViewBag.list as List<FirstPencilWeb.Models.Deler>)
             {
-                <option value="@Html.Encode(c.FirmId)">@Html.Encode(c.Name)</option>
+                <option selected value="@s.FirmId">@s.Name</option>
             }
         }
     </select><br />
     <div class="input-prepend">
-        <span class="add-on">..</span>
-        <input class="span2" id="prependedInput" type="text" placeholder="Username">
+        <span class="add-on">姓名</span>
+        <input class="span2" name="name" id="name" type="text" placeholder="请输入姓名">
     </div><br />
     <div class="input-prepend">
-        <span class="add-on">..</span>
-        <input class="span2" id="prependedInput" type="text" placeholder="Username">
+        <span class="add-on">手机</span>
+        <input class="span2" name="phone" id="phone" type="text" placeholder="请输入手机号">
     </div><br />
     <div class="input-prepend">
-        <span class="add-on">..</span>
-        <input class="span2" id="prependedInput" type="text" placeholder="Username">
+        <span class="add-on">职位</span>
+        <input class="span2" name="position" id="position" type="text" placeholder="请输入职位">
     </div><br />
+    <input type="hidden" id="ip" value="@ViewBag.ip" />
+    <button id="btn" class="btn btn-large btn-primary">提交</button>
 </div>
+<img src="" id="img"  />
+<script>
+    var ip = $("#ip").val();
+    $("#btn").on({
+        "mouseout": function () {
+
+        },
+        "click": function () {
+            TiJiao1($("#firmId").val(), $("#name").val(), $("#phone").val(), $("#position").val());
+        }
+    })
+
+    function TiJiao1(firmId, name, phone, position) {
+        $.ajax({
+            url: "/Users/TiJiao",
+            data: { firmId: firmId, name: name, phone: phone, position: position },
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                var url = data.url.substring(1, data.url.length - 1);
+                $("#img").attr("src", url);
+            }
+        })
+    }
+</script>
