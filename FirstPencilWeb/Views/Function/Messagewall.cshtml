@@ -1,93 +1,49 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "留言墙";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link href="~/CSS/MessageWall.css" rel="stylesheet" />
-<style type="text/css">
-    .alert {
-        padding: 0px;
-        margin-bottom: 20px;
-        border: none;
-    }
-
-        .alert img {
-            width: 70px;
-            margin: 5px 15px 5px 5px;
-        }
-
-        .alert blockquote {
-            padding: 4px 4px 0px 4px;
-        }
-
-            .alert blockquote p {
-                margin-bottom:0px;
-                padding-bottom:0px;
+<link href="~/CSS/Messagewal/Message.css" rel="stylesheet" />
+<div id="bj">
+    <div id="title"><img src="~/Images/Messagewall/title.png" /></div>
+    <div class="box3">
+        <div></div>
+        <div class="border3">
+            @{
+                if (@ViewBag.list != null)
+                {
+                    foreach (FirstPencilWeb.Models.Message m in @ViewBag.list as List<FirstPencilWeb.Models.Message>)
+                    {
+                        <div class="alert">
+                            <img src="@m.User.Headimgurl" class="pull-left" />
+                            <blockquote>
+                                <p class="text">
+                                    <span>
+                                        @m.User.NickName：
+                                    </span>
+                                    @m.Content
+                                </p>
+                                <small class="pull-right">@m.CreateDate</small>
+                            </blockquote>
+                        </div>
+                    }
+                }
             }
-
-            .alert blockquote .text {
-                font-size: 14px;
-            }
-
-            .alert blockquote small {
-                padding-top: 0px;
-                margin-top: 0px;
-            }
-</style>
-
-<div class="box3">
-    <div class="border3">
-        <div class="alert alert-block alert-info">
-            <img src="~/Images/ceshi/touxiagn.jpg" class="pull-left" />
-            <blockquote>
-                <p>dsad:</p>
-                <p class="text">手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡觉得手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡</p>
-                <small class="pull-right">2015-5-5 15:20</small>
-            </blockquote>
-        </div>
-        <div class="alert alert-block alert-info">
-            <img src="~/Images/ceshi/touxiagn.jpg" class="pull-left img-circle" />
-            <blockquote>
-                <p>dsad:</p>
-                <p class="text">手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡觉得手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡</p>
-                <small class="pull-right">2015-5-5 15:20</small>
-            </blockquote>
-        </div>
-        <div class="alert alert-block alert-info">
-            <img src="~/Images/ceshi/touxiagn.jpg" class="pull-left img-circle" />
-            <blockquote>
-                <p>dsad:</p>
-                <p class="text">手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡觉得手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡</p>
-                <small class="pull-right">2015-5-5 15:20</small>
-            </blockquote>
-        </div>
-        <div class="alert alert-block alert-info">
-            <img src="~/Images/ceshi/touxiagn.jpg" class="pull-left img-circle" />
-            <blockquote>
-                <p>dsad:</p>
-                <p class="text">手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡觉得手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡</p>
-                <small class="pull-right">2015-5-5 15:20</small>
-            </blockquote>
-        </div>
-        <div class="alert alert-block alert-info">
-            <img src="~/Images/ceshi/touxiagn.jpg" class="pull-left img-circle" />
-            <blockquote>
-                <p>dsad:</p>
-                <p class="text">手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡觉得手动阀手动阀手动阀手动阀撒京东方卡死了阿道夫卡视角的饭卡上考虑的法力斯卡</p>
-                <small class="pull-right">2015-5-5 15:20</small>
-            </blockquote>
         </div>
     </div>
 </div>
-<button id="but">ceshi</button><button id="choujiang">抽奖</button>
 <script type="text/javascript">
-
+    $(document).ready(function () {
+        $("#bj").css("height", $(window).height());
+        $(".pull-right").html($(".pull-right").html().substring(11, 19));
+        setInterval(add, 2000);
+    })
     var num = 0;
     $(".border3").css("animation-play-state", "paused");
     $(".border3").css("-webkit-animation-play-state", "paused");
     $("#but").click(function () {
-        num += 100;
+        num += 110;
         var str = '<div class="alert"><strong>Warning!</strong> Best check yo self, you are not looking too good.</div>';
         $(".border3").append(str);
         $(".border3").css("animation-play-state", "");
@@ -100,4 +56,27 @@
         $(".border3").css("animation-play-state", "paused");
         $(".border3").css("-webkit-animation-play-state", "paused");
     }
+
+    function add() {
+        $.ajax({
+            url: "/Function/Add",
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.msg == "no") {
+                } else {
+                    num += 110;
+                    var date = data.CreateDate.substring(11, 19);
+                    var str = '<div class="alert"><img src="' + data.Headimgurl + '" class="pull-left" /><blockquote> <p class="text"><span>' + data.NickName + '：</span>' + data.Content + '</p><small class="pull-right">' + date + '</small></blockquote></div>';
+                    $(".border3").append(str);
+                    $(".border3").css("animation-play-state", "");
+                    $(".border3").css("-webkit-animation-play-state", "");
+                    $(".border3").css("-webkit-transform", "translate(0,-" + num + "px)");
+                    setTimeout(display, 2000);
+                }
+            }
+        })
+    }
+
+
 </script>

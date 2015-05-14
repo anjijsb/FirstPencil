@@ -129,7 +129,9 @@
     <Compile Include="Helps\VerificationCode.cs" />
     <Compile Include="Helps\WeiXinHelpers.cs" />
     <Compile Include="Models\Deler.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\SessionKey.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +142,7 @@
     <Content Include="CSS\Ernie.css" />
     <Content Include="CSS\jquery.fullPage.css" />
     <Content Include="CSS\MessageWall.css" />
+    <Content Include="CSS\Messagewal\Message.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -226,6 +229,8 @@
     <Content Include="Images\js\9.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo1.png" />
+    <Content Include="Images\Messagewall\bj.jpg" />
+    <Content Include="Images\Messagewall\title.png" />
     <Content Include="Images\mrtx.jpg" />
     <Content Include="Images\sp\sp01\001.png" />
     <Content Include="Images\sp\sp01\1.jpg" />

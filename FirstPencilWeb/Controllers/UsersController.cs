@@ -72,6 +72,14 @@ namespace FirstPencilWeb.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 生成二维码
+        /// </summary>
+        /// <param name="firmId"></param>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public JsonResult TiJiao(string firmId, string name, string phone, string position)
         {
             HttpClient client = new HttpClient();

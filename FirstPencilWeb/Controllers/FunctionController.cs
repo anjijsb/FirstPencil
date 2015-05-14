@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FirstPencilWeb.Helps;
 using FirstPencilWeb.Models;
+using System.Net.Http;
 
 namespace FirstPencilWeb.Controllers
 {
@@ -13,6 +14,9 @@ namespace FirstPencilWeb.Controllers
     /// </summary>
     public class FunctionController : Controller
     {
+        public string ip = System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"].ToString();
+        public static List<Message> messold = new List<Message>();
+        public static int maxmsgid;
         // GET: Function
         public ActionResult Index()
         {
@@ -83,6 +87,17 @@ namespace FirstPencilWeb.Controllers
         /// <returns></returns>
         public ActionResult Messagewall()
         {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/GetMsgList?lastId={1}", this.ip, 0)).Result;
+            if (cl.Length > 50)
+            {
+                messold = JsonHelp.todui<List<Message>>(cl);
+                maxmsgid = messold.Max(x => x.MsgId);
+                List<Message> m = new List<Message>();
+                m = messold.Take<Message>(4).ToList();
+                messold.RemoveRange(0, m.Count());
+                ViewBag.list = m;
+            }
             return View();
         }
 
@@ -93,6 +108,34 @@ namespace FirstPencilWeb.Controllers
         public ActionResult Ernie()
         {
             return View();
+        }
+
+        /// <summary>
+        /// 每两秒刷新留言
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult Add()
+        {
+            Message m = new Message();
+            if (messold.Count() > 0)
+            {
+                m = messold.FirstOrDefault();
+                messold.RemoveRange(0, 1);
+                JsonResult json = Json(new { Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate }, JsonRequestBehavior.AllowGet);
+                return json;
+            }
+            else
+            {
+                HttpClient client = new HttpClient();
+                var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/GetMsgList?lastId={1}", this.ip, maxmsgid)).Result;
+                if (cl.Length > 50)
+                {
+                    messold = JsonHelp.todui<List<Message>>(cl);
+                    maxmsgid = messold.Max(x => x.MsgId);
+                    this.Add();
+                }
+                return Json(new { msg = "no" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
     }
