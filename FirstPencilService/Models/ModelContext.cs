@@ -22,5 +22,7 @@ namespace FirstPencilService.Models
         public DbSet<ScanEvent> ScanEventSet { get; set; }
 
         public DbSet<AccessToken> AccessTokenSet { get; set; }
+
+        public DbSet<DiscussMsg> DiscussMsgSet { get; set; }
     }
 }

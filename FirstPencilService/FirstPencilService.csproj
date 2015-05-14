@@ -163,6 +163,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ComplainController.cs" />
+    <Compile Include="Controllers\DiscussMsgController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SalesmanController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -178,9 +179,14 @@
     <Compile Include="Migrations\201505130647140_update.Designer.cs">
       <DependentUpon>201505130647140_update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505140552294_addDiscussMsg.cs" />
+    <Compile Include="Migrations\201505140552294_addDiscussMsg.Designer.cs">
+      <DependentUpon>201505140552294_addDiscussMsg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessToken.cs" />
     <Compile Include="Models\Complain.cs" />
+    <Compile Include="Models\DiscussMsg.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\ModelContext.cs" />
     <Compile Include="Models\Salesman.cs" />
@@ -327,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505130647140_update.resx">
       <DependentUpon>201505130647140_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505140552294_addDiscussMsg.resx">
+      <DependentUpon>201505140552294_addDiscussMsg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
