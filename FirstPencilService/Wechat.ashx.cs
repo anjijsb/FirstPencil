@@ -1,4 +1,5 @@
-﻿using FirstPencilService.Models;
+﻿using FirstPencilService;
+using FirstPencilService.Models;
 //using FirstPencil.Models;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ namespace FirstPencil
                 requestXML.MsgType = MsgType.InnerText;
 
 
+
                 if (requestXML.MsgType == "event")
                 {
                     requestXML.Event = rootElement.SelectSingleNode("Event").InnerText;
@@ -56,7 +58,7 @@ namespace FirstPencil
                             user = new User
                             {
                                 OpenId = requestXML.FromUserName,
-                               
+
                             };
                             db.UserSet.Add(user);
                         }
@@ -101,16 +103,19 @@ namespace FirstPencil
 
                         db.SaveChanges();
 
+                        var t = new System.Threading.Tasks.Task(() => WechatHelper.GetUserInfo(user));
+                        t.Start();
+
                         if (!string.IsNullOrEmpty(requestXML.EventKey))
                         {
-                            
+
                             requestXML.EventKey = requestXML.EventKey.Replace("qrscene_", "");
-                          
+
                             //ret = Helper.WechatHelper.GetEventString(requestXML.FromUserName, requestXML.ToUserName, requestXML.EventKey);
                         }
                         else
                         {
-                            
+
                         }
 
                         //else
@@ -119,6 +124,26 @@ namespace FirstPencil
                         //}
                     }
 
+                }// end event if
+                else if (requestXML.MsgType == "text")
+                {
+                    requestXML.Content = rootElement.SelectSingleNode("Content").InnerText;
+                    var user = db.UserSet.FirstOrDefault(item => item.OpenId == requestXML.FromUserName);
+                    if (user == null)
+                    {
+
+                    }
+                    if (requestXML.Content.StartsWith("#"))
+                    {
+                        db.DiscussMsgSet.Add(new DiscussMsg
+                        {
+                            UserId = user.UserId,
+                            CreateDate = DateTime.Now,
+                            Content = requestXML.Content,
+                        });
+                        ret = "感谢您的留言。";
+                        db.SaveChanges();
+                    }
                 }
                 HttpContext.Current.Response.Write(ret);
                 HttpContext.Current.Response.End();
