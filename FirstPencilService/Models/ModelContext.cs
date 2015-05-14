@@ -24,5 +24,7 @@ namespace FirstPencilService.Models
         public DbSet<AccessToken> AccessTokenSet { get; set; }
 
         public DbSet<DiscussMsg> DiscussMsgSet { get; set; }
+
+        public DbSet<Prize> PrizeSet { get; set; }
     }
 }

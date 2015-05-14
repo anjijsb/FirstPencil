@@ -139,7 +139,7 @@ namespace FirstPencil
                         {
                             UserId = user.UserId,
                             CreateDate = DateTime.Now,
-                            Content = requestXML.Content,
+                            Content = requestXML.Content.Remove(0,1),
                         });
                         ret = "感谢您的留言。";
                         db.SaveChanges();

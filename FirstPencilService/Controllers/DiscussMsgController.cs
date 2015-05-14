@@ -22,7 +22,7 @@ namespace FirstPencilService.Controllers
         public IEnumerable<DiscussMsg> GetMsgList(int lastId)
         {
             var db = new ModelContext();
-            var ret = db.DiscussMsgSet.Where(item => item.MsgId > lastId).AsEnumerable();
+            var ret = db.DiscussMsgSet.Include("User").Where(item => item.MsgId > lastId).AsEnumerable();
             return ret;
         }
     }
