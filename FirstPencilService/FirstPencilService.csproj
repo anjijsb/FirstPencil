@@ -187,8 +187,13 @@
     <Compile Include="Migrations\201505140744528_addPrize.Designer.cs">
       <DependentUpon>201505140744528_addPrize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505150852167_addAuction.cs" />
+    <Compile Include="Migrations\201505150852167_addAuction.Designer.cs">
+      <DependentUpon>201505150852167_addAuction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessToken.cs" />
+    <Compile Include="Models\Auction.cs" />
     <Compile Include="Models\Complain.cs" />
     <Compile Include="Models\DiscussMsg.cs" />
     <Compile Include="Models\Event.cs" />
@@ -344,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505140744528_addPrize.resx">
       <DependentUpon>201505140744528_addPrize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505150852167_addAuction.resx">
+      <DependentUpon>201505150852167_addAuction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

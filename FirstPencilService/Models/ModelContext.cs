@@ -26,5 +26,9 @@ namespace FirstPencilService.Models
         public DbSet<DiscussMsg> DiscussMsgSet { get; set; }
 
         public DbSet<Prize> PrizeSet { get; set; }
+
+        public DbSet<Auction> AuctionSet { get; set; }
+
+        public DbSet<AuctionOrder> AuctionOrderSet { get; set; }
     }
 }
