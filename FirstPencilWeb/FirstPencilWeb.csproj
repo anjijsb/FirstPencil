@@ -258,6 +258,8 @@
     <Content Include="Images\yaojiang\main_bg.png" />
     <Content Include="Images\yaojiang\num.png" />
     <Content Include="Images\yaojiang\num_mask.png" />
+    <Content Include="Images\yaojiang\start.png" />
+    <Content Include="Images\yaojiang\stop.png" />
     <Content Include="Jscript\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Jscript\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Jscript\bootstrap\css\bootstrap.css" />

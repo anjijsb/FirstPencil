@@ -7,30 +7,35 @@
 <div id="bj">
     <div class="box3">
         <div class="border3">
-            <div>This is a test 1.</div>
-            <div>This is a test 2.</div>
-            <div>This is a test 3.</div>
-            <div>This is a test 4.</div>
-            <div>This is a test 5.</div>
-            <div>This is a test 1.</div>
+            <div>张三</div>
+            <div>张六</div>
+            <div>张十二</div>
+            <div>张十六</div>
+            <div>张二十</div>
+            <div>张五十</div>
         </div>
     </div>
-    <img src="~/Images/yaojiang/btn_start.png" />
-    <button id="start">开始抽奖</button>
-    <button id="stop">结束抽奖</button>
+    <img src="~/Images/yaojiang/start.png" id="startimg" />
 </div>
 <script type="text/javascript">
+    var i = 0;
     $(document).ready(function () {
         $("#bj").css("height", $(window).height());
         $(".border3").css("animation-play-state", "paused");
         $(".border3").css("-webkit-animation-play-state", "paused");
     })
-    $("#start").click(function () {
-        $(".border3").css("animation-play-state", "");
-        $(".border3").css("-webkit-animation-play-state", "");
+    $("#startimg").click(function () {
+        if (i == 0) {
+            i = 1;
+            $(this).attr("src", "../../Images/yaojiang/stop.png");
+            $(".border3").css("animation-play-state", "");
+            $(".border3").css("-webkit-animation-play-state", "");
+        } else {
+            i = 0;
+            $(this).attr("src", "../../Images/yaojiang/start.png");
+            $(".border3").css("animation-play-state", "paused");
+            $(".border3").css("-webkit-animation-play-state", "paused");
+        }
     })
-    $("#stop").click(function () {
-        $(".border3").css("animation-play-state", "paused");
-        $(".border3").css("-webkit-animation-play-state", "paused");
-    })
+
 </script>
