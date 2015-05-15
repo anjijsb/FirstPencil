@@ -1,0 +1,61 @@
+﻿
+#bj {
+    width: 100%;
+    background: url("../../Images/Messagewall/bj.jpg") no-repeat top center;
+}
+
+#title {
+    width: 100%;
+    text-align: center;
+}
+
+    #title > img {
+        width: 90%;
+    }
+
+.box3 {
+    width: 100%;
+    height: 400px;
+}
+
+    .box3 .border3 {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+.alert {
+    padding: 5px;
+    margin-bottom: 20px;
+    border:none;
+    background: rgba(242,241,246,0.6);
+}
+
+    .alert img {
+        width: 60px;
+        margin: 10px 15px 10px 10px;
+    }
+
+    .alert blockquote {
+        padding: 8px 4px 0px 4px;
+        border:none;
+        height:70%;
+    }
+
+        .alert blockquote p {
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            color: black;
+        }
+
+        .alert blockquote .text {
+            font-size: 18px;
+        }
+
+            .alert blockquote .text span {
+                font-weight: 900;
+            }
+
+        .alert blockquote small {
+            padding-top: 0px;
+            margin-top: 0px;
+        }

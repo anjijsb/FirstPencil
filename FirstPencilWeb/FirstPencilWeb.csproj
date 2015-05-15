@@ -137,6 +137,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CSS\DealerSgin\DealerSgin.css" />
     <Content Include="CSS\Enterprise-index\idangerous.swiper.css" />
     <Content Include="CSS\Enterprise-index\style.css" />
     <Content Include="CSS\Ernie.css" />
@@ -163,6 +164,11 @@
     <Content Include="Images\commodity\prod2.jpg" />
     <Content Include="Images\commodity\touxiagn.jpg" />
     <Content Include="Images\Coupons\Q_00001.jpg" />
+    <Content Include="Images\DealerSgin\xjtitle.png" />
+    <Content Include="Images\DealerSgin\xxbj.jpg" />
+    <Content Include="Images\DealerSgin\xxbtn.png" />
+    <Content Include="Images\DealerSgin\xxt.jpg" />
+    <Content Include="Images\DealerSgin\xxtitl.png" />
     <Content Include="Images\Enterprise-index\images\1.jpg" />
     <Content Include="Images\Enterprise-index\images\10-1.png" />
     <Content Include="Images\Enterprise-index\images\10-2.png" />

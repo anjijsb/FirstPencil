@@ -17,6 +17,7 @@ namespace FirstPencilWeb.Controllers
         public string ip = System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"].ToString();
         public static List<Message> messold = new List<Message>();
         public static int maxmsgid;
+
         // GET: Function
         public ActionResult Index()
         {

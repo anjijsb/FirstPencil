@@ -34,14 +34,17 @@
     </div>
 </div>
 <script type="text/javascript">
+
+    var num = 0;
+
     $(document).ready(function () {
+        $(".border3").css("animation-play-state", "paused");
+        $(".border3").css("-webkit-animation-play-state", "paused");
         $("#bj").css("height", $(window).height());
         $(".pull-right").html($(".pull-right").html().substring(11, 19));
         setInterval(add, 2000);
     })
-    var num = 0;
-    $(".border3").css("animation-play-state", "paused");
-    $(".border3").css("-webkit-animation-play-state", "paused");
+
     $("#but").click(function () {
         num += 110;
         var str = '<div class="alert"><strong>Warning!</strong> Best check yo self, you are not looking too good.</div>';
