@@ -50,36 +50,30 @@
     }
 }
 
-@-webkit-keyframes scrolltext2{
-    
+@-webkit-keyframes scrolltext2 {
 }
+
 .box3 {
     position: relative;
     top: 0px;
     left: 0px;
-    padding-top:20px;
-    padding-bottom:20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 95%;
     height: 35em;
     overflow: hidden;
 }
 
 .border3 {
-    -webkit-transition:all 1s ;
-    -moz-transition:all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
     top: 0px;
     /*-webkit-animation: scrollText1 8s infinite cubic-bezier(1,0,0.5,0);*/
     /*animation: scrollText1 8s infinite cubic-bezier(1,0,0.5,0);*/
-     -webkit-transform: translateY(0px);
-     
+    -webkit-transform: translateY(0px);
 }
 
     .border3 div {
         height: 80px;
-        line-height:80px;
-    }
-
-    .border3:hover {
-        animation-play-state: paused;
-        -webkit-animation-play-state: paused;
+        line-height: 80px;
     }
