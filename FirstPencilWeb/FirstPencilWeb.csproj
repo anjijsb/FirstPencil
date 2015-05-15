@@ -141,6 +141,7 @@
     <Content Include="CSS\Enterprise-index\idangerous.swiper.css" />
     <Content Include="CSS\Enterprise-index\style.css" />
     <Content Include="CSS\Ernie.css" />
+    <Content Include="CSS\Ernie\Ernie.css" />
     <Content Include="CSS\jquery.fullPage.css" />
     <Content Include="CSS\MessageWall.css" />
     <Content Include="CSS\Messagewal\Message.css" />

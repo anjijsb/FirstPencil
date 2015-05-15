@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using FirstPencilWeb.Helps;
 using FirstPencilWeb.Models;
 using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FirstPencilWeb.Controllers
 {
@@ -17,6 +19,7 @@ namespace FirstPencilWeb.Controllers
         public string ip = System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"].ToString();
         public static List<Message> messold = new List<Message>();
         public static int maxmsgid;
+        public static int num = 0;
 
         // GET: Function
         public ActionResult Index()
@@ -121,22 +124,26 @@ namespace FirstPencilWeb.Controllers
             if (messold.Count() > 0)
             {
                 m = messold.FirstOrDefault();
-                messold.RemoveRange(0, 1);
                 JsonResult json = Json(new { Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate }, JsonRequestBehavior.AllowGet);
+                messold.RemoveRange(0, 1);
                 return json;
             }
             else
             {
                 HttpClient client = new HttpClient();
                 var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/GetMsgList?lastId={1}", this.ip, maxmsgid)).Result;
-                if (cl.Length > 50)
+                if (cl.Length < 50)
                 {
-                    messold = JsonHelp.todui<List<Message>>(cl);
-                    maxmsgid = messold.Max(x => x.MsgId);
-                    this.Add();
+                    return Json(new { msg = "no" }, JsonRequestBehavior.AllowGet);
                 }
-                return Json(new { msg = "no" }, JsonRequestBehavior.AllowGet);
+                messold = JsonHelp.todui<List<Message>>(cl);
+                maxmsgid = messold.Max(x => x.MsgId);
+                m = messold.FirstOrDefault();
+                JsonResult json = Json(new { Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate }, JsonRequestBehavior.AllowGet);
+                messold.RemoveRange(0, 1);
+                return json;
             }
+
         }
 
     }
