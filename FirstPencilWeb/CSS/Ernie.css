@@ -4,23 +4,23 @@
     }
 
     20% {
-        -webkit-transform: translateY(-30px);
+        -webkit-transform: translateY(-150px);
     }
 
     40% {
-        -webkit-transform: translateY(-60px);
+        -webkit-transform: translateY(-300px);
     }
 
     60% {
-        -webkit-transform: translateY(-90px);
+        -webkit-transform: translateY(-450px);
     }
 
     80% {
-        -webkit-transform: translateY(-120px);
+        -webkit-transform: translateY(-600px);
     }
 
     100% {
-        -webkit-transform: translateY(-150px);
+        -webkit-transform: translateY(-750px);
     }
 }
 
@@ -30,47 +30,45 @@
     }
 
     20% {
-        transform: translateY(-30px);
+        transform: translateY(-150px);
     }
 
     40% {
-        transform: translateY(-60px);
+        transform: translateY(-300px);
     }
 
     60% {
-        transform: translateY(-90px);
+        transform: translateY(-450px);
     }
 
     80% {
-        transform: translateY(-120px);
+        transform: translateY(-600px);
     }
 
     100% {
-        transform: translateY(-150px);
+        transform: translateY(-750px);
     }
 }
 
 .box3 {
     position: relative;
-    top: 20px;
-    left: 20px;
-    width: 50%;;
-    height: 30px;
+    top: 39%;
+    left: 23%;
+    width: 55%;
+    height: 130px;
     overflow: hidden;
-    border: 1px solid #ccc;
 }
 
 .border3 {
     top: 0px;
-    -webkit-animation: scrollText1 0.5s infinite cubic-bezier(1,0,0.5,0);
-    animation: scrollText1 0.5s infinite cubic-bezier(1,0,0.5,0);
+    -webkit-animation: scrollText1 1s infinite cubic-bezier(1,0,0.5,0);
+    animation: scrollText1 1s infinite cubic-bezier(1,0,0.5,0);
 }
 
     .border3 div {
-        height: 30px;
-    }
-
-    .border3:hover {
-        animation-play-state: paused;
-        -webkit-animation-play-state: paused;
+        height: 150px;
+        line-height: 150px;
+        font-size: 50px;
+        color: black;
+        font-weight: 900;
     }
