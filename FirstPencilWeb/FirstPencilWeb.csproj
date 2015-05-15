@@ -130,6 +130,7 @@
     <Compile Include="Helps\WeiXinHelpers.cs" />
     <Compile Include="Models\Deler.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Prize.cs" />
     <Compile Include="Models\SessionKey.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

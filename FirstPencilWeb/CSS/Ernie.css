@@ -52,7 +52,7 @@
 
 .box3 {
     position: relative;
-    top: 39%;
+    top: 5%;
     left: 23%;
     width: 55%;
     height: 130px;
@@ -61,8 +61,8 @@
 
 .border3 {
     top: 0px;
-    -webkit-animation: scrollText1 1s infinite cubic-bezier(1,0,0.5,0);
-    animation: scrollText1 1s infinite cubic-bezier(1,0,0.5,0);
+    -webkit-animation: scrollText1 0.1s infinite cubic-bezier(1,0,0.5,0);
+    animation: scrollText1 0.1s infinite cubic-bezier(1,0,0.5,0);
 }
 
     .border3 div {

@@ -111,8 +111,38 @@ namespace FirstPencilWeb.Controllers
         /// <returns></returns>
         public ActionResult Ernie()
         {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/GetPrizeList", this.ip)).Result;
+            if (cl.Length > 50)
+            {
+                List<Prize> prizes = JsonHelp.todui<List<Prize>>(cl);
+                ViewBag.PrizeList = prizes;
+            }
+            var cl1 = client.GetStringAsync(string.Format("{0}api/DiscussMsg/GetUserNames", this.ip)).Result;
+            if (cl1.Length > 2)
+            {
+                List<string> user = JsonHelp.todui<List<string>>(cl1);
+                ViewBag.UserList = user;
+            }
             return View();
         }
+
+
+        /// <summary>
+        /// 获取中奖人名单
+        /// </summary>
+        /// <param name="prizeId"></param>
+        /// <returns></returns>
+        public JsonResult GetWinner(string prizeId)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/GetWinner?prizeId={1}", this.ip, prizeId)).Result;
+            string name = JsonHelp.todui<string>(cl);
+            return Json(new { name = name }, JsonRequestBehavior.AllowGet);
+        }
+
+        
+
 
         /// <summary>
         /// 每两秒刷新留言

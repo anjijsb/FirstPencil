@@ -5,18 +5,35 @@
 <link href="~/CSS/Ernie/Ernie.css" rel="stylesheet" />
 <link href="~/CSS/Ernie.css" rel="stylesheet" />
 <div id="bj">
+    <select id="PrizeName">
+        <option value="-1" text="">请选择奖项</option>
+        @{
+            if (@ViewBag.PrizeList != null)
+            {
+                foreach (FirstPencilWeb.Models.Prize m in @ViewBag.PrizeList as List<FirstPencilWeb.Models.Prize>)
+                {
+                    <option value="@m.PrizeId" text="@m.Description">@m.Name</option>
+                }
+            }
+        }
+    </select><br />
+    <label id="Description"></label><br />
     <div class="box3">
         <div class="border3">
-            <div>张三</div>
-            <div>张六</div>
-            <div>张十二</div>
-            <div>张十六</div>
-            <div>张二十</div>
-            <div>张五十</div>
+            @{
+                if (@ViewBag.UserList != null)
+                {
+                    foreach (string u in @ViewBag.UserList as List<string>)
+                    {
+                        <div>@u</div>
+                    }
+                }
+            }
         </div>
     </div>
     <img src="~/Images/yaojiang/start.png" id="startimg" />
 </div>
+<div id="winner"></div>
 <script type="text/javascript">
     var i = 0;
     $(document).ready(function () {
@@ -27,6 +44,8 @@
     $("#startimg").click(function () {
         if (i == 0) {
             i = 1;
+            $("#winner").empty();
+            $(".border3").show();
             $(this).attr("src", "../../Images/yaojiang/stop.png");
             $(".border3").css("animation-play-state", "");
             $(".border3").css("-webkit-animation-play-state", "");
@@ -35,7 +54,32 @@
             $(this).attr("src", "../../Images/yaojiang/start.png");
             $(".border3").css("animation-play-state", "paused");
             $(".border3").css("-webkit-animation-play-state", "paused");
+            GetWinner();
         }
     })
 
+    $("#PrizeName").change(function () {
+        $("#Description").html($("#PrizeName option:selected").attr("text"));
+    })
+
+    //开始摇奖
+    function GetUserName() {
+
+    }
+
+    //结束摇奖
+    function GetWinner() {
+        var prizeid = $("#PrizeName option:selected").val();
+        $.ajax({
+            url: "/Function/GetWinner",
+            dataType: "json",
+            type: "POST",
+            data: { prizeId: prizeid },
+            success: function (data) {
+                $(".border3").hide();
+                $("#winner").empty().html(data.name);
+
+            }
+        })
+    }
 </script>
