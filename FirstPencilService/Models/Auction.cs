@@ -35,6 +35,8 @@ namespace FirstPencilService.Models
 
         public string DescribeImgs { get; set; }
 
+        public bool IsShow { get; set; }
+
         public string Remarks { get; set; }
     }
 
@@ -60,6 +62,8 @@ namespace FirstPencilService.Models
         public DateTime? CreatrDate { get; set; }
 
         public string Remarks { get; set; }
+
+
     }
 
 
