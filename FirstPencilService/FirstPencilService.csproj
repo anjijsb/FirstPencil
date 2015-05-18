@@ -162,6 +162,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Controllers\ComplainController.cs" />
     <Compile Include="Controllers\DiscussMsgController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -190,6 +191,10 @@
     <Compile Include="Migrations\201505150852167_addAuction.cs" />
     <Compile Include="Migrations\201505150852167_addAuction.Designer.cs">
       <DependentUpon>201505150852167_addAuction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505180120436_updateAuctionAddIsShow.cs" />
+    <Compile Include="Migrations\201505180120436_updateAuctionAddIsShow.Designer.cs">
+      <DependentUpon>201505180120436_updateAuctionAddIsShow.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessToken.cs" />
@@ -352,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505150852167_addAuction.resx">
       <DependentUpon>201505150852167_addAuction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505180120436_updateAuctionAddIsShow.resx">
+      <DependentUpon>201505180120436_updateAuctionAddIsShow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
