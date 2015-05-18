@@ -52,8 +52,8 @@
 
 .box3 {
     position: relative;
-    top: 8%;
-    left: 23%;
+    top: 2%;
+    left: 25%;
     width: 55%;
     height: 130px;
     overflow: hidden;
@@ -68,7 +68,7 @@
     .border3 div {
         height: 150px;
         line-height: 150px;
-        font-size: 50px;
+        font-size: 80px;
         color: black;
         font-weight: 900;
     }

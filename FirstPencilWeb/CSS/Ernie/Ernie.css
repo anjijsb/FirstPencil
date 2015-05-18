@@ -1,6 +1,6 @@
 ﻿#bj {
     text-align: center;
-    background: url(../../Images/yaojiang/yjbj.jpg) no-repeat center;
+    background: url(../../Images/yaojiang/chbj.jpg) no-repeat center;
 }
 
 .box3 .border3 {
@@ -8,18 +8,20 @@
     height: 100%;
 }
 
-#startimg {
-    margin-top: 15%;
-}
-
 #PrizeName {
-    margin-top: 10%;
+    margin-top: 23%;
+    margin-left:5%;
+    height:2em;
+    line-height:2em;
+    font-size:2em;
+    font-weight:900;
 }
 
 #Description {
     color: white;
     font-size: 3em;
     margin-top: 0.5em;
+    margin-left:5%;
     height: 0.5em;
     line-height: 0.5em;
 }
@@ -29,10 +31,15 @@
     height: 110px;
     line-height: 110px;
     position: fixed;
-    top: 38%;
-    left: 25%;
+    top: 52%;
+    left: 28%;
     z-index: 999;
     text-align: center;
-    font-size: 3em;
+    font-size: 80px;
     font-weight: 900;
+}
+
+#startimg {
+    margin-top: 10%;
+    margin-left:5%;
 }
