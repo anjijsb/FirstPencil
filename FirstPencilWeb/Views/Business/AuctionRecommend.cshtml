@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "拍卖推荐";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/CSS/ActionRecommend/AuctionRecommend.css" rel="stylesheet" />
+<img src="~/Images/bj/pmbj.png" class="bj" />
+<div class="text-center">
+    <span class="img-circle text-c">拍卖推荐</span>
+</div>
+<div id="masonry" class="container-fluid">
+    @{
+        if (@ViewBag.AuctionsList != null)
+        {
+            foreach (FirstPencilWeb.Models.Auctions a in @ViewBag.AuctionsList as List<FirstPencilWeb.Models.Auctions>)
+            {
+                string[] imgs = @a.TitleImg.ToString().Split('|');
+                <div class="thumbnail">
+                    <div class="imgs">
+                        <img src="@imgs[0]" id="@a.AuctionId" />
+                    </div>
+                    <div class="caption">
+                        <div class="title">@a.Name</div>
+                        <div class="content"></div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
+<script type="text/javascript">
+    $("img").click(function () {
+        var id = $(this).attr("id");
+        location.href = "Auction?id=" + id;
+    })
+</script>
+

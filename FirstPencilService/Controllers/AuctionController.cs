@@ -46,17 +46,19 @@ namespace FirstPencilService.Controllers
             {
                 return false;
             }
+
             db.AuctionOrderSet.Add(new AuctionOrder
             {
                 AuctionId = id,
                 UserId = user.UserId,
                 CreatrDate = DateTime.Now,
-                Price = auction.Price * count,
+                Price = auction.Price.Value * 100 * count / 100,
                 Count = count,
             });
 
             auction.Count -= count;
-            return db.SaveChanges() == 1;
+            db.SaveChanges();
+            return true;
         }
 
         [HttpGet]
@@ -64,7 +66,7 @@ namespace FirstPencilService.Controllers
         {
             var db = new ModelContext();
             var auction = db.AuctionSet.FirstOrDefault(item => item.AuctionId == id);
-            if(auction != null)
+            if (auction != null)
             {
                 return auction;
             }
