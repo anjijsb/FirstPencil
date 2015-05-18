@@ -18,6 +18,7 @@ namespace FirstPencilWeb.Controllers
     {
         public string ip = System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"].ToString();
         public static List<Message> messold = new List<Message>();
+        public static List<Message> mold = new List<Message>();
         public static int maxmsgid;
         public static int num = 0;
 
@@ -84,27 +85,6 @@ namespace FirstPencilWeb.Controllers
             }
         }
 
-
-        /// <summary>
-        /// 留言墙
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Messagewall()
-        {
-            HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/GetMsgList?lastId={1}", this.ip, 0)).Result;
-            if (cl.Length > 50)
-            {
-                messold = JsonHelp.todui<List<Message>>(cl);
-                maxmsgid = messold.Max(x => x.MsgId);
-                List<Message> m = new List<Message>();
-                m = messold.Take<Message>(4).ToList();
-                messold.RemoveRange(0, m.Count());
-                ViewBag.list = m;
-            }
-            return View();
-        }
-
         /// <summary>
         /// 摇奖
         /// </summary>
@@ -141,7 +121,33 @@ namespace FirstPencilWeb.Controllers
             return Json(new { name = name }, JsonRequestBehavior.AllowGet);
         }
 
-        
+
+        /// <summary>
+        /// 留言墙
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Messagewall()
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/GetMsgList?lastId={1}", this.ip, 0)).Result;
+            if (cl.Length > 50)
+            {
+                messold = JsonHelp.todui<List<Message>>(cl);
+                mold.Clear();
+                //mold.AddRange(messold);
+                mold = JsonHelp.todui<List<Message>>(cl);
+                if (mold.Count() > 10)
+                {
+                    mold.RemoveAt(0);
+                }
+                maxmsgid = messold.Max(x => x.MsgId);
+                List<Message> m = new List<Message>();
+                m = messold.Take<Message>(4).ToList();
+                messold.RemoveRange(0, m.Count());
+                ViewBag.list = m;
+            }
+            return View();
+        }
 
 
         /// <summary>
@@ -169,11 +175,32 @@ namespace FirstPencilWeb.Controllers
                 messold = JsonHelp.todui<List<Message>>(cl);
                 maxmsgid = messold.Max(x => x.MsgId);
                 m = messold.FirstOrDefault();
-                JsonResult json = Json(new { Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate }, JsonRequestBehavior.AllowGet);
+                if (mold.Count() > 10)
+                {
+                    mold.RemoveAt(0);
+                }
+                mold.Add(m);
+                JsonResult json = Json(new { msg = "no", Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate }, JsonRequestBehavior.AllowGet);
                 messold.RemoveRange(0, 1);
                 return json;
             }
 
+        }
+
+        /// <summary>
+        /// 没有数据的时候进行滚动刷新
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult AddOld(int i)
+        {
+            if (mold.Count() > 10)
+            {
+                mold.RemoveAt(0);
+                this.AddOld(0);
+            }
+            Message m = new Message();
+            m = mold[i];
+            return Json(new { Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate, i = mold.Count() }, JsonRequestBehavior.AllowGet);
         }
 
     }

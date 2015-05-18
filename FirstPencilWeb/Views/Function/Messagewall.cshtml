@@ -36,23 +36,15 @@
 <script type="text/javascript">
 
     var num = 0;
-
+    var num1 = 0;
+    var b = 1;
+    var i = 0;
     $(document).ready(function () {
         $(".border3").css("animation-play-state", "paused");
         $(".border3").css("-webkit-animation-play-state", "paused");
         $("#bj").css("height", $(window).height());
         $(".pull-right").html($(".pull-right").html().substring(11, 19));
-        setInterval(add, 3000);
-    })
-
-    $("#but").click(function () {
-        num += 110;
-        var str = '<div class="alert"><strong>Warning!</strong> Best check yo self, you are not looking too good.</div>';
-        $(".border3").append(str);
-        $(".border3").css("animation-play-state", "");
-        $(".border3").css("-webkit-animation-play-state", "");
-        $(".border3").css("-webkit-transform", "translate(0,-" + num + "px)");
-        setTimeout(display, 2000);
+        setInterval(add, 1000);
     })
 
     function display() {
@@ -68,11 +60,46 @@
             type: "POST",
             success: function (data) {
                 if (data.msg == "no") {
+                    b = 1;
+                    shu(num1);
                 } else {
-                    num += 110;
                     var date = data.CreateDate.substring(11, 19);
                     var str = '<div class="alert"><img src="' + data.Headimgurl + '" class="pull-left" /><blockquote> <p class="text"><span>' + data.NickName + '：</span>' + data.Content + '</p><small class="pull-right">' + date + '</small></blockquote></div>';
                     $(".border3").append(str);
+                    if ($(".border3").children().length > 4) {
+                        num += 110;
+                        $(".border3").css("animation-play-state", "");
+                        $(".border3").css("-webkit-animation-play-state", "");
+                        $(".border3").css("-webkit-transform", "translate(0,-" + num + "px)");
+                        setTimeout(display, 2000);
+                    }
+                }
+            }
+        })
+    }
+
+    //判断是否有新的数据
+    function shu(num) {
+        if ($(".border3").children().length > 4) {
+            mold();
+        }
+    }
+
+    //滚动刷新列表
+    function mold() {
+        $.ajax({
+            url: "/Function/AddOld",
+            dataType: "json",
+            type: "POST",
+            data: { i: i },
+            success: function (data) {
+                i += 1;
+                if (i == data.i) i = 0;
+                var date = data.CreateDate.substring(11, 19);
+                var str = '<div class="alert"><img src="' + data.Headimgurl + '" class="pull-left" /><blockquote> <p class="text"><span>' + data.NickName + '：</span>' + data.Content + '</p><small class="pull-right">' + date + '</small></blockquote></div>';
+                $(".border3").append(str);
+                if ($(".border3").children().length > 4) {
+                    num += 110;
                     $(".border3").css("animation-play-state", "");
                     $(".border3").css("-webkit-animation-play-state", "");
                     $(".border3").css("-webkit-transform", "translate(0,-" + num + "px)");
@@ -81,6 +108,4 @@
             }
         })
     }
-
-
 </script>
