@@ -238,6 +238,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo1.png" />
     <Content Include="Images\Messagewall\bj.jpg" />
+    <Content Include="Images\Messagewall\lybj.jpg" />
     <Content Include="Images\Messagewall\title.png" />
     <Content Include="Images\mrtx.jpg" />
     <Content Include="Images\sp\sp01\001.png" />
@@ -261,6 +262,7 @@
     <Content Include="Images\yaojiang\num_mask.png" />
     <Content Include="Images\yaojiang\start.png" />
     <Content Include="Images\yaojiang\stop.png" />
+    <Content Include="Images\yaojiang\yjbj.jpg" />
     <Content Include="Jscript\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Jscript\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Jscript\bootstrap\css\bootstrap.css" />
