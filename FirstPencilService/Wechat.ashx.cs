@@ -49,7 +49,7 @@ namespace FirstPencil
                     requestXML.Event = rootElement.SelectSingleNode("Event").InnerText;
                     var node = rootElement.SelectSingleNode("EventKey");
                     requestXML.EventKey = node == null ? "" : node.InnerText;
-                    if (requestXML.Event.ToLower() == "subscribe" || requestXML.Event.ToLower() == "scancode_waitmsg" || requestXML.Event.ToLower() == "click")
+                    if (requestXML.Event.ToLower() == "subscribe" | requestXML.Event.ToLower() == "event")
                     {
                         //查找user 没找到就插入
                         User user = db.UserSet.FirstOrDefault(u => u.OpenId == requestXML.FromUserName);
@@ -62,6 +62,7 @@ namespace FirstPencil
                             };
                             db.UserSet.Add(user);
                         }
+
                         #region 博博会绑定标签
                         //根据事件号寻找标签
                         //var card = db.Cards.Include("Code").FirstOrDefault(c => "qrscene_" + c.Code.EventNumber ==
@@ -100,9 +101,8 @@ namespace FirstPencil
                         //    Helper.UserHelper.GetUserInfo(user);
                         //}
                         #endregion
-
                         db.SaveChanges();
-
+                        //get user info
                         var t = new System.Threading.Tasks.Task(() => WechatHelper.GetUserInfo(user));
                         t.Start();
 
@@ -110,13 +110,32 @@ namespace FirstPencil
                         {
 
                             requestXML.EventKey = requestXML.EventKey.Replace("qrscene_", "");
+                            var eve = db.ScanEventSet.FirstOrDefault(item => item.EventKey == requestXML.EventKey || item.IsActive == true);
+                            if (eve != null)
+                            {
+                                if (eve.Type == EventType.AddSalesman)
+                                {
+                                    var smId = int.Parse(eve.Remarks);
+                                    var sm = db.SalesmanSet.FirstOrDefault(item => item.SalesmanId == smId);
+                                    if (sm != null)
+                                    {
+                                        user.IsSalesman = true;
+                                        user.SalesmanId = smId;
+                                        eve.IsActive = false;
+                                        db.SaveChanges();
+                                        ret = "您已完成经销商注册。";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ret = string.Format("Hi~{0},欢迎关注中华文具。", user.NickName);
+                            }
 
                             //ret = Helper.WechatHelper.GetEventString(requestXML.FromUserName, requestXML.ToUserName, requestXML.EventKey);
                         }
-                        else
-                        {
 
-                        }
+
 
                         //else
                         //{
@@ -139,7 +158,7 @@ namespace FirstPencil
                         {
                             UserId = user.UserId,
                             CreateDate = DateTime.Now,
-                            Content = requestXML.Content.Remove(0,1),
+                            Content = requestXML.Content.Remove(0, 1),
                         });
                         ret = "感谢您的留言。";
                         db.SaveChanges();

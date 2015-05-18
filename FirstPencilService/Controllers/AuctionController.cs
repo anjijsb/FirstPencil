@@ -59,5 +59,17 @@ namespace FirstPencilService.Controllers
             return db.SaveChanges() == 1;
         }
 
+        [HttpGet]
+        public Auction GetInfo(int id)
+        {
+            var db = new ModelContext();
+            var auction = db.AuctionSet.FirstOrDefault(item=> item.AuctionId == id)'
+            if(auction != null)
+            {
+                return auction;
+            }
+            return null;
+        }
+
     }
 }

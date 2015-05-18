@@ -119,7 +119,7 @@ namespace FirstPencilService
         }
 
 
-        static public ScanEvent GetCodeForMeeting(Salesman sm)
+        static public ScanEvent GetCodeForMeeting()
         {
             var db = new ModelContext();
 

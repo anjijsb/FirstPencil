@@ -47,8 +47,27 @@ namespace FirstPencilService.Controllers
             };
             db.SalesmanSet.Add(sm);
             db.SaveChanges();
-            var ret = WechatHelper.GetCodeForMeeting(sm);
+            var ret = WechatHelper.GetCodeForMeeting();
+            ret.Remarks = sm.SalesmanId.ToString();
             return ret.CodeUrl;
+        }
+
+        /// <summary>
+        /// 检测用户是否为经销商
+        /// </summary>
+        /// <param name="openId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public bool IsSuccess(string openId)
+        {
+            var timer = new System.Timers.Timer(500);
+            var db = new ModelContext();
+            var user = db.UserSet.FirstOrDefault(item => item.OpenId == openId);
+            if (user != null)
+            {
+                return user.IsSalesman;
+            }
+            return false;
         }
 
 
