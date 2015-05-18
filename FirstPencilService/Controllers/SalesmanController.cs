@@ -52,24 +52,39 @@ namespace FirstPencilService.Controllers
             return ret.CodeUrl;
         }
 
-        /// <summary>
-        /// 检测用户是否为经销商
-        /// </summary>
-        /// <param name="openId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public bool IsSuccess(string openId)
-        {
-            var timer = new System.Timers.Timer(500);
-            var db = new ModelContext();
-            var user = db.UserSet.FirstOrDefault(item => item.OpenId == openId);
-            if (user != null)
-            {
-                return user.IsSalesman;
-            }
-            return false;
-        }
-
-
     }
+
+    ///// <summary>
+    ///// 检测用户否已经扫码注册
+    ///// </summary>
+    //public class SalesmanAsynController : System.Web.Mvc.AsyncController
+    //{
+
+    //    [HttpGet]
+    //    public void LongPollingAsync(string openid)
+    //    {
+    //        //计时器，5秒种触发一次Elapsed事件
+    //        System.Timers.Timer timer = new System.Timers.Timer(500);
+    //        //告诉ASP.NET接下来将进行一个异步操作
+    //        AsyncManager.OutstandingOperations.Increment();
+    //        //订阅计时器的Elapsed事件
+    //        timer.Elapsed += (sender, e) =>
+    //        {
+    //            var db = new ModelContext();
+    //            var user = db.UserSet.FirstOrDefault(item => item.OpenId == openid);
+    //            if (user != null && user.IsSalesman)
+    //            {
+    //                AsyncManager.OutstandingOperations.Decrement();
+    //            }
+    //        };
+    //        //启动计时器
+    //        timer.Start();
+    //    }
+
+    //    //LongPolling Action 2 - 异步处理完成，向客户端发送响应
+    //    public bool LongPollingCompleted()
+    //    {
+    //        return true;
+    //    }
+    //}
 }

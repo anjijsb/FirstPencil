@@ -56,15 +56,20 @@ namespace FirstPencilService.Controllers
             });
 
             auction.Count -= count;
-            return db.SaveChanges() == 1;
+            return true;
         }
 
+        /// <summary>
+        /// 获得拍卖的详细信息
+        /// </summary>
+        /// <param name="id">拍卖id</param>
+        /// <returns></returns>
         [HttpGet]
         public Auction GetInfo(int id)
         {
             var db = new ModelContext();
             var auction = db.AuctionSet.FirstOrDefault(item => item.AuctionId == id);
-            if(auction != null)
+            if (auction != null)
             {
                 return auction;
             }

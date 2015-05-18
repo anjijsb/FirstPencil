@@ -27,6 +27,11 @@ namespace FirstPencilService.Controllers
             {
                 return false;
             }
+            if (user != null)
+            {
+
+                ;
+            }
             var com = new Complain
             {
                 UserId = user.UserId,
