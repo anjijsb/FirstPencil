@@ -63,7 +63,7 @@ namespace FirstPencilService.Controllers
         public Auction GetInfo(int id)
         {
             var db = new ModelContext();
-            var auction = db.AuctionSet.FirstOrDefault(item=> item.AuctionId == id)'
+            var auction = db.AuctionSet.FirstOrDefault(item => item.AuctionId == id);
             if(auction != null)
             {
                 return auction;
