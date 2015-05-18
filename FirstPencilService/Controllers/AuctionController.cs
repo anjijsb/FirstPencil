@@ -27,10 +27,9 @@ namespace FirstPencilService.Controllers
         /// <param name="id">拍卖id</param>
         /// <param name="openid">用户openid</param>
         /// <param name="count">拍卖数量</param>
-        /// <param name="price">拍卖价格</param>
         /// <returns></returns>
         [HttpGet]
-        public bool AddOrder(int id, string openid, int count, double price)
+        public bool AddOrder(int id, string openid, int count)
         {
             var db = new ModelContext();
             var user = db.UserSet.FirstOrDefault(u => u.OpenId == openid);
@@ -52,7 +51,7 @@ namespace FirstPencilService.Controllers
                 AuctionId = id,
                 UserId = user.UserId,
                 CreatrDate = DateTime.Now,
-                Price = price,
+                Price = auction.Price * count,
                 Count = count,
             });
 
