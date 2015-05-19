@@ -31,6 +31,10 @@ namespace FirstPencilService.Models
 
         public string Remarks { get; set; }
 
+        public string ImgId { get; set; }
+
+        public string ImgPath { get; set; }
+
 
     }
 }

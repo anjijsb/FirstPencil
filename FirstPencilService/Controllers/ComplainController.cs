@@ -19,7 +19,7 @@ namespace FirstPencilService.Controllers
         /// <param name="openid">用户openid</param>
         /// <returns></returns>
         [HttpPost]
-        public bool AddComplain(string title, string address, string content, string openid)
+        public bool AddComplain(string title, string address, string content, string ImgId, string openid)
         {
             var db = new ModelContext();
             var user = db.UserSet.FirstOrDefault(u => u.OpenId == openid);
@@ -30,19 +30,25 @@ namespace FirstPencilService.Controllers
             if (user != null)
             {
 
-                ;
-            }
-            var com = new Complain
-            {
-                UserId = user.UserId,
-                Address = address,
-                Content = content,
-                Title = title,
-                CreateDate = DateTime.Now,
-            };
 
-            db.ComplainSet.Add(com);
-            db.SaveChanges();
+                var com = new Complain
+                {
+                    UserId = user.UserId,
+                    Address = address,
+                    Content = content,
+                    Title = title,
+                    CreateDate = DateTime.Now,
+                    ImgId = ImgId,
+                };
+
+                db.ComplainSet.Add(com);
+                db.SaveChanges();
+
+                if (user.IsSalesman)
+                {
+                    
+                }
+            }
             return true;
         }
     }

@@ -46,24 +46,21 @@ namespace FirstPencilService.Controllers
             {
                 return false;
             }
+
             db.AuctionOrderSet.Add(new AuctionOrder
             {
                 AuctionId = id,
                 UserId = user.UserId,
                 CreatrDate = DateTime.Now,
-                Price = auction.Price * count,
+                Price = auction.Price.Value * 100 * count / 100,
                 Count = count,
             });
 
             auction.Count -= count;
+            db.SaveChanges();
             return true;
         }
 
-        /// <summary>
-        /// 获得拍卖的详细信息
-        /// </summary>
-        /// <param name="id">拍卖id</param>
-        /// <returns></returns>
         [HttpGet]
         public Auction GetInfo(int id)
         {

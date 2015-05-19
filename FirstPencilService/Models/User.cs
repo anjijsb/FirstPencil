@@ -44,6 +44,8 @@ namespace FirstPencilService.Models
         [ForeignKey("SalesmanId")]
         public Salesman Salesman { get; set; }
 
+        public int? Point { get; set; }
+
         public string Remarks { get; set; }
     }
 

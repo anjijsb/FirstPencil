@@ -1,0 +1,75 @@
+﻿ .bj {
+        width: 100%;
+        height: 100%;
+        z-index: -100;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+
+    #divtitle {
+        width: 100%;
+        height: 5em;
+        line-height: 5em;
+        text-align: center;
+        padding: 0;
+        margin: auto;
+    }
+
+    .text-c {
+        display: inline-block;
+        width: 70%;
+        height: 1.3em;
+        line-height: 1.3em;
+        background-color: #e7eeea;
+        font-size: 2.5em;
+        margin: 1em 0 1em 0;
+        padding: 0px;
+        color: #488a95;
+    }
+
+    #masonry {
+        width: 100%;
+        padding: 0;
+        min-height: 200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        #masonry .thumbnail {
+            float: left;
+            width: 45%;
+            margin: 2%;
+            height: 16em;
+            padding: 0;
+            border-width: 1px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            background-color: white;
+        }
+
+            #masonry .thumbnail .imgs {
+                padding: 10px;
+            }
+
+                #masonry .thumbnail .imgs img {
+                    margin-bottom: 5px;
+                }
+
+            #masonry .thumbnail .caption {
+                background-color: #fff;
+                padding-top: 0;
+                font-size: 13px;
+            }
+
+                #masonry .thumbnail .caption .title {
+                    font-size: 13px;
+                    font-weight: bold;
+                    margin: 5px 0;
+                    text-align: center;
+                }
+
+                #masonry .thumbnail .caption .author {
+                    font-size: 11px;
+                    text-align: center;
+                }
