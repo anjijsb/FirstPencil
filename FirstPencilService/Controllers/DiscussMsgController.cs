@@ -51,15 +51,12 @@ namespace FirstPencilService.Controllers
             {
                 return null;
             }
-            if (string.IsNullOrEmpty(prize.Remarkes))
+
+            if (prize.Remarkes.StartsWith("#"))
             {
-                var ran = new Random();
-                var disList = db.DiscussMsgSet.Select<DiscussMsg, int>(item => item.MsgId);
-                if (disList.Count() != 0)
+                if (prize.IsActive)
                 {
-                    var index = ran.Next(disList.Count() - 1);
-                    var id = disList.ToArray()[index];
-                    return db.DiscussMsgSet.Include("User").FirstOrDefault(item => item.MsgId == id).User.NickName;
+                    return prize.Remarkes.Replace("#", "");
                 }
                 else
                 {
@@ -68,7 +65,29 @@ namespace FirstPencilService.Controllers
             }
             else
             {
-                return prize.Remarkes;
+                var ran = new Random();
+                var disList = db.DiscussMsgSet.Select<DiscussMsg, int>(item => item.MsgId).ToList();
+                if (disList.Count() != 0)
+                {
+                    //删除已经获奖人
+                    foreach (var item in prize.Remarkes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        disList.Remove(int.Parse(item));
+                    }
+                    if (disList.Count < 1)
+                    {
+                        return null;
+                    }
+                    var index = ran.Next(disList.Count() - 1);
+                    var id = disList.ToArray()[index];
+                    prize.Remarkes += (id.ToString() + ",");
+                    db.SaveChanges();
+                    return db.DiscussMsgSet.Include("User").FirstOrDefault(item => item.MsgId == id).User.NickName;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 

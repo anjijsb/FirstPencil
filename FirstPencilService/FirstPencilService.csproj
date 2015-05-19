@@ -201,8 +201,13 @@
     <Compile Include="Migrations\201505190150129_addPoint.Designer.cs">
       <DependentUpon>201505190150129_addPoint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505190913345_addpiont.cs" />
+    <Compile Include="Migrations\201505190913345_addpiont.Designer.cs">
+      <DependentUpon>201505190913345_addpiont.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessToken.cs" />
+    <Compile Include="Models\AddPoint.cs" />
     <Compile Include="Models\Auction.cs" />
     <Compile Include="Models\Complain.cs" />
     <Compile Include="Models\DiscussMsg.cs" />
@@ -368,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505190150129_addPoint.resx">
       <DependentUpon>201505190150129_addPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505190913345_addpiont.resx">
+      <DependentUpon>201505190913345_addpiont.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
