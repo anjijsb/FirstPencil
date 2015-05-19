@@ -34,6 +34,10 @@ namespace FirstPencilWeb.Controllers
         /// <returns></returns>
         public ActionResult FakeComplaints()
         {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Helper/GetAccessToken", this.ip)).Result;
+            cl = cl.Replace("\"", "");
+            ViewBag.token = cl.ToString();
             return View();
         }
 

@@ -2,7 +2,6 @@
     ViewBag.Title = "打假投诉";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <style type="text/css">
     div {
         margin-top: 2em;
@@ -32,25 +31,83 @@
 <div>
     <span>请您填写以下信息：</span>
     <form id="form1" style="text-align:center;margin-top:5%;" method="post" action="/Users/UpdateAddress">
+        <input type="hidden" value="@ViewBag.token" id="token" />
         <input type="text" name="Title" style="width:92%" class="form-control" placeholder="投诉主题" />
         <input type="text" name="Addres" style="width:92%;" class="form-control" placeholder="发生投诉问题的事发地" />
         <input type="text" name="ShopName" style="width:92%;" class="form-control" placeholder="购买的商品名称" />
-        <textarea name="Addres" rows="3" style="width:92%;" placeholder="投诉内容"></textarea>
+        <textarea name="Addres" rows="3" style="width:92%;" placeholder="投诉内容"></textarea><br />
         <input class="btn  btn-info" id="bt" type="button" value="提交" />
     </form>
 </div>
+<button class="btn btn_primary" id="chooseImage">chooseImage</button>
 <script src="~/Jscript/Helps/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
+    var token;
+    $(document).ready(function () {
+        token = $("#token").val();
+        alert(token);
+    })
     wx.config({
         debug: false,
         appId: 'wx13b3ff8fdcc0d04f',
-        timestamp:
-    })
+        timestamp: 1420774989,
+        nonceStr: '2nDgiWM7gCxhL8v0',
+        signature: token,
+        jsApiList: [
+            'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'hideMenuItems',
+        'showMenuItems',
+        'hideAllNonBaseMenuItem',
+        'showAllNonBaseMenuItem',
+        'translateVoice',
+        'startRecord',
+        'stopRecord',
+        'onRecordEnd',
+        'playVoice',
+        'pauseVoice',
+        'stopVoice',
+        'uploadVoice',
+        'downloadVoice',
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'downloadImage',
+        'getNetworkType',
+        'openLocation',
+        'getLocation',
+        'hideOptionMenu',
+        'showOptionMenu',
+        'closeWindow',
+        'scanQRCode',
+        'chooseWXPay',
+        'openProductSpecificView',
+        'addCard',
+        'chooseCard',
+        'openCard'
+        ]
+    });
 
     $("#bt").on({
         "click": function () {
             alert("我们已接受您的反馈，将尽快答复您。");
         }
     })
+
+    var images = {
+        localId: [],
+        serverId: []
+    };
+    document.querySelector('#chooseImage').onclick = function () {
+        wx.chooseImage({
+            success: function (res) {
+                images.localId = res.localIds;
+                alert('已选择' + res.localIds.length + ' 张图片');
+            }
+        });
+    };
 </script>
 
