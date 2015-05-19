@@ -39,7 +39,14 @@
         <input class="btn  btn-info" id="bt" type="button" value="提交" />
     </form>
 </div>
+<script src="~/Jscript/Helps/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: 'wx13b3ff8fdcc0d04f',
+        timestamp:
+    })
+
     $("#bt").on({
         "click": function () {
             alert("我们已接受您的反馈，将尽快答复您。");

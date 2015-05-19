@@ -4,8 +4,7 @@
 }
 <link href="~/CSS/DealerSgin/DealerSgin.css" rel="stylesheet" />
 <div class="hero-unit">
-    <img src="~/Images/DealerSgin/xjtitle.png" id="titleimg" /><br />
-    <img src="~/Images/DealerSgin/xxtitl.png" id="timg" /><br />
+    <img src="~/Images/DealerSgin/signtitle.png" id="titleimg" /><br />
     <select name="firmId" id="firmId">
         @{
             foreach (FirstPencilWeb.Models.Deler s in @ViewBag.list as List<FirstPencilWeb.Models.Deler>)
@@ -37,7 +36,7 @@
             TiJiao1($("#firmId").val(), $("#name").val(), $("#phone").val(), $("#position").val());
             setTimeout(function () {
                 $("#img").attr("src", "");
-            }, 5000);
+            }, 10000);
         }
     })
 

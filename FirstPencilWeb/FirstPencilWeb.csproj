@@ -169,6 +169,8 @@
     <Content Include="Images\commodity\prod2.jpg" />
     <Content Include="Images\commodity\touxiagn.jpg" />
     <Content Include="Images\Coupons\Q_00001.jpg" />
+    <Content Include="Images\DealerSgin\signbj.jpg" />
+    <Content Include="Images\DealerSgin\signtitle.png" />
     <Content Include="Images\DealerSgin\xjtitle.png" />
     <Content Include="Images\DealerSgin\xxbj.jpg" />
     <Content Include="Images\DealerSgin\xxbtn.png" />
@@ -282,6 +284,7 @@
     <Content Include="Jscript\Helps\jgestures.js" />
     <Content Include="Jscript\Helps\jquery.fullPage.js" />
     <Content Include="Jscript\Helps\jquerysession.js" />
+    <Content Include="Jscript\Helps\jweixin-1.0.0.js" />
     <Content Include="Jscript\Helps\main.js" />
     <Content Include="Jscript\Helps\masonry-docs.min.js" />
     <Content Include="Jscript\Helps\masonry.pkgd.min.js" />
