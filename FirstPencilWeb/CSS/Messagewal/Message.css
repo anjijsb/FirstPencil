@@ -16,7 +16,7 @@
 
 .box3 {
     width: 100%;
-    height: 400px;
+    height: 500px;
     margin-top:3%;
 }
 
@@ -33,7 +33,7 @@
 }
 
     .alert img {
-        width: 60px;
+        width: 80px;
         margin: 10px 15px 10px 10px;
     }
 
@@ -50,7 +50,7 @@
         }
 
         .alert blockquote .text {
-            font-size: 18px;
+            font-size: 25px;
         }
 
             .alert blockquote .text span {

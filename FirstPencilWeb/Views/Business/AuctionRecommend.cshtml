@@ -1,36 +1,120 @@
 ﻿@{
-    ViewBag.Title = "拍卖推荐";
+    ViewBag.Title = "在线拍卖";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/CSS/ActionRecommend/AuctionRecommend.css" rel="stylesheet" />
 <img src="~/Images/bj/pmbj.png" class="bj" />
 <div class="text-center">
-    <span class="img-circle text-c">拍卖推荐</span>
+    <span class="img-circle text-c">在线拍卖</span>
 </div>
 <div id="masonry" class="container-fluid">
+    @{
+        int ii = 0;
+    }
     @{
         if (@ViewBag.AuctionsList != null)
         {
             foreach (FirstPencilWeb.Models.Auctions a in @ViewBag.AuctionsList as List<FirstPencilWeb.Models.Auctions>)
             {
                 string[] imgs = @a.TitleImg.ToString().Split('|');
+                TimeSpan spanstart = (TimeSpan)(DateTime.Parse(@a.StartDate) - DateTime.Now);
+                TimeSpan spanend = (TimeSpan)(DateTime.Parse(@a.EndDate) - DateTime.Now);
+                string time = spanstart.TotalMinutes > 5 ? ("未" + " " + " " + "开" + " " + " " + "始") : (spanstart.TotalMinutes > 0 ? "即将开始" : (spanend.TotalMinutes > 0 ? ("进" + " " + " " + "行" + " " + " " + "  中") : ("已" + " " + " " + "结" + " " + " " + "束")));
+                int m = (int)spanstart.TotalSeconds;
+                string iistr = "jishi" + ii;
                 <div class="thumbnail">
                     <div class="imgs">
-                        <img src="@imgs[0]" id="@a.AuctionId" />
+                        <img class="imgid" src="@imgs[0]" id="@a.AuctionId" />
                     </div>
                     <div class="caption">
                         <div class="title">@a.Name</div>
-                        <div class="content"></div>
+                        <input type="hidden" value="@m" />
+                        <div class="content">
+                            <div class="pull-left">@time</div>
+                            <div class="time-item" id="@iistr">
+                                <strong class="minute_show"></strong>
+                                <strong class="second_show"></strong>
+                                <strong class="day_show" style="display:none;"></strong>
+                                <strong class="hour_show" style="display:none;"></strong>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                ii++;
             }
         }
     }
 </div>
 <script type="text/javascript">
-    $("img").click(function () {
+    $(document).ready(function () {
+        $(".time-item").hide();
+        $(".caption").each(function () {
+            if ($(this).children().eq(2).children().eq(0).html() == "即将开始") {
+                $(this).children().eq(2).children().eq(1).show();
+                $(this).children().eq(2).children().eq(0).hide();
+            }
+            var m = $(this).children("input").eq(0).val();
+            var ii = $(this).find("strong").eq(0).parent().attr("id");
+            timer(m, ii);
+        })
+        timesss();
+    })
+
+    $(".imgid").click(function () {
         var id = $(this).attr("id");
         location.href = "Auction?id=" + id;
     })
-</script>
 
+    function timesss() {
+        window.setInterval(function () {
+            $(".content").each(function () {
+                var c = $(this).children();
+                var ch;
+                if (c.length == 1) {
+                    ch = c.eq(0).children();
+                } else if (c.length == 2) {
+                    ch = c.eq(1).children();
+                }
+                if (ch.eq(0).html() == "<s></s>00" && ch.eq(1).html() == "<s></s>00" && ch.eq(2).html() == "<s></s>00" && ch.eq(3).html() == "<s></s>00") {
+                    c.eq(0).show().html("进" + " " + " " + "行" + " " + " " + "  中");
+                    c.eq(1).hide();
+                };
+                if (ch.eq(0).html() == '<s></s>04' && ch.eq(2).html() == '<s></s>0' && ch.eq(3).html() == '<s></s>0') {
+                    if (ch.eq(1).html() == "<s></s>59" || ch.eq(1).html() == "<s></s>58" || ch.eq(1).html() == "<s></s>57" || ch.eq(1).html() == "<s></s>56" || ch.eq(1).html() == "<s></s>55") {
+                        c.eq(0).hide();
+                        c.eq(1).show();
+                    }
+                }
+            })
+        }, 3000)
+    }
+
+    var intDiff = parseInt(300);//倒计时总秒数量
+
+    function timer(intDiff, idname) {
+        window.setInterval(function () {
+            var day = 0,
+                hour = 0,
+                minute = 0,
+                second = 0;//时间默认值
+            if (intDiff > 0) {
+                day = Math.floor(intDiff / (60 * 60 * 24));
+                hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            if (minute <= 9) minute = '0' + minute;
+            if (second <= 9) second = '0' + second;
+            $("#" + idname).children("strong").eq(0).html('<s></s>' + minute);
+            $("#" + idname).children("strong").eq(1).html('<s></s>' + second);
+            $("#" + idname).children("strong").eq(2).html('<s></s>' + day);
+            $("#" + idname).children("strong").eq(3).html('<s></s>' + hour);
+            intDiff--;
+        }, 1000);
+    }
+
+    $(function () {
+        timer(intDiff, idname);
+    });
+
+</script>
