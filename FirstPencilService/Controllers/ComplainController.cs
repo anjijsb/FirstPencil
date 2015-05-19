@@ -27,6 +27,8 @@ namespace FirstPencilService.Controllers
             {
                 return false;
             }
+
+            //var 
             if (user != null)
             {
                 var com = new Complain

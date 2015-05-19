@@ -52,10 +52,12 @@ namespace FirstPencilService.Controllers
                 return null;
             }
 
-            if (prize.Remarkes.StartsWith("#"))
+            if (prize.Remarkes != null && prize.Remarkes.StartsWith("#"))
             {
                 if (prize.IsActive)
                 {
+                    prize.IsActive = false;
+                    db.SaveChanges();
                     return prize.Remarkes.Replace("#", "");
                 }
                 else
@@ -65,12 +67,11 @@ namespace FirstPencilService.Controllers
             }
             else
             {
-                var ran = new Random();
-                var disList = db.DiscussMsgSet.Select<DiscussMsg, int>(item => item.MsgId).ToList();
+                var disList = db.DiscussMsgSet.Include("User").Where(item => item.User.IsSalesman).Select<DiscussMsg, int>(item => item.UserId.Value).Distinct().ToList();
                 if (disList.Count() != 0)
                 {
                     //删除已经获奖人
-                    foreach (var item in prize.Remarkes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    foreach (var item in (prize.Remarkes ?? "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                     {
                         disList.Remove(int.Parse(item));
                     }
@@ -78,17 +79,39 @@ namespace FirstPencilService.Controllers
                     {
                         return null;
                     }
+                    //获取随机值
+                    var ran = new Random();
                     var index = ran.Next(disList.Count() - 1);
                     var id = disList.ToArray()[index];
+                    //添加被抽中备注
                     prize.Remarkes += (id.ToString() + ",");
+                    var user = db.UserSet.Include("Salesman").FirstOrDefault(item => item.UserId == id);
                     db.SaveChanges();
-                    return db.DiscussMsgSet.Include("User").FirstOrDefault(item => item.MsgId == id).User.NickName;
+                    return user.Salesman.Name;
                 }
                 else
                 {
                     return null;
                 }
             }
+        }
+
+        /// <summary>
+        /// 还原抽奖
+        /// </summary>
+        [HttpGet]
+        public void ReSet()
+        {
+            var db = new ModelContext();
+            foreach (var item in db.PrizeSet)
+            {
+                item.IsActive = true;
+                if (!(item.Remarkes ?? "").StartsWith("#"))
+                {
+                    item.Remarkes = "";
+                }
+            }
+            db.SaveChanges();
         }
 
         /// <summary>

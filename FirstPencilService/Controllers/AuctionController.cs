@@ -10,6 +10,8 @@ namespace FirstPencilService.Controllers
 {
     public class AuctionController : ApiController
     {
+        private static object obj = new object();
+
         /// <summary>
         /// 返回所有可显示的拍卖
         /// </summary>
@@ -32,35 +34,54 @@ namespace FirstPencilService.Controllers
         public bool AddOrder(int id, string openid, int count)
         {
             var db = new ModelContext();
+            //获取用户信息
             var user = db.UserSet.FirstOrDefault(u => u.OpenId == openid);
             if (user == null)
             {
                 return false;
             }
+            //获取拍卖信息
             var auction = db.AuctionSet.FirstOrDefault(item => item.AuctionId == id);
             if (auction == null)
             {
                 return false;
             }
+            //筛选拍卖数量
             if (auction.Count < count || auction.LimitCount < count)
             {
                 return false;
             }
-
-            db.AuctionOrderSet.Add(new AuctionOrder
+            lock (AuctionController.obj)
             {
-                AuctionId = id,
-                UserId = user.UserId,
-                CreatrDate = DateTime.Now,
-                Price = auction.Price.Value * 100 * count / 100,
-                Count = count,
-            });
-
-            auction.Count -= count;
-            db.SaveChanges();
-            return true;
+                //添加拍卖订单
+                db.AuctionOrderSet.Add(new AuctionOrder
+                {
+                    AuctionId = id,
+                    UserId = user.UserId,
+                    CreatrDate = DateTime.Now,
+                    Price = auction.Price.Value * 100 * count / 100,
+                    Count = count,
+                });
+                var rcount = auction.Count - count;
+                if (rcount < 0)
+                {
+                    return false;
+                }
+                else if (rcount >= 0)
+                {
+                    auction.Count = rcount;
+                }
+                //auction.Count -= count;
+                db.SaveChanges();
+                return true;
+            }
         }
 
+        /// <summary>
+        /// 获得单个拍卖的详细信息
+        /// </summary>
+        /// <param name="id">拍卖Id</param>
+        /// <returns></returns>
         [HttpGet]
         public Auction GetInfo(int id)
         {
@@ -73,5 +94,18 @@ namespace FirstPencilService.Controllers
             return null;
         }
 
+
+        /// <summary>
+        /// 获得拍卖订单信息
+        /// </summary>
+        /// <param name="auctionId">拍卖Id</param>
+        /// <param name="lastOrderId">最后获取的订单Id，首次获取填写0</param>
+        /// <returns></returns>
+        public IEnumerable<AuctionOrder> GetOrder(int auctionId, int lastOrderId)
+        {
+            var db = new ModelContext();
+            var ret = db.AuctionOrderSet.Include("User.Salesman").Where(item => item.AuctionId == auctionId && item.OrderId > lastOrderId);
+            return ret;
+        }
     }
 }
