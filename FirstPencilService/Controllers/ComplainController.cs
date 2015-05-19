@@ -29,8 +29,6 @@ namespace FirstPencilService.Controllers
             }
             if (user != null)
             {
-
-
                 var com = new Complain
                 {
                     UserId = user.UserId,
@@ -43,13 +41,10 @@ namespace FirstPencilService.Controllers
 
                 db.ComplainSet.Add(com);
                 db.SaveChanges();
-
-                if (user.IsSalesman)
-                {
-                    
-                }
             }
             return true;
         }
+
+
     }
 }

@@ -16,6 +16,8 @@ namespace FirstPencilService.Models
 
         public string Description { get; set; }
 
+        public bool IsActive { get; set; }
+
         public string Remarkes { get; set; }
     }
 
