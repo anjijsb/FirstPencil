@@ -58,7 +58,9 @@ namespace FirstPencil
                             user = new User
                             {
                                 OpenId = requestXML.FromUserName,
-
+                                Point = 0,
+                                IsSalesman = false,
+                                SubscribeTime = DateTime.Now,
                             };
                             db.UserSet.Add(user);
                         }

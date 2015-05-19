@@ -196,6 +196,10 @@
     <Compile Include="Migrations\201505180120436_updateAuctionAddIsShow.Designer.cs">
       <DependentUpon>201505180120436_updateAuctionAddIsShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505190150129_addPoint.cs" />
+    <Compile Include="Migrations\201505190150129_addPoint.Designer.cs">
+      <DependentUpon>201505190150129_addPoint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessToken.cs" />
     <Compile Include="Models\Auction.cs" />
@@ -360,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505180120436_updateAuctionAddIsShow.resx">
       <DependentUpon>201505180120436_updateAuctionAddIsShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505190150129_addPoint.resx">
+      <DependentUpon>201505190150129_addPoint.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
