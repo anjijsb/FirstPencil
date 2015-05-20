@@ -373,6 +373,7 @@
     <Content Include="Views\Business\AuctionRecommend.cshtml" />
     <Content Include="Views\Business\AuctionShow.cshtml" />
     <Content Include="Views\Business\AuctionShowd.cshtml" />
+    <Content Include="Views\Enterprise\QiYe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
