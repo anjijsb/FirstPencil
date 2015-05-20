@@ -26,6 +26,10 @@ namespace FirstPencilService.Models
         /// 添加投诉
         /// </summary>
         AddComplain = 1,
+        /// <summary>
+        /// 查询二维码
+        /// </summary>
+        QueryCode = 2,
 
     }
 }

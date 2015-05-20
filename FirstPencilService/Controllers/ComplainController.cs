@@ -27,8 +27,8 @@ namespace FirstPencilService.Controllers
             {
                 return false;
             }
-
-            //var 
+            string basePath = System.Configuration.ConfigurationManager.AppSettings["complainimgpath"];
+            string fileName = WechatHelper.GetImg(ImgId, basePath,"jpg");
             if (user != null)
             {
                 var com = new Complain
@@ -39,6 +39,7 @@ namespace FirstPencilService.Controllers
                     Title = title,
                     CreateDate = DateTime.Now,
                     ImgId = ImgId,
+                    ImgPath = fileName,
                 };
 
                 db.ComplainSet.Add(com);

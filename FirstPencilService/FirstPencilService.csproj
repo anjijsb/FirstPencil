@@ -167,6 +167,7 @@
     <Compile Include="Controllers\DiscussMsgController.cs" />
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QueryCodeController.cs" />
     <Compile Include="Controllers\SalesmanController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -204,6 +205,10 @@
     <Compile Include="Migrations\201505190913345_addpiont.cs" />
     <Compile Include="Migrations\201505190913345_addpiont.Designer.cs">
       <DependentUpon>201505190913345_addpiont.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505200248548_addPoint1.cs" />
+    <Compile Include="Migrations\201505200248548_addPoint1.Designer.cs">
+      <DependentUpon>201505200248548_addPoint1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessToken.cs" />
@@ -376,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505190913345_addpiont.resx">
       <DependentUpon>201505190913345_addpiont.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505200248548_addPoint1.resx">
+      <DependentUpon>201505200248548_addPoint1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

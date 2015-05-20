@@ -195,5 +195,28 @@ namespace FirstPencilService
 
             return ret;
         }
+
+        /// <summary>
+        /// 下载图片
+        /// </summary>
+        /// <param name="ImgId"></param>
+        /// <param name="basePath"></param>
+        /// <returns></returns>
+        internal static String GetImg(string ImgId, string basePath, string extName)
+        {
+            var token = WechatHelper.GetToken();
+            string url = string.Format("http://file.api.weixin.qq.com/cgi-bin/media/get?access_token={0}&media_id={1}", token, ImgId);
+        getName: var fileName = DateTime.Now.GetHashCode().ToString();
+            string path = System.Web.HttpContext.Current.Server.MapPath(basePath + fileName + "." + extName);
+            if (File.Exists(path))
+            {
+                goto getName;
+            }
+            WebClient mywebclient = new WebClient();
+
+            mywebclient.DownloadFile(url, path);
+
+            return fileName;
+        }
     }
 }
