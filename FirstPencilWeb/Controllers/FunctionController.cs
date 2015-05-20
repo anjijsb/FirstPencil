@@ -112,6 +112,15 @@ namespace FirstPencilWeb.Controllers
 
 
         /// <summary>
+        /// 重置抽奖
+        /// </summary>
+        public void Ernied()
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/ReSet", this.ip)).Result;
+        }
+
+        /// <summary>
         /// 获取中奖人名单
         /// </summary>
         /// <param name="prizeId"></param>

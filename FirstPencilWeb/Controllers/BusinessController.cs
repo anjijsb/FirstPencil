@@ -78,6 +78,7 @@ namespace FirstPencilWeb.Controllers
         public ActionResult AuctionShow()
         {
             HttpClient client = new HttpClient();
+            var cl1 = client.GetStringAsync(string.Format("{0}api/Auction/RefreshAuction?auctionId={1}&addSeconds={2}", this.ip, this.aid, 60)).Result;
             var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, this.aid)).Result;
             cl = cl.Replace("\"{", "{");
             cl = cl.Replace("}\"", "}");

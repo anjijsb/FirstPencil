@@ -2,6 +2,7 @@
     ViewBag.Title = "摇奖";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/CSS/qj.css" rel="stylesheet" />
 <link href="~/CSS/Ernie/Ernie.css" rel="stylesheet" />
 <link href="~/CSS/Ernie.css" rel="stylesheet" />
 <div id="bj">
@@ -34,6 +35,9 @@
     <img src="~/Images/yaojiang/start.png" id="startimg" />
 </div>
 <div id="winner"></div>
+<div class="divtop"></div>
+<div class="divleft"></div>
+<div class="divright"></div>
 <script type="text/javascript">
     var i = 0;
     $(document).ready(function () {
@@ -82,4 +86,23 @@
             }
         })
     }
+
+    $(".divleft").click(function () {
+        location.href = "Messagewall";
+    })
+
+    $(".divright").click(function () {
+        location.href = "/Business/AuctionShow";
+    })
+
+    $(".divtop").click(function () {
+        $.ajax({
+            url: "/Function/Ernied",
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+
+            }
+        })
+    })
 </script>

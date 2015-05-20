@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/CSS/DealerSgin/DealerSgin.css" rel="stylesheet" />
+<link href="~/CSS/qj.css" rel="stylesheet" />
 <div class="hero-unit">
     <img src="~/Images/DealerSgin/signtitle.png" id="titleimg" /><br />
     <select name="firmId" id="firmId">
@@ -21,12 +22,17 @@
     <br />
     <input type="hidden" id="ip" value="@ViewBag.ip" />
     <img src="~/Images/DealerSgin/xxbtn.png" id="btn" /><br />
+    <div id="ceshi"></div>
     <img src="" id="img" />
 </div>
+
+<div class=" divleft"></div>
+<div class=" divright"></div>
 <script>
     var ip = $("#ip").val();
     $(document).ready(function () {
         $(".hero-unit").css("height", $(window).height());
+        setInterval(erweima, 1000);
     })
     $("#btn").on({
         "mouseout": function () {
@@ -40,6 +46,9 @@
         }
     })
 
+    $(".divright").click(function () {
+        location.href = "/Function/Messagewall";
+    })
 
     //生成二维码
     function TiJiao1(firmId, name, phone, position) {
@@ -53,5 +62,24 @@
                 $("#img").attr("src", url);
             }
         })
+    }
+
+    function erweima() {
+        var url = $("#img").attr("src");
+        $.ajax({
+            url: "/Users/erweimaxiaodiao",
+            data: { url: url },
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                if (data.b == "true") {
+                    $("#ceshi").html("1");
+                }
+                else {
+                    $("#ceshi").html("2");
+                }
+            }
+        })
+
     }
 </script>
