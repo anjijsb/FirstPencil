@@ -64,6 +64,36 @@ namespace FirstPencilWeb.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 拍卖倒计时
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AuctionShow()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 拍卖详情数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AuctionShowd()
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetOrder?auctionId={1}&lastOrderId={2}", this.ip, 1, 0)).Result;
+            List<FirstPencilService.Models.AuctionOrder> a = JsonHelp.todui<List<FirstPencilService.Models.AuctionOrder>>(cl);
+            ViewBag.AuctionOrderList = a;
+            return View();
+        }
+
+
+        /// <summary>
+        /// 拍卖事件
+        /// </summary>
+        /// <param name="id">拍卖商品ID</param>
+        /// <param name="oid">openid</param>
+        /// <param name="count">数量</param>
+        /// <returns></returns>
         public JsonResult AuctionBuy(string id, string oid, string count)
         {
             HttpClient client = new HttpClient();

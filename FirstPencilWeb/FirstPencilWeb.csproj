@@ -153,6 +153,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="CSS\ActionRecommend\AuctionRecommend.css" />
+    <Content Include="CSS\AuctionShowd.css" />
     <Content Include="CSS\Auction\Auction.css" />
     <Content Include="CSS\DealerSgin\DealerSgin.css" />
     <Content Include="CSS\Enterprise-index\idangerous.swiper.css" />
@@ -366,6 +367,8 @@
     <Content Include="Views\Function\Ernie.cshtml" />
     <Content Include="Views\Users\DealerSgin.cshtml" />
     <Content Include="Views\Business\AuctionRecommend.cshtml" />
+    <Content Include="Views\Business\AuctionShow.cshtml" />
+    <Content Include="Views\Business\AuctionShowd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -376,6 +379,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FirstPencilService\FirstPencilService.csproj">
+      <Project>{fdd326cf-a65a-4bbb-bc17-863e0856edb1}</Project>
+      <Name>FirstPencilService</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
