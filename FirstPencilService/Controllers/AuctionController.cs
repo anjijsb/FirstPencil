@@ -101,11 +101,31 @@ namespace FirstPencilService.Controllers
         /// <param name="auctionId">拍卖Id</param>
         /// <param name="lastOrderId">最后获取的订单Id，首次获取填写0</param>
         /// <returns></returns>
+        [HttpGet]
         public IEnumerable<AuctionOrder> GetOrder(int auctionId, int lastOrderId)
         {
             var db = new ModelContext();
             var ret = db.AuctionOrderSet.Include("User.Salesman").Where(item => item.AuctionId == auctionId && item.OrderId > lastOrderId);
             return ret;
+        }
+
+
+
+        /// <summary>
+        /// 刷新拍卖开始时间
+        /// </summary>
+        /// <param name="auctionId">拍卖id</param>
+        /// <param name="addSeconds">据开始前的秒数</param>
+        [HttpGet]
+        public void RefreshAuction(int auctionId, int addSeconds)
+        {
+            var db = new ModelContext();
+            var a = db.AuctionSet.FirstOrDefault(item => item.AuctionId == auctionId);
+            if (a != null)
+            {
+                a.StartDate = DateTime.Now.AddSeconds(addSeconds);
+                db.SaveChanges();
+            }
         }
     }
 }

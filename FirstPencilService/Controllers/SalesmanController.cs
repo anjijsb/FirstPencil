@@ -49,7 +49,31 @@ namespace FirstPencilService.Controllers
             db.SaveChanges();
             var ret = WechatHelper.GetCodeForMeeting();
             ret.Remarks = sm.SalesmanId.ToString();
+            db.ScanEventSet.Add(ret);
+            db.SaveChanges();
             return ret.CodeUrl;
+        }
+
+
+
+        /// <summary>
+        /// 检测二维码是否有效   
+        /// </summary>
+        /// <param name="url">二维码链地址</param>
+        /// <returns></returns>
+        [HttpGet]
+        public bool IsActive(string url)
+        {
+            var db = new ModelContext();
+            var code = db.ScanEventSet.FirstOrDefault(item => item.CodeUrl == url);
+            if (code != null)
+            {
+                return code.IsActive.Value;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

@@ -30,6 +30,10 @@ namespace FirstPencilService.Models
         /// 查询二维码
         /// </summary>
         QueryCode = 2,
+        /// <summary>
+        /// 注册供应商
+        /// </summary>
+        RegisterSalesman=3,
 
     }
 }

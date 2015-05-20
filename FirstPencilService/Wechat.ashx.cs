@@ -61,7 +61,7 @@ namespace FirstPencil
                                 Point = 0,
                                 IsSalesman = false,
                                 SubscribeTime = DateTime.Now,
-                            }; 
+                            };
                             db.UserSet.Add(user);
                         }
 
@@ -126,7 +126,8 @@ namespace FirstPencil
                                         user.SalesmanId = smId;
                                         eve.IsActive = false;
                                         db.SaveChanges();
-                                        ret = string.Format("您好，{0}。欢迎莅临本次80周年主题互动，请点击查看<a href\"{1}\">大会议程</a>。直接回复您的祝福，参与互动，赢得奖品。",sm.Name,meetingAddress);
+                                        ret = string.Format("您好，{0}。欢迎莅临本次80周年主题互动，请点击查看<a href\"{1}\">大会议程</a>。直接回复您的祝福，参与互动，赢得奖品。", sm.Name, meetingAddress);
+                                        user.Point = db.AddPointSet.FirstOrDefault(item => item.Type == AddPointType.RegisterSalesman).Count;
                                     }
                                 }
                             }
