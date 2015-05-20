@@ -11,11 +11,17 @@ namespace FirstPencilWeb.Controllers
     /// </summary>
     public class EnterpriseController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         /// <summary>
         /// 企业介绍
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+
+        public ActionResult QiYe()
         {
             return View();
         }

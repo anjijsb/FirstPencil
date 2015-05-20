@@ -16,11 +16,10 @@ namespace FirstPencilWeb.Controllers
     /// </summary>
     public class FunctionController : Controller
     {
-        public string ip = System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"].ToString();
-        public static List<Message> messold = new List<Message>();
-        public static List<Message> mold = new List<Message>();
-        public static int maxmsgid;
-        public static int num = 0;
+        private string ip = System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"].ToString();
+        private static List<Message> messold = new List<Message>();
+        private static List<Message> mold = new List<Message>();
+        private static int maxmsgid;
 
         // GET: Function
         public ActionResult Index()

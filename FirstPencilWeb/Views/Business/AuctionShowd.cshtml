@@ -2,44 +2,80 @@
     ViewBag.Title = "拍卖详情";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/CSS/AuctionShowd.css" rel="stylesheet" />
 <style type="text/css">
-        body {
-            text-align: center;
+    body {
+        background: url(../../Images/AuctionShow/pmbj.jpg) no-repeat center;
+    }
+
+    #titleshouw {
+        margin-top: 5%;
+    }
+
+        #titleshouw > strong {
+            background: #C71C60;
+            color: #fff;
+            line-height: 56px;
+            height: 56px;
+            font-size: 110px;
+            font-family: Arial;
+            padding: 0 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
-        #titleshouw {
-            margin-top: 5%;
+    .progress {
+        width: 80%;
+        margin-top: 5%;
+        margin-left: 10%;
+        height: 3em;
+        line-height: 3em;
+    }
+
+        .progress .bar {
+            font-size: 2.8em;
         }
 
-            #titleshouw > strong {
-                background: #C71C60;
-                color: #fff;
-                line-height: 56px;
-                height: 56px;
-                font-size: 110px;
-                font-family: Arial;
-                padding: 0 10px;
-                margin-right: 10px;
-                border-radius: 5px;
-                box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            }
-    .progress{
-        width:80%;
-        margin-top:5%;
-        margin-left:10%;
-        height:3em;
-        line-height:3em;
+    #lvdiv {
+        position: relative;
     }
-    .progress .bar{
-        font-size:2.8em;
+
+    #lv {
+        width: 70%;
+        position: absolute;
+        top: 0;
+        left: 35%;
+        font-size: 2.8em;
+        font-weight: 900;
     }
+
+    .text span {
+    }
+
+    #imgtitle {
+        text-align: center;
+    }
+
+        #imgtitle img {
+            height: 8em;
+            line-height: 7em;
+        }
 </style>
-<div id="titleshouw">
-    <strong>拍卖即将开始</strong>
+<div id="imgtitle">
+    <img src="~/Images/AuctionShow/pmtitle.png" />
 </div>
+<div id="lvdiv" class="progress progress-striped progress-warning active">
+    @{
+        if (@ViewBag.Auctions != null)
+        {
+            float a = (int)@ViewBag.Auctions.Count;
+            float b = (int)@ViewBag.Auctions.TotalCount;
+            float c = ((a / b) * 100);
+            <div class="bar" style="width:@c%;"></div><div id="lv"><span>@a</span>/<span>@b</span></div>
+        }
 
-<div class="progress progress-striped active">
-    <div class="bar" style="width: 80%;">80000/100000</div>
+    }
 </div>
 <div class="box3">
     <div></div>
@@ -55,7 +91,7 @@
                                 <span>
                                     @m.User.Salesman.Name
                                 </span>
-                                <span>在</span><span class="creatrDate">@m.CreatrDate</span><span>&nbsp;</span>成功购买<span> @m.Count</span> 件
+                                <span>在</span><span class="creatrDate">@m.CreatrDate</span><span>&nbsp;</span><span>成功购买</span><span> @m.Count</span> <span>件</span>
                             </p>
                         </blockquote>
                     </div>
@@ -65,10 +101,52 @@
     </div>
 </div>
 <script type="text/javascript">
+    var num = 0;
     $(document).ready(function () {
-        $(".creatrDate").html(" "+$(".creatrDate").html().substring(0, 15));
+        $(".creatrDate").html(" " + $(".creatrDate").html().substring(0, 15));
+        setInterval(add, 1000);
+        setInterval(Num, 1000);
     })
+    function display() {
+        $(".border3").css("animation-play-state", "paused");
+        $(".border3").css("-webkit-animation-play-state", "paused");
+    }
+    function add() {
+        $.ajax({
+            url: "/Business/AuctionShowAdd",
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.msg == "no") {
+                }
+                else {
+                    var date = data.CreatrDate.substring(0, 15);
+                    var str = '<div class="alert">'
+                    + '<blockquote><p class="text"><span>'
+                    + data.Name + '</span><span> 在 </span><span>'
+                    + date + '</span><span>&nbsp;</span>成功购买<span> '
+                    + data.Count + ' </span> 件</p></blockquote></div>';
+                    $(".border3").prepend(str);
+                    if ($(".border3").children().length > 6) {
+                        $(".border3").css("animation-play-state", "");
+                        $(".border3").css("-webkit-animation-play-state", "");
+                        setTimeout(display, 2000);
+                    }
+                }
+            }
+        })
+    }
+
+    function Num() {
+        $.ajax({
+            url: "/Business/AuctionShowNum",
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                var str = '<div class="bar" style="width:' + data.bai + '%;"></div><div id="lv"><span>' + data.Count + '</span>/<span>' + data.TotalCount + '</span></div>';
+                $("#lvdiv").html(str);
+            }
+        })
+    }
+
 </script>
-
-
-
