@@ -168,6 +168,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\1751526_152016025711_2.jpg" />
+    <Content Include="Images\AuctionShow\pmbj.jpg" />
+    <Content Include="Images\AuctionShow\pmtitle.png" />
+    <Content Include="Images\AuctionShow\showbj.jpg" />
+    <Content Include="Images\AuctionShow\showtitle.png" />
     <Content Include="Images\bg.jpg" />
     <Content Include="Images\bg_01.jpg" />
     <Content Include="Images\bj\jt.png" />

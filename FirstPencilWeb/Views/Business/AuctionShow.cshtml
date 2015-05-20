@@ -7,6 +7,10 @@
         text-align: center;
     }
 
+    #main {
+        background: url(../../Images/AuctionShow/showbj.jpg) no-repeat center;
+    }
+
     h1 {
         font-family: "微软雅黑";
         font-size: 40px;
@@ -17,7 +21,6 @@
     }
 
     #titleshouw {
-        margin-top: 10%;
     }
 
     .time-item {
@@ -25,16 +28,15 @@
     }
 
         .time-item strong, #titleshouw > strong {
-            background: #C71C60;
             color: #fff;
             line-height: 56px;
             height: 56px;
-            font-size: 150px;
+            font-size: 230px;
             font-family: Arial;
             padding: 0 10px;
             margin-right: 10px;
             border-radius: 5px;
-            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            /*box-shadow: 1px 1px 3px rgba(0,0,0,0.2);*/
         }
 
     /*#day_show {
@@ -54,15 +56,28 @@
         float: left;
     }
 </style>
-<div id="titleshouw">
-    <strong>拍卖即将开始</strong>
-</div>
-<div class="time-item">
-    <strong>&nbsp;<span id="minute_show"></span> : <span id="second_show"></span>&nbsp;</strong>
+@{
+    if (@ViewBag.AuctionsList != null)
+    {
+        TimeSpan spanstart = (TimeSpan)(DateTime.Parse(@ViewBag.AuctionsList.StartDate) - DateTime.Now);
+        int m = (int)spanstart.TotalSeconds;
+        <input type="hidden" value="@m" id="time" />
+    }
+}
+<div id="main">
+    <img src="~/Images/AuctionShow/showtitle.png" />
+    <div class="time-item">
+        <strong>&nbsp;<span id="minute_show"></span><span id="second_show"></span>&nbsp;</strong>
+    </div>
 </div>
 <script type="text/javascript">
+    $(function () {
+        $("#main").css("height", $(window).height());
+        timer(intDiff);
+        time();
+    })
 
-    var intDiff = parseInt(60);//倒计时总秒数量
+    var intDiff = parseInt($("#time").val());//倒计时总秒数量
 
     function timer(intDiff) {
         window.setInterval(function () {
@@ -80,13 +95,20 @@
             if (second <= 9) second = '0' + second;
             $('#day_show').html('<s></s>' + day);
             $('#hour_show').html('<s></s>' + hour);
-            $('#minute_show').html('<s></s>' + minute);
+            $('#minute_show').html('<s></s>' + minute + ' : ');
             $('#second_show').html('<s></s>' + second);
             intDiff--;
         }, 1000);
     }
 
-    $(function () {
-        timer(intDiff);
-    });
+    //倒计时结束 跳转页面
+    function time() {
+        window.setInterval(function () {
+            if ($("#minute_show").html() == "<s></s>00 : " && $('#second_show').html() == "<s></s>00") {
+                location.href = "AuctionShowd";
+            }
+        }, 2000)
+    }
+
+
 </script>
