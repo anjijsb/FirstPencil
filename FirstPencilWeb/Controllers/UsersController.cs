@@ -34,7 +34,41 @@ namespace FirstPencilWeb.Controllers
 
                 info = WeiXinHelpers.GetUserInfo(co);
             }
-            ViewBag.OpenId = info.OpenId;
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/User/GetUserInfoByOpenid?openid={1}", this.ip, "o-ZC8sxsIpHFrOORZjNmVL_u29oI")).Result;
+            FirstPencilService.Models.User user = JsonHelp.todui<FirstPencilService.Models.User>(cl);
+
+            var cl1 = client.GetStringAsync(string.Format("{0}api/Salesman/Level?point={1}", this.ip, user.Point)).Result;
+            cl1 = cl1.Replace("\"", "");
+            string[] points = cl1.Split(';');
+            if (points[1] != "")
+            {
+                ViewBag.num = "/" + points[1];
+                ViewBag.dj = ((float)user.Point / float.Parse(points[1])) * 100;
+            }
+            else
+            {
+                ViewBag.num = "";
+                ViewBag.dj = 100;
+            }
+            switch (points[0])
+            {
+                case "普通": ViewBag.url = "http://www.anjismart.com/FirstPencilWeb/Images/dj/pt.png"; break;
+                case "白银": ViewBag.url = "http://www.anjismart.com/FirstPencilWeb/Images/dj/by.png"; break;
+                case "黄金": ViewBag.url = "http://www.anjismart.com/FirstPencilWeb/Images/dj/hj.png"; break;
+                case "钻石": ViewBag.url = "http://www.anjismart.com/FirstPencilWeb/Images/dj/zs.png"; break;
+                case "皇冠": ViewBag.url = "http://www.anjismart.com/FirstPencilWeb/Images/dj/hg.png"; break;
+            }
+            ViewBag.djname = points[0];
+            ViewBag.username = user.Salesman.Name;
+            ViewBag.headimgurl = user.Headimgurl;
+            ViewBag.poits = user.Point;
+            var cl2 = client.GetStringAsync(string.Format("{0}api/Salesman/GetSalesmanPointOrder?takeNumber={1}", this.ip, 5)).Result;
+            if (cl2.Length > 50)
+            {
+                List<FirstPencilService.Models.User> users = JsonHelp.todui<List<FirstPencilService.Models.User>>(cl2);
+                ViewBag.userslist = users;
+            }
             return View();
         }
 

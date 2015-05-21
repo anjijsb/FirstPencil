@@ -175,13 +175,13 @@
     })
 
     $("#msq").click(function () {
-        if($("#msqimg").attr("src")=="../../Images/bj/xiexie.png"){
+        if($("#msqimg").attr("src")=="http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png"){
             return;
         }
         $("#num").show();
     })
     $("#but").click(function () {
-        $("#msqimg").attr("src","../../Images/bj/xiexie.png");
+        $("#msqimg").attr("src","http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png");
         $("#num").hide();
         buy();
     })
@@ -225,7 +225,7 @@
             success: function (data) {
                 if(data.msg=="true"){
                     msg("拍卖成功！")
-                    $("#msqimg").attr("src","../../Images/bj/xiexie.png");
+                    $("#msqimg").attr("src","http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png");
                 }else{
                     msg("拍卖失败！")
                 }
@@ -247,7 +247,7 @@
             data: { auctionId: id,openid:openid},
             success: function (data) {
                 if(data.msg=="false"){
-                    $("#msqimg").attr("src","../../Images/bj/xiexie.png");
+                    $("#msqimg").attr("src","http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png");
                 }else{
 
                 }

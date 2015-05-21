@@ -47,67 +47,82 @@
         token = $("#token").val();
         alert(token);
     })
-    wx.config({
-        debug: false,
-        appId: 'wx13b3ff8fdcc0d04f',
-        timestamp: 1420774989,
-        nonceStr: '2nDgiWM7gCxhL8v0',
-        signature: token,
-        jsApiList: [
-            'checkJsApi',
-        'onMenuShareTimeline',
-        'onMenuShareAppMessage',
-        'onMenuShareQQ',
-        'onMenuShareWeibo',
-        'hideMenuItems',
-        'showMenuItems',
-        'hideAllNonBaseMenuItem',
-        'showAllNonBaseMenuItem',
-        'translateVoice',
-        'startRecord',
-        'stopRecord',
-        'onRecordEnd',
-        'playVoice',
-        'pauseVoice',
-        'stopVoice',
-        'uploadVoice',
-        'downloadVoice',
-        'chooseImage',
-        'previewImage',
-        'uploadImage',
-        'downloadImage',
-        'getNetworkType',
-        'openLocation',
-        'getLocation',
-        'hideOptionMenu',
-        'showOptionMenu',
-        'closeWindow',
-        'scanQRCode',
-        'chooseWXPay',
-        'openProductSpecificView',
-        'addCard',
-        'chooseCard',
-        'openCard'
-        ]
-    });
+    $(function () {
 
-    $("#bt").on({
-        "click": function () {
-            alert("我们已接受您的反馈，将尽快答复您。");
-        }
+
+        wx.checkJsApi({
+            jsApiList: ['chooseImage'],
+            success: function (res) {
+                alert(res);
+            }
+        })
+        wx.config({
+            debug: true,
+            appId: 'wx13b3ff8fdcc0d04f',
+            timestamp: 1420774989,
+            nonceStr: '2nDgiWM7gCxhL8v0',
+            signature: token,
+            jsApiList: [
+                'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'hideMenuItems',
+            'showMenuItems',
+            'hideAllNonBaseMenuItem',
+            'showAllNonBaseMenuItem',
+            'translateVoice',
+            'startRecord',
+            'stopRecord',
+            'onRecordEnd',
+            'playVoice',
+            'pauseVoice',
+            'stopVoice',
+            'uploadVoice',
+            'downloadVoice',
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage',
+            'getNetworkType',
+            'openLocation',
+            'getLocation',
+            'hideOptionMenu',
+            'showOptionMenu',
+            'closeWindow',
+            'scanQRCode',
+            'chooseWXPay',
+            'openProductSpecificView',
+            'addCard',
+            'chooseCard',
+            'openCard'
+            ]
+        });
+
+        $("#bt").on({
+            "click": function () {
+                alert("我们已接受您的反馈，将尽快答复您。");
+            }
+        })
+
+        var images = {
+            localId: [],
+            serverId: []
+        };
+        document.querySelector('#chooseImage').onclick = function () {
+            wx.chooseImage({
+                success: function (res) {
+                    images.localId = res.localIds;
+                    alert('已选择' + res.localIds.length + ' 张图片');
+                }
+            });
+        };
+
+
+
+
     })
 
-    var images = {
-        localId: [],
-        serverId: []
-    };
-    document.querySelector('#chooseImage').onclick = function () {
-        wx.chooseImage({
-            success: function (res) {
-                images.localId = res.localIds;
-                alert('已选择' + res.localIds.length + ' 张图片');
-            }
-        });
-    };
 </script>
 

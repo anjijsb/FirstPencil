@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "NoticeShow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .pull-right {
+        bottom: 10%;
+    }
+
+    .hero-unit {
+        padding: 5%;
+        position: absolute;
+    }
+
+    .btncenter {
+        text-align: center;
+        position: absolute;
+        bottom: 5%;
+        left: 60%;
+    }
+
+    h2, .ptext {
+        text-align: center;
+    }
+</style>
+
+<div class="hero-unit">
+    <h2>@ViewBag.attention.Title</h2>
+    <p class="ptext">@ViewBag.attention.CreateDate</p>
+    @ViewBag.attention.Content
+    <p class="btncenter">
+
+        @{
+            if (@ViewBag.istrue == "true")
+            {
+                <a class="btn btn-success" tag="@ViewBag.attention.AttentionId">签到</a>
+            }
+            else
+            {
+                <a class="btn btn-success">已签到</a>
+            }
+        }
+
+
+    </p>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".hero-unit").css("min-height", ($(window).height() * 0.6));
+    })
+    $(".btn").click(function () {
+        if ($(this).html() == "已签到") {
+        } else {
+            var id = $(this).attr("tag");
+            $.ajax({
+                url: "/Function/NoticeRegister",
+                dataType: "json",
+                type: "POST",
+                data: { attentionid: id },
+                success: function (data) {
+                    window.location.reload();
+                }
+            })
+        }
+
+    })
+</script>
+

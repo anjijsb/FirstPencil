@@ -118,42 +118,43 @@ body {
 .n2 .info1 {
     position: absolute;
     bottom: 12%;
-    left: 8%;
+    left: 14%;
 }
 
 .n2 .info2 {
     position: absolute;
-    bottom: 35%;
+    bottom: 32%;
     left: 32%;
 }
 
 .n2 .info3 {
     position: absolute;
-    bottom: 20%;
-    right: 0%;
+    bottom: 13%;
+    right: 5%;
 }
 
 .n3 .info1 {
     position: absolute;
     top: -3%;
-    left: 3%;
+    left: 5%;
 }
 
 .n3 .info2 {
     position: absolute;
-    left: 47%;
+    left: 40%;
     top: 10%;
 }
 
 .n3 .info3 {
     position: absolute;
-    bottom: 20%;
-    right: 3%;
+    bottom: 25%;
+    right: 5%;
 }
 
 .n3 .info4 {
     position: absolute;
-    bottom: 35%;
+    bottom: 40%;
+    left:10%;
 }
 
 .n3 .info5 {
@@ -173,13 +174,11 @@ body {
     }
 
 .n4 .info1 {
-    margin-top: 6%;
+    margin-top: 2%;
 }
-
 .n4 .info2 {
-    margin-top: 10%;
+    margin-top: 3%;
 }
-
 .n5 .info1 {
 }
 

@@ -265,6 +265,11 @@
     <Content Include="Images\DealerSgin\xxbtn.png" />
     <Content Include="Images\DealerSgin\xxt.jpg" />
     <Content Include="Images\DealerSgin\xxtitl.png" />
+    <Content Include="Images\dj\by.png" />
+    <Content Include="Images\dj\hg.png" />
+    <Content Include="Images\dj\hj.png" />
+    <Content Include="Images\dj\pt.png" />
+    <Content Include="Images\dj\zs.png" />
     <Content Include="Images\Enterprise-index\images\1.jpg" />
     <Content Include="Images\Enterprise-index\images\10-1.png" />
     <Content Include="Images\Enterprise-index\images\10-2.png" />
@@ -498,6 +503,8 @@
     <Content Include="Views\Enterprise\QiYe.cshtml" />
     <Content Include="Views\Enterprise\qyshoe.cshtml" />
     <Content Include="Views\Function\Conference.cshtml" />
+    <Content Include="Views\Function\Notice.cshtml" />
+    <Content Include="Views\Function\NoticeShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

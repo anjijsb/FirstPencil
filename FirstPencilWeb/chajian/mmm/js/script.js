@@ -17,16 +17,16 @@ $(function () {
             }, 200);
             setTimeout(function () {
                 info2.animate({ opacity: 1 }, 800);
-            }, 800);
+            }, 1000);
             setTimeout(function () {
                 info3.animate({ opacity: 1 }, 800);
-            }, 1400);
+            }, 1600);
             setTimeout(function () {
                 info4.animate({ opacity: 1 }, 800);
-            }, 2000);
+            }, 2200);
             setTimeout(function () {
                 info5.animate({ opacity: 1 }, 800);
-            }, 2600);
+            }, 2800);
         }
     })
 
@@ -34,15 +34,15 @@ $(function () {
         if ($(this).hasClass('on')) {
             $('audio').get(0).pause();
             $(this).removeClass('on music-off');
-            $(this).attr('src', '../../chajian/mmm/images/off.png');
+            $(this).attr('src', 'http://www.anjismart.com/FirstPencilWeb/chajian/mmm/images/off.png');
         } else {
             $('audio').get(0).play();
             $(this).addClass('on music-off');
-            $(this).attr('src', '../../chajian/mmm/images/on.png');
+            $(this).attr('src', 'http://www.anjismart.com/FirstPencilWeb/chajian/mmm/images/on.png');
         }
     })
 
-    function start(){
+    function start() {
         var info = $(".n2").find('.info');
         var info1 = info.find('.info1');
         var info2 = info.find('.info2');
@@ -65,7 +65,9 @@ $(function () {
         setTimeout(function () {
             info5.animate({ opacity: 1 }, 800);
         }, 2600);
-    
-
     }
+
+    $(".swiper-slide").find(".infoimg").each(function () {
+        $(this).css("width", "75%");
+    })
 })
