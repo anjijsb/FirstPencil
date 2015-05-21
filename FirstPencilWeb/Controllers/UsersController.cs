@@ -87,7 +87,18 @@ namespace FirstPencilWeb.Controllers
             return Json(new { url = cl.ToString() }, JsonRequestBehavior.AllowGet);
         }
 
-       
+
+        /// <summary>
+        /// 判断二维码是否生效
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult erweimaxiaodiao(string url)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Salesman/IsActive?url={1}", this.ip, url)).Result;
+            return Json(new { b = cl.ToString() }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 
 

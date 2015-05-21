@@ -77,14 +77,25 @@ namespace FirstPencilWeb.Controllers
         /// <returns></returns>
         public ActionResult AuctionShow()
         {
+            return View();
+        }
+
+        /// <summary>
+        /// 开始拍卖
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult AuctionShowTime()
+        {
             HttpClient client = new HttpClient();
+            var cl1 = client.GetStringAsync(string.Format("{0}api/Auction/RefreshAuction?auctionId={1}&addSeconds={2}", this.ip, this.aid, 60)).Result;
             var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, this.aid)).Result;
             cl = cl.Replace("\"{", "{");
             cl = cl.Replace("}\"", "}");
             cl = cl.Replace("\\", "");
             Auctions d = JsonHelp.todui<Auctions>(cl);
-            ViewBag.AuctionsList = d;
-            return View();
+            TimeSpan spanstart = (TimeSpan)(DateTime.Parse(d.StartDate) - DateTime.Now);
+
+            return Json(new { startdate = (int)spanstart.TotalSeconds }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

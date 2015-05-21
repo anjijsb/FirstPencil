@@ -25,6 +25,10 @@ namespace FirstPencilWeb.Controllers
         {
             return View();
         }
+        public ActionResult qyshoe()
+        {
+            return View();
+        }
 
     }
 }

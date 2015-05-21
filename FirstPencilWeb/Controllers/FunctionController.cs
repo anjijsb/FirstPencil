@@ -112,6 +112,15 @@ namespace FirstPencilWeb.Controllers
 
 
         /// <summary>
+        /// 重置抽奖
+        /// </summary>
+        public void Ernied()
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/DiscussMsg/ReSet", this.ip)).Result;
+        }
+
+        /// <summary>
         /// 获取中奖人名单
         /// </summary>
         /// <param name="prizeId"></param>
@@ -204,6 +213,16 @@ namespace FirstPencilWeb.Controllers
             Message m = new Message();
             m = mold[i];
             return Json(new { Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate, i = mold.Count() }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        /// <summary>
+        /// 大会介绍
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Conference()
+        {
+            return View();
         }
 
     }

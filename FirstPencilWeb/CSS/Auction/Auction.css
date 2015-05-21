@@ -45,8 +45,13 @@ span {
     margin: 0px;
     height: 1em;
     line-height: 1em;
+    font-size: 1.6em;
+    font-weight: 900;
 }
 
+.text-right span{
+    font-size:0.8em;
+}
 .imgleft {
     margin-left: -25%;
 }
@@ -118,4 +123,8 @@ span {
 
 .item img {
     height: 12em;
+}
+
+.xianlaing {
+    font-size: 1em;
 }

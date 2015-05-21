@@ -1,0 +1,33 @@
+﻿.divleft {
+        text-align: center;
+        height: 15em;
+        border: none;
+        margin: 0px;
+        padding: 3px 2px 5px 2px;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 8em;
+    }
+.divright {
+        text-align: center;
+        height: 15em;
+        border: none;
+        margin: 0px;
+        padding: 3px 2px 5px 2px;
+        position: fixed;
+        right:0;
+        bottom: 0;
+        width: 8em;
+    }
+.divtop{
+    text-align: center;
+        height: 8em;
+        border: none;
+        margin: 0px;
+        padding: 3px 2px 5px 2px;
+        position: fixed;
+        right:0;
+        top: 0;
+        width: 15em;
+}
