@@ -19,12 +19,12 @@
                 string[] imgs = @a.TitleImg.ToString().Split('|');
                 TimeSpan spanstart = (TimeSpan)(DateTime.Parse(@a.StartDate) - DateTime.Now);
                 TimeSpan spanend = (TimeSpan)(DateTime.Parse(@a.EndDate) - DateTime.Now);
-                string time = spanstart.TotalMinutes > 5 ? ("未" + " " + " " + "开" + " " + " " + "始") : (spanstart.TotalMinutes > 0 ? "即将开始" : (spanend.TotalMinutes > 0 ? ("进" + " " + " " + "行" + " " + " " + "  中") : ("已" + " " + " " + "结" + " " + " " + "束")));
+                string time = spanstart.TotalMinutes > 5 ? ("未" + " " + " " + "开" + " " + " " + "始") : (spanstart.TotalMinutes > 0 ? "即将开始" : (spanend.TotalMinutes > 0 ? ("进" + " " + " " + "行" + " " + " " + "中") : ("已" + " " + " " + "结" + " " + " " + "束")));
                 int m = (int)spanstart.TotalSeconds;
                 string iistr = "jishi" + ii;
                 <div class="thumbnail">
                     <div class="imgs">
-                        <img class="imgid" src="@imgs[0]" id="@a.AuctionId" />
+                        <img class="imgid" dj="yes" src="@imgs[0]" id="@a.AuctionId" />
                     </div>
                     <div class="caption">
                         <div class="title">@a.Name</div>
@@ -47,6 +47,11 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        $(".pull-left").each(function () {
+            if ($(this).html() != ("进" + " " + " " + "行" + " " + " " + "中")) {
+                $(this).parent().parent().parent().children().eq(0).children().eq(0).attr("dj", "no");
+            }
+        })
         $(".time-item").hide();
         $(".caption").each(function () {
             if ($(this).children().eq(2).children().eq(0).html() == "即将开始") {
@@ -61,8 +66,10 @@
     })
 
     $(".imgid").click(function () {
-        var id = $(this).attr("id");
-        location.href = "Auction?id=" + id;
+        if ($(this).attr("dj") == "yes") {
+            var id = $(this).attr("id");
+            location.href = "/Business/Auction?id=" + id;
+        }
     })
 
     function timesss() {
@@ -75,9 +82,10 @@
                 } else if (c.length == 2) {
                     ch = c.eq(1).children();
                 }
-                if (ch.eq(0).html() == "<s></s>00" && ch.eq(1).html() == "<s></s>00" && ch.eq(2).html() == "<s></s>00" && ch.eq(3).html() == "<s></s>00") {
+                if (ch.eq(0).html() == "<s></s>00" && ch.eq(1).html() == "<s></s>00" && ch.eq(2).html() == "<s></s>0" && ch.eq(3).html() == "<s></s>0") {
                     c.eq(0).show().html("进" + " " + " " + "行" + " " + " " + "  中");
                     c.eq(1).hide();
+                    $(this).parent().parent().children().eq(0).children().eq(0).attr("dj", "yes");
                 };
                 if (ch.eq(0).html() == '<s></s>04' && ch.eq(2).html() == '<s></s>0' && ch.eq(3).html() == '<s></s>0') {
                     if (ch.eq(1).html() == "<s></s>59" || ch.eq(1).html() == "<s></s>58" || ch.eq(1).html() == "<s></s>57" || ch.eq(1).html() == "<s></s>56" || ch.eq(1).html() == "<s></s>55") {
