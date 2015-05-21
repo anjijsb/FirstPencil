@@ -34,7 +34,7 @@ namespace FirstPencilService.Controllers
         public bool AddOrder(int id, string openid, int count)
         {
             //检测是否已经拍卖
-            if (IsAllowAuction(openid))
+            if (IsAllowAuction(openid, id))
             {
                 return false;
             }
@@ -89,7 +89,7 @@ namespace FirstPencilService.Controllers
         /// <param name="openid">用户openid</param>
         /// <returns></returns>
         [HttpGet]
-        public bool IsAllowAuction(string openid)
+        public bool IsAllowAuction(string openid, int auctionId)
         {
             var db = new ModelContext();
             var user = db.UserSet.Include("Salesman").FirstOrDefault(item => item.OpenId == openid);
@@ -98,7 +98,7 @@ namespace FirstPencilService.Controllers
                 return false;
             }
 
-            return !db.AuctionOrderSet.Any(item => item.UserId == user.UserId);
+            return !db.AuctionOrderSet.Any(item => item.UserId == user.UserId && item.AuctionId == auctionId);
         }
 
         /// <summary>
