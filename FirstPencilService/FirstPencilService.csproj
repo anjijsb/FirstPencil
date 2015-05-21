@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201505211354484_addLevel.Designer.cs">
       <DependentUpon>201505211354484_addLevel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505212031118_addTicket.cs" />
+    <Compile Include="Migrations\201505212031118_addTicket.Designer.cs">
+      <DependentUpon>201505212031118_addTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessToken.cs" />
     <Compile Include="Models\Attention.cs" />
@@ -223,6 +227,7 @@
     <Compile Include="Models\Complain.cs" />
     <Compile Include="Models\DiscussMsg.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\JsApiTicket.cs" />
     <Compile Include="Models\ModelContext.cs" />
     <Compile Include="Models\Prize.cs" />
     <Compile Include="Models\Salesman.cs" />
@@ -393,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505211354484_addLevel.resx">
       <DependentUpon>201505211354484_addLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505212031118_addTicket.resx">
+      <DependentUpon>201505212031118_addTicket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

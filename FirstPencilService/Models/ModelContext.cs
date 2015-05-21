@@ -38,5 +38,7 @@ namespace FirstPencilService.Models
         public DbSet<AttentionRegister> AttentionRegisterSet { get; set; }
 
         public DbSet<Level> LevelSet { get; set; }
+
+        public DbSet<JsApiTicket> TicketSet { get; set; }
     }
 }

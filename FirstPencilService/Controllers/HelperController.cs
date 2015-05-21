@@ -53,9 +53,21 @@ namespace FirstPencilService.Controllers
                 openid = resStr;
             }
             return openid;
+        }
 
+        /// <summary>
+        /// 获得js ticket
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="noncestr"></param>
+        /// <param name="timestamp"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public string GetJsApiSignature(string url, string noncestr, string timestamp)
+        {
+            var tic = WechatHelper.GetJsApiTicket();
 
-
+            return "";
         }
 
     }

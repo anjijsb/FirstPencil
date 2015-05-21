@@ -20,11 +20,7 @@ namespace FirstPencilService.Controllers
             var db = new ModelContext();
             return from att in db.AttentionSet
                    where att.IsActive
-                   select new Attention
-                   {
-                       CreateDate = att.CreateDate,
-                       Title = att.Title
-                   };
+                   select att;
         }
 
         /// <summary>

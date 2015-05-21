@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -249,6 +250,57 @@ namespace FirstPencilService
             }
 
             return strReturnCode;
+        }
+
+        /// <summary>
+        /// SHA1加密算法
+        /// </summary>
+        /// <param name="str">要加密的字符串</param>
+        /// <returns></returns>
+        public static string GetSha1Str(string str)
+        {
+            byte[] strRes = Encoding.UTF8.GetBytes(str);
+            HashAlgorithm iSha = new SHA1CryptoServiceProvider();
+            strRes = iSha.ComputeHash(strRes);
+            var enText = new StringBuilder();
+            foreach (byte iByte in strRes)
+            {
+                enText.AppendFormat("{0:x2}", iByte);
+            }
+            return enText.ToString();
+        }
+
+
+        public static string GetJsApiTicket()
+        {
+            var db = new ModelContext();
+
+            //判断是否超时
+            var ticket = db.TicketSet.First();
+            if (DateTime.Now.Subtract(ticket.CreateDate.Value).TotalSeconds < 7000)
+            {
+                return ticket.Ticket;
+            }
+
+            var token = GetToken();
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi ", token);
+
+            WebClient client = new WebClient();
+            string res = client.UploadString(url, "");
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var retDic = js.Deserialize<Dictionary<string, string>>(res);
+            if (!retDic.Keys.Contains("ticket"))
+            {
+                return null;
+            }
+
+            var ret = retDic["ticket"];
+            ticket.CreateDate = DateTime.Now;
+            ticket.Ticket = ret;
+            db.SaveChanges();
+            return ret;
+
         }
     }
 }
