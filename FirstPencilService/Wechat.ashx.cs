@@ -46,10 +46,11 @@ namespace FirstPencil
 
                 if (requestXML.MsgType == "event")
                 {
+                    WriteTxt(requestXML.Event);
                     requestXML.Event = rootElement.SelectSingleNode("Event").InnerText;
                     var node = rootElement.SelectSingleNode("EventKey");
                     requestXML.EventKey = node == null ? "" : node.InnerText;
-                    if (requestXML.Event.ToLower() == "subscribe" | requestXML.Event.ToLower() == "event")
+                    if (requestXML.Event.ToLower() == "subscribe" || requestXML.Event.ToLower() == "scan")
                     {
                         //查找user 没找到就插入
                         User user = db.UserSet.FirstOrDefault(u => u.OpenId == requestXML.FromUserName);
@@ -65,54 +66,19 @@ namespace FirstPencil
                             db.UserSet.Add(user);
                         }
 
-                        #region 博博会绑定标签
-                        //根据事件号寻找标签
-                        //var card = db.Cards.Include("Code").FirstOrDefault(c => "qrscene_" + c.Code.EventNumber ==
-                        //                  (requestXML.Event == "subscribe" ? requestXML.EventKey : "qrscene_" + requestXML.EventKey));
-                        //if (card != null)
-                        //{
-                        //    card.IsNeedSkip = false;
-                        //    var userList = db.Users.Where(u => u.CardId == card.CardId);
-                        //    foreach (var item in userList)
-                        //    {
-                        //        item.CardId = null;
-                        //    }
 
-                        //    //修改已经存在的user信息
-                        //    user.CardId = card.CardId;
-                        //}
-                        //else
-                        //{
-                        //    if (string.IsNullOrEmpty(requestXML.EventKey))
-                        //    {
-                        //        user.Remarks = "Without any event key!";
-                        //    }
-                        //    else
-                        //    {
-                        //        user.Remarks = "With undefined event key " + requestXML.EventKey + "!";
-                        //    }
-                        //}
-
-                        //if (user.WatchTime == null)
-                        //{
-                        //    user.WatchTime = new int?(0);
-                        //}
-                        //user.SubscribeTime = DateTime.Now;
-                        //if (!string.IsNullOrEmpty(user.OpenId))
-                        //{
-                        //    Helper.UserHelper.GetUserInfo(user);
-                        //}
-                        #endregion
                         db.SaveChanges();
                         //get user info
-                        var t = new System.Threading.Tasks.Task(() => WechatHelper.GetUserInfo(user));
-                        t.Start();
+                        //var t = new System.Threading.Tasks.Task(() => WechatHelper.GetUserInfo(user));
+                        //t.Start();
+
+                        WechatHelper.GetUserInfo(user);
 
                         if (!string.IsNullOrEmpty(requestXML.EventKey))
                         {
 
                             requestXML.EventKey = requestXML.EventKey.Replace("qrscene_", "");
-                            var eve = db.ScanEventSet.FirstOrDefault(item => item.EventKey == requestXML.EventKey || item.IsActive == true);
+                            var eve = db.ScanEventSet.FirstOrDefault(item => item.EventKey == requestXML.EventKey && item.IsActive == true);
                             if (eve != null)
                             {
                                 if (eve.Type == EventType.AddSalesman)
@@ -125,9 +91,10 @@ namespace FirstPencil
                                         user.IsSalesman = true;
                                         user.SalesmanId = smId;
                                         eve.IsActive = false;
-                                        db.SaveChanges();
-                                        ret = string.Format("您好，{0}。欢迎莅临本次80周年主题互动，请点击查看<a href\"{1}\">大会议程</a>。直接回复您的祝福，参与互动，赢得奖品。", sm.Name, meetingAddress);
+                                        //db.SaveChanges();
+                                        ret = string.Format("您好，{0}。欢迎莅临本次80周年主题活动，请点击查看<a href=\"{1}\">大会议程</a>。直接回复您的祝福，参与互动，赢得奖品。", sm.Name, meetingAddress);
                                         user.Point = db.AddPointSet.FirstOrDefault(item => item.Type == AddPointType.RegisterSalesman).Count;
+                                        db.SaveChanges();
                                     }
                                 }
                             }
@@ -138,39 +105,39 @@ namespace FirstPencil
 
                             //ret = Helper.WechatHelper.GetEventString(requestXML.FromUserName, requestXML.ToUserName, requestXML.EventKey);
                         }
-
-
-
-                        //else
-                        //{
-                        //    ret = checkXML(requestXML, "事件编号：" + requestXML.EventKey);
-                        //}
+                        else
+                        {
+                            ret = "event key is null!";
+                        }
                     }
 
                 }// end event if
                 else if (requestXML.MsgType == "text")
                 {
-                    requestXML.Content = rootElement.SelectSingleNode("Content").InnerText;
+                    requestXML.Content = rootElement.SelectSingleNode("Content").InnerText.Trim();
                     var user = db.UserSet.FirstOrDefault(item => item.OpenId == requestXML.FromUserName);
                     if (user == null)
                     {
 
                     }
-                    if (requestXML.Content.StartsWith("#"))
+                    if (requestXML.Content.Length < 31)
                     {
                         db.DiscussMsgSet.Add(new DiscussMsg
                         {
                             UserId = user.UserId,
                             CreateDate = DateTime.Now,
-                            Content = requestXML.Content.Remove(0, 1),
+                            Content = requestXML.Content,
                         });
                         ret = "感谢您的留言。";
                         db.SaveChanges();
                     }
+                    else
+                    {
+                        ret = "留言长度不能超过30个字，请精简之后重新发送。";
+                    }
                 }
-                HttpContext.Current.Response.Write(ret);
+                HttpContext.Current.Response.Write(checkXML(requestXML, ret));
                 HttpContext.Current.Response.End();
-
             }
             else
             {
@@ -184,7 +151,6 @@ namespace FirstPencil
 
                     HttpContext.Current.Response.Write(echoString);
                     HttpContext.Current.Response.End();
-
                 }
             }
 

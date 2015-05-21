@@ -169,7 +169,7 @@ namespace FirstPencilService
             }
             else if (type == CodeType.QR_SCENE)
             {
-                data = string.Format("{{\"expire_seconds\": 604800, \"action_name\": \"QR_SCENE\", \"action_info\": {{\"scene\": {{\"scene_id\": 123}}}}}}", eventKey);
+                data = string.Format("{{\"expire_seconds\": 604800, \"action_name\": \"QR_SCENE\", \"action_info\": {{\"scene\": {{\"scene_id\": {0}}}}}}}", eventKey);
                 ret.CodeType = CodeType.QR_SCENE;
             }
             else
