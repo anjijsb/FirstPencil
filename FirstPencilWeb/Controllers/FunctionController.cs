@@ -215,5 +215,15 @@ namespace FirstPencilWeb.Controllers
             return Json(new { Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate, i = mold.Count() }, JsonRequestBehavior.AllowGet);
         }
 
+
+        /// <summary>
+        /// 大会介绍
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Conference()
+        {
+            return View();
+        }
+
     }
 }

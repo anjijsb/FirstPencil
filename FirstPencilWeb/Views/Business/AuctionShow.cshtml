@@ -25,7 +25,7 @@
 
 
     .time-item {
-        margin: 20% auto;
+        margin: 15% auto;
     }
 
         .time-item strong, #titleshouw > strong {
@@ -57,28 +57,33 @@
         float: left;
     }
 </style>
-@{
-    if (@ViewBag.AuctionsList != null)
-    {
-        TimeSpan spanstart = (TimeSpan)(DateTime.Parse(@ViewBag.AuctionsList.StartDate) - DateTime.Now);
-        int m = (int)spanstart.TotalSeconds;
-        <input type="hidden" value="@m" id="time" />
-    }
-}
 <div id="main">
     <img src="~/Images/AuctionShow/showtitle.png" />
+    <button class="btn btn-large btn-danger" id="startbtn">开始拍卖</button>
     <div class="time-item">
-        <strong>&nbsp;<span id="minute_show"></span><span id="second_show"></span>&nbsp;</strong>
+        <strong>&nbsp;<span id="minute_show"><s></s>00 : </span><span id="second_show"><s></s>00</span>&nbsp;</strong>
     </div>
 </div>
 <script type="text/javascript">
     $(function () {
         $("#main").css("height", $(window).height());
-        timer(intDiff);
-        time();
+
     })
 
-    var intDiff = parseInt($("#time").val());//倒计时总秒数量
+    $("#startbtn").click(function () {
+        $(this).hide();
+        //var intDiff = parseInt($("#time").val());//倒计时总秒数量
+        $.ajax({
+            url: "/Business/AuctionShowTime",
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                timer(data.startdate);
+                time();
+            }
+        })
+    })
+
 
     function timer(intDiff) {
         window.setInterval(function () {

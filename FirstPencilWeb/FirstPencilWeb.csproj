@@ -151,6 +151,7 @@
     <Content Include="chajian\assets\materialize\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="chajian\assets\materialize\js\materialize.min.js" />
     <Content Include="chajian\mmm\css\idangerous.swiper.css" />
+    <Content Include="chajian\mmm\css\style1.css" />
     <Content Include="chajian\mmm\css\style.css" />
     <Content Include="chajian\mmm\images\1.jpg" />
     <Content Include="chajian\mmm\images\10-1.png" />
@@ -209,12 +210,14 @@
     <Content Include="CSS\ActionRecommend\AuctionRecommend.css" />
     <Content Include="CSS\AuctionShowd.css" />
     <Content Include="CSS\Auction\Auction.css" />
+    <Content Include="CSS\Conference.css" />
     <Content Include="CSS\DealerSgin\DealerSgin.css" />
     <Content Include="CSS\Enterprise-index\idangerous.swiper.css" />
     <Content Include="CSS\Enterprise-index\style.css" />
     <Content Include="CSS\Ernie.css" />
     <Content Include="CSS\Ernie\Ernie.css" />
     <Content Include="CSS\jquery.fullPage.css" />
+    <Content Include="CSS\jquery.mCustomScrollbar.css" />
     <Content Include="CSS\MessageWall.css" />
     <Content Include="CSS\Messagewal\Message.css" />
     <Content Include="CSS\qj.css" />
@@ -241,6 +244,17 @@
     <Content Include="Images\commodity\prod1.jpg" />
     <Content Include="Images\commodity\prod2.jpg" />
     <Content Include="Images\commodity\touxiagn.jpg" />
+    <Content Include="Images\Conference\bj.jpg" />
+    <Content Include="Images\Conference\j.png" />
+    <Content Include="Images\Conference\j1.png" />
+    <Content Include="Images\Conference\js.png" />
+    <Content Include="Images\Conference\lj.png" />
+    <Content Include="Images\Conference\r.png" />
+    <Content Include="Images\Conference\r1.png" />
+    <Content Include="Images\Conference\rc.png" />
+    <Content Include="Images\Conference\s.png" />
+    <Content Include="Images\Conference\s1.png" />
+    <Content Include="Images\Conference\sy.png" />
     <Content Include="Images\Coupons\Q_00001.jpg" />
     <Content Include="Images\DealerSgin\signbj.jpg" />
     <Content Include="Images\DealerSgin\signtitle.png" />
@@ -385,6 +399,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -430,6 +445,7 @@
     <Content Include="Views\Business\AuctionShowd.cshtml" />
     <Content Include="Views\Enterprise\QiYe.cshtml" />
     <Content Include="Views\Enterprise\qyshoe.cshtml" />
+    <Content Include="Views\Function\Conference.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

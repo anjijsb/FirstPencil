@@ -22,7 +22,7 @@
     <br />
     <input type="hidden" id="ip" value="@ViewBag.ip" />
     <img src="~/Images/DealerSgin/xxbtn.png" id="btn" /><br />
-    <div id="ceshi"></div>
+    @*<div id="ceshi"></div>*@
     <img src="" id="img" />
 </div>
 
@@ -73,10 +73,9 @@
             type: "post",
             success: function (data) {
                 if (data.b == "true") {
-                    $("#ceshi").html("1");
                 }
                 else {
-                    $("#ceshi").html("2");
+                    $("#img").attr("src", "");
                 }
             }
         })

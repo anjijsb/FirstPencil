@@ -45,7 +45,7 @@
         $(".border3").css("-webkit-animation-play-state", "paused");
         $("#bj").css("height", $(window).height());
         $(".pull-right").html($(".pull-right").html().substring(11, 19));
-        setInterval(add, 2000);
+        setInterval(add, 3000);
     })
 
     function display() {
@@ -54,7 +54,6 @@
     }
 
     function add() {
-
         $.ajax({
             url: "/Function/Add",
             dataType: "json",

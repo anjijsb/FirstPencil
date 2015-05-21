@@ -72,7 +72,7 @@
             float a = (int)@ViewBag.Auctions.Count;
             float b = (int)@ViewBag.Auctions.TotalCount;
             float c = ((a / b) * 100);
-            <div class="bar" style="width:@c%;"></div><div id="lv"><span>@a</span>/<span>@b</span></div>
+            <div class="bar" style="width:@c%;"></div><div id="lv">还剩<span>@a</span>/<span>@b</span></div>
         }
 
     }
@@ -143,7 +143,7 @@
             dataType: "json",
             type: "POST",
             success: function (data) {
-                var str = '<div class="bar" style="width:' + data.bai + '%;"></div><div id="lv"><span>' + data.Count + '</span>/<span>' + data.TotalCount + '</span></div>';
+                var str = '<div class="bar" style="width:' + data.bai + '%;"></div><div id="lv">还剩<span>' + data.Count + '</span>/<span>' + data.TotalCount + '</span></div>';
                 $("#lvdiv").html(str);
             }
         })
