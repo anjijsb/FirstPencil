@@ -56,7 +56,7 @@
         <a class="carousel-control right imgright" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div>
     @*马上抢*@
-    <div id="msq" class="img-circle"><img src="~/Images/bj/msq.png" /></div>
+    <div id="msq" class="img-circle"><img src="~/Images/bj/msq.png" id="msqimg" /></div>
     <div id="prop">
         <div class="progress">
             @{
@@ -76,7 +76,7 @@
         <h3>请输入数量:</h3>
         <div class="form-search">
             <div class="input-append">
-                <input type="hidden" value="11" id="open" />@*openid*@
+                <input type="hidden" value="@ViewBag.OpenId" id="open" />@*openid*@
                 <input type="number" class="span2 search-query" id="auctioncount">
                 <button class="btn" id="but">提交</button>
             </div>
@@ -131,6 +131,8 @@
         var hei = $(window).height();
         $("#centent").css("top", hei);
         $("#centent").css("height", hei);
+
+        paimaibool();
         //$(".bar1").css("width",@e+"%");
     });
     var topn = 0;
@@ -173,15 +175,23 @@
     })
 
     $("#msq").click(function () {
+        if($("#msqimg").attr("src")=="../../Images/bj/xiexie.png"){
+            return;
+        }
         $("#num").show();
     })
     $("#but").click(function () {
+        $("#msqimg").attr("src","../../Images/bj/xiexie.png");
+        $("#num").hide();
         buy();
     })
+
     function buy() {
         var lnum=@d;
         var id=@auction.AuctionId;
         var openid=$("#open").val();
+        //var openid="o-ZC8sxsIpHFrOORZjNmVL_u29oI";.
+        //alert(openid);
         @*var openid=@open;*@
         var count=$("#auctioncount").val();
         if(count==""||count==null||count=="0"||count<0){
@@ -197,13 +207,16 @@
         }
         auctionbuy(id,openid,count);
     }
+
     //警告
     function msg(m){
         $("#num").css("height","8.6em");
         $("#numlable").html(m);
     }
 
+
     function auctionbuy(id,openid,count){
+
         $.ajax({
             url: "/Business/AuctionBuy",
             dataType: "json",
@@ -212,12 +225,37 @@
             success: function (data) {
                 if(data.msg=="true"){
                     msg("拍卖成功！")
-                    $("#prop").load(location.href+" #prop>*","");
+                    $("#msqimg").attr("src","../../Images/bj/xiexie.png");
                 }else{
                     msg("拍卖失败！")
                 }
-
+            },
+            error:function(textStatus){
+                alert(textStatus.textStatus);
             }
+
+        })
+    }
+
+    function paimaibool(id,openid){
+        var id=@auction.AuctionId;
+        var openid=$("#open").val();
+        $.ajax({
+            url: "/Business/Information",
+            dataType: "json",
+            type: "post",
+            data: { auctionId: id,openid:openid},
+            success: function (data) {
+                if(data.msg=="false"){
+                    $("#msqimg").attr("src","../../Images/bj/xiexie.png");
+                }else{
+
+                }
+            },
+            error:function(textStatus){
+                alert(21)
+            }
+
         })
     }
 

@@ -203,6 +203,7 @@
     <Content Include="chajian\mmm\images\up.png" />
     <Content Include="chajian\mmm\js\idangerous.swiper.min.js" />
     <Content Include="chajian\mmm\js\jquery-1.10.1.min.js" />
+    <Content Include="chajian\mmm\js\script1.js" />
     <Content Include="chajian\mmm\js\script.js" />
     <Content Include="chajian\mmm\mp3\bg.mp3" />
     <Content Include="Content\bootstrap.css" />
@@ -237,6 +238,7 @@
     <Content Include="Images\bj\jxbj.png" />
     <Content Include="Images\bj\msq.png" />
     <Content Include="Images\bj\pmbj.png" />
+    <Content Include="Images\bj\xiexie.png" />
     <Content Include="Images\ceshi\jinxiaoshagn.png" />
     <Content Include="Images\ceshi\touxiagn.jpg" />
     <Content Include="Images\commodity\adv.png" />

@@ -185,6 +185,7 @@ namespace FirstPencilWeb.Controllers
 
         }
 
+
         /// <summary>
         /// 拍卖事件
         /// </summary>
@@ -195,12 +196,23 @@ namespace FirstPencilWeb.Controllers
         public JsonResult AuctionBuy(string id, string oid, string count)
         {
             HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Auction/AddOrder/{1}?openid={2}&count={3}", this.ip, id, oid, count)).Result;
+            var url = string.Format("{0}api/Auction/AddOrder/{1}?openid={2}&count={3}", this.ip, id, oid, count);
+            var cl = client.GetStringAsync(url).Result;
             return Json(new { msg = cl }, JsonRequestBehavior.AllowGet);
         }
 
-
-
+        /// <summary>
+        /// 判断用户是否能拍卖
+        /// </summary>
+        /// <param name="auctionid"></param>
+        /// <param name="oid"></param>
+        /// <returns></returns>
+        public JsonResult Information(string auctionId, string openid)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Auction/IsAllowAuction?openid={1}&auctionId={2}", this.ip, openid,auctionId)).Result;
+            return Json(new { msg = cl }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 新品
