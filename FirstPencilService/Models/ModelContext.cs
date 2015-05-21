@@ -32,5 +32,11 @@ namespace FirstPencilService.Models
         public DbSet<AuctionOrder> AuctionOrderSet { get; set; }
 
         public DbSet<AddPoint> AddPointSet { get; set; }
+
+        public DbSet<Attention> AttentionSet { get; set; }
+
+        public DbSet<AttentionRegister> AttentionRegisterSet { get; set; }
+
+        public DbSet<Level> LevelSet { get; set; }
     }
 }

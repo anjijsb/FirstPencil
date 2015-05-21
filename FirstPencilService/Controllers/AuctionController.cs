@@ -34,7 +34,7 @@ namespace FirstPencilService.Controllers
         public bool AddOrder(int id, string openid, int count)
         {
             //检测是否已经拍卖
-            if (IsAllowAuction(openid, id))
+            if (!IsAllowAuction(openid, id))
             {
                 return false;
             }
@@ -97,8 +97,8 @@ namespace FirstPencilService.Controllers
             {
                 return false;
             }
-
-            return !db.AuctionOrderSet.Any(item => item.UserId == user.UserId && item.AuctionId == auctionId);
+            var isExist = db.AuctionOrderSet.Any(item => item.UserId == user.UserId && item.AuctionId == auctionId);
+            return !isExist;
         }
 
         /// <summary>

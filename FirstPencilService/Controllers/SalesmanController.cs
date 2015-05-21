@@ -54,6 +54,38 @@ namespace FirstPencilService.Controllers
             return ret.CodeUrl;
         }
 
+        /// <summary>
+        /// 获得等级信息
+        /// </summary>
+        /// <param name="point">现有积分</param>
+        /// <returns>现在等级名称 + ";" + 升级所需积分。若已经满级返回 现在等级名称 + ";"</returns>
+        [HttpGet]
+        public string Level(int point)
+        {
+            var db = new ModelContext();
+            var cLevel = (
+                         from l in db.LevelSet
+                         where l.PointCount <= point
+                         orderby l.PointCount descending
+                         select l).FirstOrDefault();
+            if (cLevel == null)
+            {
+                return null;
+            }
+            var nlevel = (
+                         from l in db.LevelSet
+                         where l.PointCount > point
+                         orderby l.PointCount
+                         select l).FirstOrDefault();
+            if (nlevel != null)
+            {
+                return cLevel.Name + ";" + nlevel.PointCount;
+            }
+            else
+            {
+                return cLevel.Name + ";";
+            }
+        }
 
 
         /// <summary>
@@ -74,6 +106,25 @@ namespace FirstPencilService.Controllers
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 获得积分排行榜
+        /// </summary>
+        /// <param name="takeNumber">获取数量</param>
+        /// <returns></returns>
+        public IEnumerable<User> GetSalesmanPointOrder(int takeNumber)
+        {
+            if (takeNumber < 1)
+            {
+                return null;
+            }
+            var db = new ModelContext();
+            return (
+                   from sm in db.UserSet.Include("Salesman")
+                   where sm.IsSalesman && sm.Salesman != null
+                   orderby sm.Point descending
+                   select sm).Take(takeNumber);
         }
 
     }

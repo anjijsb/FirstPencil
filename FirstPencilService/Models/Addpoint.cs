@@ -33,7 +33,33 @@ namespace FirstPencilService.Models
         /// <summary>
         /// 注册供应商
         /// </summary>
-        RegisterSalesman=3,
+        RegisterSalesman = 3,
+        /// <summary>
+        /// 反馈新品
+        /// </summary>
+        DiscussNewProduct = 4,
+        /// <summary>
+        /// 公告签到
+        /// </summary>
+        AttentionRegister = 5,
+        /// <summary>
+        /// 参与拍卖
+        /// </summary>
+        Auction = 6,
+    }
 
+
+    class Level
+    {
+        [Key]
+        public int LevelId { get; set; }
+
+        public int Index { get; set; }
+
+        public int PointCount { get; set; }
+
+        public string Name { get; set; }
+
+        public string Remarks { get; set; }
     }
 }

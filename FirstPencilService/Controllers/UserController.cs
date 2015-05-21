@@ -19,7 +19,7 @@ namespace FirstPencilService.Controllers
         public User GetUserInfoByOpenid(string openid)
         {
             var db = new ModelContext();
-            return db.UserSet.FirstOrDefault(u => u.OpenId == openid);
+            return db.UserSet.Include("Salesman").FirstOrDefault(u => u.OpenId == openid);
         }
 
 
