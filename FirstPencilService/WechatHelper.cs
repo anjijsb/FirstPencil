@@ -218,5 +218,37 @@ namespace FirstPencilService
 
             return fileName;
         }
+
+
+        public static string GetResponse(string data, string url)
+        {
+            HttpWebRequest myHttpWebRequest = null;
+            string strReturnCode = string.Empty;
+            //ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(CheckValidationResult);
+            myHttpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+            myHttpWebRequest.ProtocolVersion = HttpVersion.Version10;
+
+            byte[] bs;
+
+            myHttpWebRequest.Method = "POST";
+            myHttpWebRequest.ContentType = "application/x-www-form-urlencoded";
+            bs = Encoding.UTF8.GetBytes(data);
+
+            myHttpWebRequest.ContentLength = bs.Length;
+
+            using (Stream reqStream = myHttpWebRequest.GetRequestStream())
+            {
+                reqStream.Write(bs, 0, bs.Length);
+            }
+
+
+            using (WebResponse myWebResponse = myHttpWebRequest.GetResponse())
+            {
+                StreamReader readStream = new StreamReader(myWebResponse.GetResponseStream(), Encoding.UTF8);
+                strReturnCode = readStream.ReadToEnd();
+            }
+
+            return strReturnCode;
+        }
     }
 }
