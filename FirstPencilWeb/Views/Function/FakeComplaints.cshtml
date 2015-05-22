@@ -36,28 +36,26 @@
         <input type="text" name="Addres" style="width:92%;" class="form-control" placeholder="发生投诉问题的事发地" />
         <input type="text" name="ShopName" style="width:92%;" class="form-control" placeholder="购买的商品名称" />
         <textarea name="Addres" rows="3" style="width:92%;" placeholder="投诉内容"></textarea><br />
+        <button class="btn btn_primary" id="chooseImage">上传图片</button><br />
         <input class="btn  btn-info" id="bt" type="button" value="提交" />
     </form>
 </div>
-<button class="btn btn_primary" id="chooseImage">chooseImage</button>
 <script src="~/Jscript/Helps/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
     var token;
     $(document).ready(function () {
         token = $("#token").val();
-        alert(token);
+        //alert(token);
     })
     $(function () {
-
-
         wx.checkJsApi({
             jsApiList: ['chooseImage'],
             success: function (res) {
-                alert(res);
+                //alert(res);
             }
         })
         wx.config({
-            debug: true,
+            debug: false,
             appId: 'wx13b3ff8fdcc0d04f',
             timestamp: 1420774989,
             nonceStr: '2nDgiWM7gCxhL8v0',

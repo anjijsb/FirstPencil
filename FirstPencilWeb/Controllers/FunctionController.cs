@@ -226,15 +226,6 @@ namespace FirstPencilWeb.Controllers
 
         #endregion
 
-        /// <summary>
-        /// 大会介绍
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Conference()
-        {
-            return View();
-        }
-
         #region 公告相关
         /// <summary>
         /// 公告列表
@@ -266,10 +257,10 @@ namespace FirstPencilWeb.Controllers
         public ActionResult NoticeShow(string attentionid)
         {
 
-            HttpClient client=new HttpClient();
+            HttpClient client = new HttpClient();
             var cl = client.GetStringAsync(string.Format("{0}api/Attention/GetAttentionInfo?attentionId={1}", this.ip, attentionid)).Result;
             FirstPencilService.Models.Attention attention = JsonHelp.todui<FirstPencilService.Models.Attention>(cl);
-            var cl1 = client.GetStringAsync(string.Format("{0}api/Attention/AllowRegister?openId={1}&attentionId={2}", this.ip, "o-ZC8sxsIpHFrOORZjNmVL_u29oI", attentionid)).Result;
+            var cl1 = client.GetStringAsync(string.Format("{0}api/Attention/AllowRegister?openId={1}&attentionId={2}", this.ip, openid, attentionid)).Result;
             ViewBag.istrue = cl1.ToString();
             ViewBag.attention = attention;
             return View();
@@ -284,7 +275,7 @@ namespace FirstPencilWeb.Controllers
         public JsonResult NoticeRegister(string attentionid)
         {
             HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Attention/Register?openId={1}&attentionId={2}", this.ip, "o-ZC8sxsIpHFrOORZjNmVL_u29oI", attentionid)).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/Attention/Register?openId={1}&attentionId={2}", this.ip, openid, attentionid)).Result;
             return Json(new { msg = cl.ToString() }, JsonRequestBehavior.AllowGet);
         }
 
@@ -296,9 +287,20 @@ namespace FirstPencilWeb.Controllers
         public JsonResult NoticeAllowRegister(string attentionid)
         {
             HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Attention/AllowRegister?openId={1}&attentionId={2}", this.ip, "o-ZC8sxsIpHFrOORZjNmVL_u29oI", attentionid)).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/Attention/AllowRegister?openId={1}&attentionId={2}", this.ip, openid, attentionid)).Result;
             return Json(new { msg = cl.ToString() }, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        /// <summary>
+        /// 大会介绍
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Conference()
+        {
+            return View();
+        }
+
+
     }
 }

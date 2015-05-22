@@ -35,9 +35,8 @@ namespace FirstPencilWeb.Controllers
                 info = WeiXinHelpers.GetUserInfo(co);
             }
             HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/User/GetUserInfoByOpenid?openid={1}", this.ip, "o-ZC8sxsIpHFrOORZjNmVL_u29oI")).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/User/GetUserInfoByOpenid?openid={1}", this.ip, info.OpenId)).Result;
             FirstPencilService.Models.User user = JsonHelp.todui<FirstPencilService.Models.User>(cl);
-
             var cl1 = client.GetStringAsync(string.Format("{0}api/Salesman/Level?point={1}", this.ip, user.Point)).Result;
             cl1 = cl1.Replace("\"", "");
             string[] points = cl1.Split(';');
@@ -59,10 +58,12 @@ namespace FirstPencilWeb.Controllers
                 case "钻石": ViewBag.url = "http://www.anjismart.com/FirstPencilWeb/Images/dj/zs.png"; break;
                 case "皇冠": ViewBag.url = "http://www.anjismart.com/FirstPencilWeb/Images/dj/hg.png"; break;
             }
+            ViewBag.openid = code;
             ViewBag.djname = points[0];
             ViewBag.username = user.Salesman.Name;
             ViewBag.headimgurl = user.Headimgurl;
             ViewBag.poits = user.Point;
+
             var cl2 = client.GetStringAsync(string.Format("{0}api/Salesman/GetSalesmanPointOrder?takeNumber={1}", this.ip, 5)).Result;
             if (cl2.Length > 50)
             {
