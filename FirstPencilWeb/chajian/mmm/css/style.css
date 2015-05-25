@@ -31,7 +31,7 @@ body {
 }
 
 .n2 {
-    background: url(../images/fmbj.jpg) center center no-repeat;
+    background: url(../../../Images/yqjsui/0-0.jpg) center center no-repeat;
     background-size: 100%;
 }
 
@@ -117,20 +117,20 @@ body {
 
 .n2 .info1 {
     position: absolute;
-    bottom: 12%;
-    left: 14%;
+    top: 0%;
+    left: 40%;
 }
 
 .n2 .info2 {
     position: absolute;
-    bottom: 32%;
-    left: 32%;
+    top: 19%;
+    left: 50%;
 }
 
 .n2 .info3 {
     position: absolute;
-    bottom: 13%;
-    right: 5%;
+    top: 40%;
+    left: 30%;
 }
 
 .n3 .info1 {
@@ -141,20 +141,20 @@ body {
 
 .n3 .info2 {
     position: absolute;
-    left: 40%;
+    right:5%;
     top: 10%;
 }
 
 .n3 .info3 {
     position: absolute;
-    bottom: 25%;
+    bottom: 20%;
     right: 5%;
 }
 
 .n3 .info4 {
     position: absolute;
-    bottom: 40%;
-    left:10%;
+    bottom: 30%;
+    left: 5%;
 }
 
 .n3 .info5 {
@@ -176,9 +176,11 @@ body {
 .n4 .info1 {
     margin-top: 2%;
 }
+
 .n4 .info2 {
     margin-top: 3%;
 }
+
 .n5 .info1 {
 }
 
@@ -187,19 +189,19 @@ body {
 
 .n5 .info3 {
     position: absolute;
-    bottom: 22%;
+    bottom: 20%;
     left: 10%;
 }
 
 .n5 .info4 {
     position: absolute;
-    bottom: 22%;
+    bottom: 20%;
     right: 6%;
 }
 
 .n5 .info5 {
     position: absolute;
-    bottom: 10%;
+    bottom: 8%;
     left: 10%;
 }
 
@@ -254,6 +256,9 @@ body {
 }
 
 .n8 .info3 {
+    position: absolute;
+    left: 20%;
+    bottom: 10%;
 }
 
 .n9 .info1 {
@@ -264,13 +269,13 @@ body {
 .n9 .info2 {
     position: absolute;
     left: 20%;
-    top: 23%;
+    top: 8%;
 }
 
 .n9 .info3 {
     position: absolute;
     left: 20%;
-    top: 28%;
+    top: 50%;
 }
 
 .n9 .info4 {
@@ -287,13 +292,62 @@ body {
 
 .n10 .info1 {
     position: absolute;
-    right:0%;
+    right: 5%;
+    top:0%;
 }
 
 .n10 .info2 {
     position: absolute;
-     right:5%;
-     top:65%;
+    right: 5%;
+    top: 8%;
+}
+
+.n10 .info3 {
+    position: absolute;
+    right: 5%;
+    top: 16%;
+}
+
+.n10 .info4 {
+    position: absolute;
+    right: 5%;
+    top: 24%;
+}
+
+.n10 .info5 {
+    position: absolute;
+    right: 5%;
+    top: 35%;
+}
+
+.n10 .info6 {
+    position: absolute;
+    right: 5%;
+    top: 49%;
+}
+
+.n10 .info7 {
+    position: absolute;
+    right: 5%;
+    bottom:30%;
+}
+
+.n10 .info8 {
+    position: absolute;
+    right: 5%;
+    bottom:25%;
+}
+
+.n10 .info9 {
+    position: absolute;
+    right: 5%;
+    bottom:20%;
+}
+
+.n10 .info10 {
+    position: absolute;
+    bottom:15%;
+    right: 5%;
 }
 
 .n11 .info1 {
@@ -396,13 +450,15 @@ body {
         opacity: 0;
     }
 }
-.mp3{
-    position:fixed;
-    z-index:9999;
-    right:10%;
-    top:2%;
+
+.mp3 {
+    position: fixed;
+    z-index: 9999;
+    right: 5%;
+    top: 2%;
 }
-.mp3 img{
-    width:200%;
-    height:200%;
-}
+
+    .mp3 img {
+        width: 6em;
+        height: 6em;
+    }

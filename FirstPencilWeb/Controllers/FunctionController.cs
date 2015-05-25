@@ -292,6 +292,7 @@ namespace FirstPencilWeb.Controllers
         }
         #endregion
 
+
         /// <summary>
         /// 大会介绍
         /// </summary>
@@ -301,6 +302,15 @@ namespace FirstPencilWeb.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 微信js jdk demo
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult weixin()
+        {
+            return View();
+        }
 
     }
 }

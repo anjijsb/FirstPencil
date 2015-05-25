@@ -11,7 +11,7 @@ namespace FirstPencilWeb.Controllers
 {
     public class BusinessController : Controller
     {
-
+        #region 参数
         private string ip = System.Web.Configuration.WebConfigurationManager.AppSettings["fpsip"].ToString();
         private static List<FirstPencilService.Models.AuctionOrder> messold = new List<FirstPencilService.Models.AuctionOrder>();
         private List<FirstPencilService.Models.AuctionOrder> mold = new List<FirstPencilService.Models.AuctionOrder>();
@@ -21,56 +21,18 @@ namespace FirstPencilWeb.Controllers
         private static int num = 9;
         private string aid = System.Web.Configuration.WebConfigurationManager.AppSettings["aid"].ToString();
         private int mainnum = 0;
+        #endregion
+
+        #region index（无用）
         // GET: Business
         public ActionResult Index()
         {
             return View();
         }
 
-        #region 拍卖
-        /// <summary>
-        /// 拍卖详情页
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Auction(string id)
-        {
-            HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, id)).Result;
-            cl = cl.Replace("\"{", "{");
-            cl = cl.Replace("}\"", "}");
-            cl = cl.Replace("\\", "");
-            Auctions a = JsonHelp.todui<Auctions>(cl);
-            ViewBag.Auctions = a;
-            ViewBag.OpenId = openid;
-            return View();
-        }
+        #endregion
 
-        /// <summary>
-        /// 拍卖推荐
-        /// </summary>
-        /// <param name="code">code</param>
-        /// https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx13b3ff8fdcc0d04f&redirect_uri=http://www.anjismart.com/first/FirstPencilWeb&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect
-        /// <returns></returns>
-        public ActionResult AuctionRecommend(string code)
-        {
-            WeiXinUserInfo info = new WeiXinUserInfo();
-            if (!string.IsNullOrEmpty(code))
-            {
-                string co = WeiXinHelpers.GetUserOpenId(code);
-                info = WeiXinHelpers.GetUserInfo(co);
-                openid = info.OpenId;
-            }
-
-            HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetAuctions", this.ip)).Result;
-            cl = cl.Replace("\"{", "{");
-            cl = cl.Replace("}\"", "}");
-            cl = cl.Replace("\\", "");
-            List<Auctions> d = JsonHelp.todui<List<Auctions>>(cl);
-            ViewBag.AuctionsList = d;
-            return View();
-        }
-
+        #region 大屏幕拍卖相关
         /// <summary>
         /// 拍卖倒计时
         /// </summary>
@@ -168,6 +130,53 @@ namespace FirstPencilWeb.Controllers
 
         }
 
+        #endregion
+
+        #region 手机端拍卖相关
+
+        /// <summary>
+        /// 拍卖详情页
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Auction(string id)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, id)).Result;
+            cl = cl.Replace("\"{", "{");
+            cl = cl.Replace("}\"", "}");
+            cl = cl.Replace("\\", "");
+            Auctions a = JsonHelp.todui<Auctions>(cl);
+            ViewBag.Auctions = a;
+            ViewBag.OpenId = openid;
+            return View();
+        }
+
+        /// <summary>
+        /// 拍卖推荐
+        /// </summary>
+        /// <param name="code">code</param>
+        /// https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx13b3ff8fdcc0d04f&redirect_uri=http://www.anjismart.com/first/FirstPencilWeb&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect
+        /// <returns></returns>
+        public ActionResult AuctionRecommend(string code)
+        {
+            WeiXinUserInfo info = new WeiXinUserInfo();
+            if (!string.IsNullOrEmpty(code))
+            {
+                string co = WeiXinHelpers.GetUserOpenId(code);
+                info = WeiXinHelpers.GetUserInfo(co);
+                openid = info.OpenId;
+            }
+
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetAuctions", this.ip)).Result;
+            cl = cl.Replace("\"{", "{");
+            cl = cl.Replace("}\"", "}");
+            cl = cl.Replace("\\", "");
+            List<Auctions> d = JsonHelp.todui<List<Auctions>>(cl);
+            ViewBag.AuctionsList = d;
+            return View();
+        }
+
         /// <summary>
         /// 刷新数量
         /// </summary>
@@ -210,9 +219,10 @@ namespace FirstPencilWeb.Controllers
         public JsonResult Information(string auctionId, string openid)
         {
             HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Auction/IsAllowAuction?openid={1}&auctionId={2}", this.ip, openid,auctionId)).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/Auction/IsAllowAuction?openid={1}&auctionId={2}", this.ip, openid, auctionId)).Result;
             return Json(new { msg = cl }, JsonRequestBehavior.AllowGet);
         }
+
         #endregion
 
         #region 新品

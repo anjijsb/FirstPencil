@@ -216,25 +216,34 @@
 
 
     function auctionbuy(id,openid,count){
-
-        $.ajax({
-            url: "/Business/AuctionBuy",
-            dataType: "json",
-            type: "POST",
-            data: { id: id,oid:openid,count:count },
-            success: function (data) {
-                if(data.msg=="true"){
-                    msg("拍卖成功！")
-                    $("#msqimg").attr("src","http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png");
-                }else{
-                    msg("拍卖失败！")
-                }
-            },
-            error:function(textStatus){
-                alert(textStatus.textStatus);
+        $.get("http://www.anjismart.com/FirstPencilService/api/Auction/AddOrder/"+id+"?openid="+openid+"&count="+count,function(data){
+            if(data=="true"){
+                msg("拍卖成功!");
+                alert("1")
+            }else{
+                msg("拍卖失败!");
+                alert("2");
             }
-
         })
+
+        //$.ajax({
+        //    url: "/Business/AuctionBuy",
+        //    dataType: "json",
+        //    type: "POST",
+        //    data: { id: id,oid:openid,count:count },
+        //    success: function (data) {
+        //        if(data.msg=="true"){
+        //            msg("拍卖成功！")
+        //            $("#msqimg").attr("src","http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png");
+        //        }else{
+        //            msg("拍卖失败！")
+        //        }
+        //    },
+        //    error:function(textStatus){
+        //        alert(textStatus.textStatus);
+        //    }
+
+        //})
     }
 
     function paimaibool(id,openid){

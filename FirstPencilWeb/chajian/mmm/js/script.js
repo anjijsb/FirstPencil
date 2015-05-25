@@ -11,7 +11,12 @@ $(function () {
             var info3 = info.find('.info3');
             var info4 = info.find('.info4');
             var info5 = info.find('.info5');
-            $(".info1,.info2,.info3,.info4,.info5").css('opacity', '0');
+            var info6 = info.find('.info6');
+            var info7 = info.find('.info7');
+            var info8 = info.find('.info8');
+            var info9 = info.find('.info9');
+            var info10 = info.find('.info10');
+            $(".info1,.info2,.info3,.info4,.info5,.info6,.info7,.info8,.info9,.info10").css('opacity', '0');
             setTimeout(function () {
                 info1.animate({ opacity: 1 }, 800);
             }, 200);
@@ -27,6 +32,21 @@ $(function () {
             setTimeout(function () {
                 info5.animate({ opacity: 1 }, 800);
             }, 2800);
+            setTimeout(function () {
+                info6.animate({ opacity: 1 }, 800);
+            }, 3400);
+            setTimeout(function () {
+                info7.animate({ opacity: 1 }, 800);
+            }, 4000);
+            setTimeout(function () {
+                info8.animate({ opacity: 1 }, 800);
+            }, 4600);
+            setTimeout(function () {
+                info9.animate({ opacity: 1 }, 800);
+            }, 5200);
+            setTimeout(function () {
+                info10.animate({ opacity: 1 }, 800);
+            }, 5800);
         }
     })
 
@@ -67,7 +87,7 @@ $(function () {
         }, 2600);
     }
 
-    $(".swiper-slide").find(".infoimg").each(function () {
-        $(this).css("width", "75%");
+    $(".swiper-slide-small").find(".infoimg").each(function () {
+        $(this).css("width", "80%");
     })
 })
