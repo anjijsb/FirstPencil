@@ -2,84 +2,47 @@
     ViewBag.Title = "拍卖展示";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style type="text/css">
-    body {
-        text-align: center;
-    }
-
-    #main {
-        background: url(../../Images/AuctionShow/showbj.jpg) no-repeat center;
-    }
-
-    h1 {
-        font-family: "微软雅黑";
-        font-size: 40px;
-        margin: 20px 0;
-        border-bottom: solid 1px #ccc;
-        padding-bottom: 20px;
-        letter-spacing: 2px;
-    }
-
-    #titleshouw {
-    }
-
-
-    .time-item {
-        margin: 15% auto;
-    }
-
-        .time-item strong, #titleshouw > strong {
-            color: #fff;
-            line-height: 56px;
-            height: 56px;
-            font-size: 230px;
-            font-family: Arial;
-            padding: 0 10px;
-            margin-right: 10px;
-            border-radius: 5px;
-            /*box-shadow: 1px 1px 3px rgba(0,0,0,0.2);*/
-        }
-
-    /*#day_show {
-        float: left;
-        line-height: 49px;
-        color: #c71c60;
-        font-size: 32px;
-        margin: 0 10px;
-        font-family: Arial,Helvetica,sans-serif;
-    }*/
-
-    .item-title .unit {
-        background: none;
-        line-height: 49px;
-        font-size: 24px;
-        padding: 0 10px;
-        float: left;
-    }
-</style>
+<link href="~/CSS/AuctionShow.css" rel="stylesheet" />
 <div id="main">
     <img src="~/Images/AuctionShow/showtitle.png" />
-    <button class="btn btn-large btn-danger" id="startbtn">开始拍卖</button>
+    <div id="page">
+        <select id="selectid">
+            @{
+                if (ViewBag.auctionlist != null)
+                {
+                    foreach (FirstPencilWeb.Models.Auctions a in @ViewBag.auctionlist as List<FirstPencilWeb.Models.Auctions>)
+                    {
+                        <option value="@a.AuctionId">@a.Name</option>
+                    }
+                }
+            }
+        </select>
+        <br />
+        <button class="btn btn-large btn-danger" id="startbtn">开始拍卖</button>
+    </div>
     <div class="time-item">
         <strong>&nbsp;<span id="minute_show"><s></s>00 : </span><span id="second_show"><s></s>00</span>&nbsp;</strong>
     </div>
 </div>
 <script type="text/javascript">
+    var auctionid;
     $(function () {
         $("#main").css("height", $(window).height());
-
     })
 
+
     $("#startbtn").click(function () {
-        $(this).hide();
+        var id = $("#selectid").val();
+        //$(this).hide();
         //var intDiff = parseInt($("#time").val());//倒计时总秒数量
         $.ajax({
             url: "/Business/AuctionShowTime",
             dataType: "json",
             type: "POST",
+            data: { id: id },
             success: function (data) {
                 timer(data.startdate);
-                time();
+                time(id);
             }
         })
     })
@@ -107,11 +70,12 @@
         }, 1000);
     }
 
-    //倒计时结束 跳转页面
-    function time() {
+
+    //倒计时结束 跳转页面 id=拍卖商品id
+    function time(id) {
         window.setInterval(function () {
             if ($("#minute_show").html() == "<s></s>00 : " && $('#second_show').html() == "<s></s>00") {
-                location.href = "AuctionShowd";
+                location.href = "AuctionShowd?id=" + id;
             }
         }, 2000)
     }

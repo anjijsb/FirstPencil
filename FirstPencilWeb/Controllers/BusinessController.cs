@@ -20,7 +20,6 @@ namespace FirstPencilWeb.Controllers
         private static string openid;
         private static int num = 9;
         private string aid = System.Web.Configuration.WebConfigurationManager.AppSettings["aid"].ToString();
-        private int mainnum = 0;
         #endregion
 
         #region index（无用）
@@ -39,6 +38,13 @@ namespace FirstPencilWeb.Controllers
         /// <returns></returns>
         public ActionResult AuctionShow()
         {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetAuctions", this.ip)).Result;
+            cl = cl.Replace("\"{", "{");
+            cl = cl.Replace("}\"", "}");
+            cl = cl.Replace("\\", "");
+            List<Auctions> a = JsonHelp.todui<List<Auctions>>(cl);
+            ViewBag.auctionlist = a;
             return View();
         }
 
@@ -46,11 +52,11 @@ namespace FirstPencilWeb.Controllers
         /// 开始拍卖
         /// </summary>
         /// <returns></returns>
-        public JsonResult AuctionShowTime()
+        public JsonResult AuctionShowTime(string id)
         {
             HttpClient client = new HttpClient();
-            var cl1 = client.GetStringAsync(string.Format("{0}api/Auction/RefreshAuction?auctionId={1}&addSeconds={2}", this.ip, this.aid, 60)).Result;
-            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, this.aid)).Result;
+            var cl1 = client.GetStringAsync(string.Format("{0}api/Auction/RefreshAuction?auctionId={1}&addSeconds={2}", this.ip, id, 60)).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, id)).Result;
             cl = cl.Replace("\"{", "{");
             cl = cl.Replace("}\"", "}");
             cl = cl.Replace("\\", "");
@@ -64,11 +70,11 @@ namespace FirstPencilWeb.Controllers
         /// 拍卖详情数据
         /// </summary>
         /// <returns></returns>
-        public ActionResult AuctionShowd()
+        public ActionResult AuctionShowd(string id)
         {
             HttpClient client = new HttpClient();
             #region 购买信息
-            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetOrder?auctionId={1}&lastOrderId={2}", this.ip, this.aid, 0)).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetOrder?auctionId={1}&lastOrderId={2}", this.ip, id, 0)).Result;
             if (cl.Length > 50)
             {
                 messold = JsonHelp.todui<List<FirstPencilService.Models.AuctionOrder>>(cl);
@@ -84,8 +90,10 @@ namespace FirstPencilWeb.Controllers
                 ViewBag.AuctionOrderList = m;
             }
             #endregion
+
             #region 数量
-            var cl1 = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, this.aid)).Result;
+
+            var cl1 = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, id)).Result;
             if (cl1.Length > 50)
             {
                 cl1 = cl1.Replace("\"{", "{");
@@ -94,6 +102,7 @@ namespace FirstPencilWeb.Controllers
                 Auctions e = JsonHelp.todui<Auctions>(cl1);
                 ViewBag.Auctions = e;
             }
+
             #endregion
             return View();
         }
@@ -102,7 +111,7 @@ namespace FirstPencilWeb.Controllers
         /// 拍卖详情购买信息滚动添加
         /// </summary>
         /// <returns></returns>
-        public JsonResult AuctionShowAdd()
+        public JsonResult AuctionShowAdd( string id)
         {
             FirstPencilService.Models.AuctionOrder a = new FirstPencilService.Models.AuctionOrder();
             if (messold.Count() > 0)
@@ -115,7 +124,7 @@ namespace FirstPencilWeb.Controllers
             else
             {
                 HttpClient client = new HttpClient();
-                var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetOrder?auctionId={1}&lastOrderId={2}", this.ip, this.aid, maxorderid)).Result;
+                var cl = client.GetStringAsync(string.Format("{0}api/Auction/GetOrder?auctionId={1}&lastOrderId={2}", this.ip, id, maxorderid)).Result;
                 if (cl.Length < 50)
                 {
                     return Json(new { msg = "no" }, JsonRequestBehavior.AllowGet);
@@ -130,6 +139,22 @@ namespace FirstPencilWeb.Controllers
 
         }
 
+        /// <summary>
+        /// 刷新数量
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult AuctionShowNum(string id)
+        {
+            HttpClient client = new HttpClient();
+            var cl1 = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, id)).Result;
+            cl1 = cl1.Replace("\"{", "{");
+            cl1 = cl1.Replace("}\"", "}");
+            cl1 = cl1.Replace("\\", "");
+            Auctions e = JsonHelp.todui<Auctions>(cl1);
+            float bai = ((float)e.Count / (float)e.TotalCount) * 100;
+            return Json(new { Count = e.Count, TotalCount = e.TotalCount, bai = bai }, JsonRequestBehavior.AllowGet);
+
+        }
         #endregion
 
         #region 手机端拍卖相关
@@ -174,25 +199,11 @@ namespace FirstPencilWeb.Controllers
             cl = cl.Replace("\\", "");
             List<Auctions> d = JsonHelp.todui<List<Auctions>>(cl);
             ViewBag.AuctionsList = d;
+            ViewBag.openid = info.OpenId;
             return View();
         }
 
-        /// <summary>
-        /// 刷新数量
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult AuctionShowNum()
-        {
-            HttpClient client = new HttpClient();
-            var cl1 = client.GetStringAsync(string.Format("{0}api/Auction/GetInfo/{1}", this.ip, this.aid)).Result;
-            cl1 = cl1.Replace("\"{", "{");
-            cl1 = cl1.Replace("}\"", "}");
-            cl1 = cl1.Replace("\\", "");
-            Auctions e = JsonHelp.todui<Auctions>(cl1);
-            float bai = ((float)e.Count / (float)e.TotalCount) * 100;
-            return Json(new { Count = e.Count, TotalCount = e.TotalCount, bai = bai }, JsonRequestBehavior.AllowGet);
-
-        }
+       
 
 
         /// <summary>

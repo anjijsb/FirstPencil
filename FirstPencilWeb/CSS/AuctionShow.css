@@ -1,0 +1,158 @@
+﻿body {
+    text-align: center;
+    font: Arial, Helvetica, sans-serif normal 10px;
+    margin: 0;
+    padding: 0;
+}
+
+#main {
+    background: url(../../Images/AuctionShow/showbj.jpg) no-repeat center;
+}
+
+h1 {
+    font-family: "微软雅黑";
+    font-size: 40px;
+    margin: 20px 0;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#page {
+    margin: 0 auto;
+    position: relative;
+    width: 850px;
+    font-family: verdana;
+    font-size: 12px;
+}
+
+#content {
+    width: 100%;
+}
+
+pre {
+    border: 3px solid #ccc;
+    padding: 5px;
+    font-size: 12px;
+    font-family: arial;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.blue {
+    color: blue;
+}
+
+.red {
+    color: red;
+}
+
+#footer {
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    background-color: #ccc;
+}
+
+#logo, #foot {
+    margin-left: 10px;
+}
+
+.container {
+    text-align: center;
+}
+
+ul.thumb {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    width: 800px;
+}
+
+    ul.thumb li {
+        margin: 0;
+        padding: 5px;
+        float: left;
+        position: relative;
+        width: 110px;
+        height: 110px;
+    }
+
+        ul.thumb li img {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background: #f0f0f0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            -ms-interpolation-mode: bicubic;
+        }
+
+            ul.thumb li img.hover {
+                margin-top: 15px;
+                background: url(thumb_bg.png) no-repeat center center;
+                border: none;
+            }
+
+.title {
+    position: absolute;
+    width: 185px;
+    height: 35px;
+    margin: 0;
+    font-weight: 900;
+    background: url(../images/blue.png) no-repeat center center;
+    padding: 17px 0 0 0;
+    text-align: center;
+    color: #fff;
+}
+
+
+
+
+#titleshouw {
+}
+
+.time-item {
+    margin: 10% auto;
+}
+
+.time-item strong, #titleshouw > strong {
+    color: #fff;
+    line-height: 56px;
+    height: 56px;
+    font-size: 230px;
+    font-family: Arial;
+    padding: 0 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+#day_show {
+        float: left;
+        line-height: 49px;
+        color: #c71c60;
+        font-size: 32px;
+        margin: 0 10px;
+        font-family: Arial,Helvetica,sans-serif;
+    }
+
+.item-title .unit {
+    background: none;
+    line-height: 49px;
+    font-size: 24px;
+    padding: 0 10px;
+    float: left;
+}

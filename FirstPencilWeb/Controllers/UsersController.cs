@@ -134,6 +134,25 @@ namespace FirstPencilWeb.Controllers
             return Json(new { b = cl.ToString() }, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 依照简称查询厂商
+        /// </summary>
+        /// <param name="jianchen"></param>
+        /// <returns></returns>
+        public JsonResult jiancheng(string jianchen)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Salesman/GetFirmBySimpleName?simpleName={1}", this.ip, jianchen)).Result;
+            List<Deler> a = JsonHelp.todui<List<Deler>>(cl);
+            return Json(a);
+        }
+
+        public JsonResult AddFirm(string firmName,string address,string area,string simpleName,string phoneNumber)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Salesman/AddFirm?firmName={1}&address={2}&area={3}&simpleName={4}&phoneNumber={5}", this.ip, firmName, address, area, simpleName, phoneNumber)).Result;
+            return Json(cl.ToString());
+        }
     }
 
 

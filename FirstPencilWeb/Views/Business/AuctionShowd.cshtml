@@ -64,6 +64,12 @@
 </style>
 <div id="imgtitle">
     <img src="~/Images/AuctionShow/pmtitle.png" />
+    @{
+        if (@ViewBag.Auctions != null)
+        {
+            <div>@ViewBag.Auctions.Name</div>
+        }
+    }
 </div>
 <div id="lvdiv" class="progress progress-striped progress-warning active">
     @{
@@ -102,6 +108,7 @@
 </div>
 <script type="text/javascript">
     var num = 0;
+    var id=@ViewBag.Auctions.AuctionId;
     $(document).ready(function () {
         $(".creatrDate").html(" " + $(".creatrDate").html().substring(0, 15));
         setInterval(add, 1000);
@@ -116,6 +123,7 @@
             url: "/Business/AuctionShowAdd",
             dataType: "json",
             type: "POST",
+            data:{id:id},
             success: function (data) {
                 if (data.msg == "no") {
 
@@ -142,6 +150,7 @@
             url: "/Business/AuctionShowNum",
             dataType: "json",
             type: "POST",
+            data:{id:id},
             success: function (data) {
                 var str = '<div class="bar" style="width:' + data.bai + '%;"></div><div id="lv">还剩<span>' + data.Count + '</span>/<span>' + data.TotalCount + '</span></div>';
                 $("#lvdiv").html(str);

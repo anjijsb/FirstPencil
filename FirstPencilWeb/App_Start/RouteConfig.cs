@@ -16,7 +16,7 @@ namespace FirstPencilWeb
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Business", action = "AuctionShowd", id = UrlParameter.Optional }
+                defaults: new { controller = "Users", action = "DealerSgin", id = UrlParameter.Optional }
             );
         }
     }

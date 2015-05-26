@@ -6,6 +6,7 @@
 <link href="~/CSS/qj.css" rel="stylesheet" />
 <div class="hero-unit">
     <img src="~/Images/DealerSgin/signtitle.png" id="titleimg" /><br />
+    <input type="text" class="intext" placeholder="厂商简称" />
     <select name="firmId" id="firmId">
         @{
             foreach (FirstPencilWeb.Models.Deler s in @ViewBag.list as List<FirstPencilWeb.Models.Deler>)
@@ -13,20 +14,42 @@
                 <option selected value="@s.FirmId">@s.Name</option>
             }
         }
-    </select><br />
-    <input class="span2" name="name" id="name" type="text" placeholder="请输入姓名">
+    </select>
+    <input type="button" id="addchangshagn" class="btn btn-info" value="添加厂商" />
     <br />
-    <input class="span2" name="phone" id="phone" type="text" placeholder="请输入手机号">
+    <input class="span2 xiao" name="name" id="name" type="text" placeholder="请输入姓名"><span class="xiaohong"> * </span>
+    <br />
+    <input class="span2 xiao" name="phone" id="phone" type="text" placeholder="请输入手机号"><span class="xiaohong"> * </span>
     <br />
     <input class="span2" name="position" id="position" type="text" placeholder="请输入职位">
     <br />
     <input type="hidden" id="ip" value="@ViewBag.ip" />
     <img src="~/Images/DealerSgin/xxbtn.png" id="btn" /><br />
-    @*<div id="ceshi"></div>*@
     <img src="" id="img" />
 </div>
 <div class=" divleft"></div>
 <div class=" divright"></div>
+
+<div id="myModal1" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-header">
+        <button type="button" class="close changshangguan" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">添加厂商</h3>
+    </div>
+    <div class="modal-body">
+        <input type="text" id="firmName" placeholder="请输入厂商名称" /><br />
+        <input type="text" id="address" placeholder="请输入地址" /><br />
+        <input type="text" id="area" placeholder="请输入地区" /><br />
+        <input type="text" id="simpleName" placeholder="请输入简称" /><br />
+        <input type="text" id="phoneNumber" placeholder="请输入电话" /><br />
+    </div>
+    <div class="modal-footer">
+        <button class="btn changshangguan" data-dismiss="modal">关闭</button>
+        <button class="btn btn-primary" id="queshi">确认提交</button>
+    </div>
+</div>
+
+
+
 <script>
     var ip = $("#ip").val();
     $(document).ready(function () {
@@ -35,13 +58,10 @@
     })
     $("#btn").on({
         "mouseout": function () {
-
         },
         "click": function () {
-            TiJiao1($("#firmId").val(), $("#name").val(), $("#phone").val(), $("#position").val());
-            //setTimeout(function () {
-            // $("#img").attr("src", "");
-            //  }, 10000);
+            //TiJiao1($("#firmId").val(), $("#name").val(), $("#phone").val(), $("#position").val());
+            alert($("#firmId").val());
         }
     })
 
@@ -80,4 +100,61 @@
         })
 
     }
+
+
+
+    //厂商简称
+    $(".intext").on({
+        "keyup": function () {
+            var text = $(this).val();
+            $.post("/Users/jiancheng", { jianchen: text }, function (data, status) {
+                if (status == "success") {
+                    var str = "";
+                    if (data.length == 0) {
+                        $("#firmId").empty();
+                    }
+                    $.each(data, function (i, items) {
+                        str += '<option selected value="' + items.FirmId + '">' + items.Name + '</option>'
+                    });
+                    $("#firmId").empty().append(str);
+                }
+            })
+
+
+        }
+    })
+
+    $("#addchangshagn").click(function () {
+        $("#myModal1").show();
+    })
+    $(".changshangguan").click(function () {
+        $("#firmName").val("");
+        $("#address").val("");
+        $("#area").val("");
+        $("#simpleName").val("");
+        $("#phoneNumber").val("");
+        $("#myModal1").hide();
+    })
+
+
+
+    //添加厂商
+    $('#queshi').on({
+        "click": function () {
+            var firmName = $("#firmName").val();
+            var address = $("#address").val();
+            var area = $("#area").val();
+            var simpleName = $("#simpleName").val();
+            var phoneNumber = $("#phoneNumber").val();
+            if (firmName == "" || firmName == null) {
+                alert("厂商名称不可为空！");
+                return;
+            }
+            $.post("/Users/AddFirm", { firmName: firmName, address: address, area: area, simpleName: simpleName, phoneNumber: phoneNumber }, function (data, status) {
+                if (status == "success") {
+                    alert(data);
+                }
+            })
+        }
+    })
 </script>
