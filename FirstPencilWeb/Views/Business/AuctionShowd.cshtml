@@ -110,7 +110,7 @@
     var num = 0;
     var id=@ViewBag.Auctions.AuctionId;
     $(document).ready(function () {
-        $(".creatrDate").html(" " + $(".creatrDate").html().substring(0, 15));
+        //$(".creatrDate").html(" " + $(".creatrDate").html().substring(0, 15));
         setInterval(add, 1000);
         setInterval(Num, 1000);
     })
@@ -126,7 +126,6 @@
             data:{id:id},
             success: function (data) {
                 if (data.msg == "no") {
-
                 }
                 else {
                     var date = data.CreatrDate.substring(0, 15);

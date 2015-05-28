@@ -6,7 +6,7 @@
 }
 
 #main {
-    background: url(../../Images/AuctionShow/showbj.jpg) no-repeat center;
+    background: url(../../firstpencilweb/Images/AuctionShow/showbj.jpg) no-repeat center;
 }
 
 h1 {
@@ -128,26 +128,26 @@ ul.thumb {
     margin: 10% auto;
 }
 
-.time-item strong, #titleshouw > strong {
-    color: #fff;
-    line-height: 56px;
-    height: 56px;
-    font-size: 230px;
-    font-family: Arial;
-    padding: 0 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
+    .time-item strong, #titleshouw > strong {
+        color: #fff;
+        line-height: 56px;
+        height: 56px;
+        font-size: 230px;
+        font-family: Arial;
+        padding: 0 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
 
 #day_show {
-        float: left;
-        line-height: 49px;
-        color: #c71c60;
-        font-size: 32px;
-        margin: 0 10px;
-        font-family: Arial,Helvetica,sans-serif;
-    }
+    float: left;
+    line-height: 49px;
+    color: #c71c60;
+    font-size: 32px;
+    margin: 0 10px;
+    font-family: Arial,Helvetica,sans-serif;
+}
 
 .item-title .unit {
     background: none;

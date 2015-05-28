@@ -76,7 +76,8 @@ body {
 }
 
 .n11 {
-    background-color: #D5E9F0;
+    background: url(../../../Images/yqjsui/9-0.jpg) center center no-repeat;
+    background-size: 100%;
 }
 
 .n12 {
@@ -141,7 +142,7 @@ body {
 
 .n3 .info2 {
     position: absolute;
-    right:5%;
+    right: 5%;
     top: 10%;
 }
 
@@ -293,7 +294,7 @@ body {
 .n10 .info1 {
     position: absolute;
     right: 5%;
-    top:0%;
+    top: 0%;
 }
 
 .n10 .info2 {
@@ -329,36 +330,50 @@ body {
 .n10 .info7 {
     position: absolute;
     right: 5%;
-    bottom:30%;
+    bottom: 30%;
 }
 
 .n10 .info8 {
     position: absolute;
     right: 5%;
-    bottom:25%;
+    bottom: 25%;
 }
 
 .n10 .info9 {
     position: absolute;
     right: 5%;
-    bottom:20%;
+    bottom: 20%;
 }
 
 .n10 .info10 {
     position: absolute;
-    bottom:15%;
+    bottom: 15%;
     right: 5%;
 }
 
 .n11 .info1 {
+    width: 100%;
+    font-size: 4.5em;
+    font-weight: 900;
+    margin-top: 35%;
 }
 
 .n11 .info2 {
-    margin: 3% auto;
+    margin-top: 23%;
 }
 
+    .n11 .info2 img {
+        position: absolute;
+        width: 100%;
+        left: 0%;
+        top: 10%;
+    }
+
 .n11 .info3 {
-    margin: 3% auto;
+    font-size: 3.5em;
+    color: white;
+    font-weight: 900;
+    margin-top: 70%;
 }
 
 .n11 .info4 {

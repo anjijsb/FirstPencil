@@ -466,6 +466,9 @@
     <Content Include="Images\yqjsui\8-8.png" />
     <Content Include="Images\yqjsui\8-9.png" />
     <Content Include="Images\yqjsui\8.jpg" />
+    <Content Include="Images\yqjsui\9-0.jpg" />
+    <Content Include="Images\yqjsui\9-1.jpg" />
+    <Content Include="Images\yqjsui\9-1.png" />
     <Content Include="Images\yqjsui\bj.jpg" />
     <Content Include="Images\yqjsui\j.png" />
     <Content Include="Images\yqjsui\j1.png" />
@@ -565,7 +568,6 @@
     <Content Include="Views\Function\Messagewall.cshtml" />
     <Content Include="Views\Function\Ernie.cshtml" />
     <Content Include="Views\Users\DealerSgin.cshtml" />
-    <Content Include="Views\Business\AuctionRecommend.cshtml" />
     <Content Include="Views\Business\AuctionShow.cshtml" />
     <Content Include="Views\Business\AuctionShowd.cshtml" />
     <Content Include="Views\Enterprise\qyshoe.cshtml" />
@@ -574,6 +576,7 @@
     <Content Include="Views\Function\NoticeShow.cshtml" />
     <Content Include="Views\Function\weixin.cshtml" />
     <Content Include="Views\Enterprise\QiYe.cshtml" />
+    <Content Include="Views\Function\AddFakeComplaints.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

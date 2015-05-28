@@ -8,6 +8,7 @@ using FirstPencilWeb.Models;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace FirstPencilWeb.Controllers
 {
@@ -33,19 +34,42 @@ namespace FirstPencilWeb.Controllers
         /// 打假投诉
         /// </summary>
         /// <returns></returns>
-        public ActionResult FakeComplaints()
+        public ActionResult FakeComplaints(string openid)
         {
             HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Helper/GetAccessToken", this.ip)).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/Helper/GetJsApiSignature?url={1}&noncestr={2}&timestamp={3}", this.ip, "http://www.anjismart.com/FirstPencilWeb/Function/FakeComplaints", "2nDgiWM7gCxhL8v0", "1420774989")).Result;
             cl = cl.Replace("\"", "");
-            var result = client.GetAsync(string.Format("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi", cl.ToString())).Result;
-            if (result.IsSuccessStatusCode)
-            {
-                var a = result.Content.ReadAsStringAsync().Result;
-            }
+            ViewBag.signature = cl.ToString();
+            ViewBag.openid = openid;
             return View();
         }
 
+        /// <summary>
+        /// 打假投诉提交
+        /// </summary>
+        public JsonResult AddFake(string Title, string Addres, string text, string serviceis, string oid)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Complain/AddComplain?title={1}&address={2}&content={3}&ImgId={4}&openid={5}", this.ip, Title, Addres, text, serviceis, oid)).Result;
+            return Json(new { msg = "0" });
+        }
+
+        /// <summary>
+        /// 打假投诉提交页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddFakeComplaints(string code)
+        {
+            WeiXinUserInfo info = new WeiXinUserInfo();
+            if (!string.IsNullOrEmpty(code))
+            {
+                string co = WeiXinHelpers.GetUserOpenId(code);
+                info = WeiXinHelpers.GetUserInfo(co);
+                openid = info.OpenId;
+            }
+            ViewBag.openid = info.OpenId;
+            return View();
+        }
         /// <summary>
         /// 防伪查询
         /// </summary>
@@ -311,6 +335,19 @@ namespace FirstPencilWeb.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 使用sha1进行签名
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        private static string SHA1(string text)
+        {
+            byte[] cleanBytes = Encoding.Default.GetBytes(text);
+            byte[] hashedBytes = System.Security.Cryptography.SHA1.Create().ComputeHash(cleanBytes);
+            return BitConverter.ToString(hashedBytes).Replace("-", "");
+        }
+
 
     }
 }
