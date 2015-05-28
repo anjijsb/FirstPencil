@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201505212031118_addTicket.Designer.cs">
       <DependentUpon>201505212031118_addTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505250329589_addFirmSimpleName.cs" />
+    <Compile Include="Migrations\201505250329589_addFirmSimpleName.Designer.cs">
+      <DependentUpon>201505250329589_addFirmSimpleName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessToken.cs" />
     <Compile Include="Models\Attention.cs" />
@@ -401,6 +405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505212031118_addTicket.resx">
       <DependentUpon>201505212031118_addTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505250329589_addFirmSimpleName.resx">
+      <DependentUpon>201505250329589_addFirmSimpleName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

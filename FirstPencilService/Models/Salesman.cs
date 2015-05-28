@@ -22,6 +22,8 @@ namespace FirstPencilService.Models
         public string PhoneNumber { get; set; }
 
         public string Remarks { get; set; }
+
+        public string SimpleName { get; set; }
     }
     
     public class Salesman

@@ -21,7 +21,7 @@ namespace FirstPencilService
             var token = context.AccessTokenSet.First();
 
             //现有token是否可用
-            if (DateTime.Now.Subtract(token.GetTime.Value).TotalSeconds < 7000)
+            if (DateTime.Now.Subtract(token.GetTime.Value).TotalSeconds < 3500)
             {
                 return token.Token;
             }

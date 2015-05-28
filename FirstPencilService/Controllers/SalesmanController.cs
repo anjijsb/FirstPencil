@@ -127,6 +127,63 @@ namespace FirstPencilService.Controllers
                    select sm).Take(takeNumber);
         }
 
+
+        /// <summary>
+        /// 添加厂商
+        /// </summary>
+        /// <param name="firmName">厂商民称（唯一、不可为空）</param>
+        /// <param name="address">地址</param>
+        /// <param name="area">地区</param>
+        /// <param name="simpleName">简称</param>
+        /// <param name="phoneNumber">电话</param>
+        /// <returns></returns>
+        [HttpGet]
+        public bool AddFirm(string firmName, string address, string area, string simpleName, string phoneNumber)
+        {
+            if (string.IsNullOrEmpty(firmName))
+            {
+                return false;
+            }
+
+            var db = new ModelContext();
+            if (db.FirmSet.Any(item => item.Name == firmName))
+            {
+                return false;
+            }
+
+            db.FirmSet.Add(new Firm
+            {
+                Name = firmName,
+                Area = area,
+                PhoneNumber = phoneNumber,
+                Address = address,
+                SimpleName = simpleName
+            });
+
+            return db.SaveChanges() == 1;
+        }
+
+
+        /// <summary>
+        /// 通过简称获得厂商
+        /// </summary>
+        /// <param name="simpleName">厂商简称（不可为空）</param>
+        /// <returns></returns>
+        [HttpGet]
+        public IEnumerable<Firm> GetFirmBySimpleName(string simpleName)
+        {
+            if (string.IsNullOrEmpty(simpleName))
+            {
+                return null;
+            }
+            var db = new ModelContext();
+            return (
+                   from f in db.FirmSet
+                   where f.SimpleName.ToLower().Contains(simpleName.ToLower())
+                   select f).AsEnumerable<Firm>()
+                   ;
+        }
+
     }
 
     ///// <summary>

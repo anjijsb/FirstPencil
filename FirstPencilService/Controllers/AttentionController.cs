@@ -72,7 +72,7 @@ namespace FirstPencilService.Controllers
             {
                 return false;
             }
-            var att = db.AuctionSet.FirstOrDefault(item => item.AuctionId == attentionId);
+            var att = db.AttentionSet.FirstOrDefault(item => item.AttentionId == attentionId);
             if (att == null)
             {
                 return false;
@@ -81,7 +81,7 @@ namespace FirstPencilService.Controllers
             {
                 UserId = user.UserId,
                 CreateDate = DateTime.Now,
-                AttentionId = att.AuctionId,
+                AttentionId = att.AttentionId,
             });
             //添加积分
             if (user.IsSalesman && user.Salesman != null)

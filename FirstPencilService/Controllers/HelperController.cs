@@ -30,7 +30,7 @@ namespace FirstPencilService.Controllers
         public string GetOpenidByCode(string code)
         {
             //var a = new Helper();
-          //  a.WriteTxt(code);
+            //  a.WriteTxt(code);
             string openid = "err";
 
             string apps = System.Configuration.ConfigurationManager.AppSettings["appsecrect"];
@@ -39,7 +39,7 @@ namespace FirstPencilService.Controllers
 
             string resStr = WechatHelper.GetResponse("", url);
 
-           // a.WriteTxt(resStr);
+            // a.WriteTxt(resStr);
 
             //  resStr = string.Format("{{\"res\":{0} }}", resStr);
             var resXml = JsonConvert.DeserializeXNode(resStr, "res");
@@ -66,8 +66,9 @@ namespace FirstPencilService.Controllers
         public string GetJsApiSignature(string url, string noncestr, string timestamp)
         {
             var tic = WechatHelper.GetJsApiTicket();
-
-            return "";
+            var cpyString = string.Format("jsapi_ticket={0}&noncestr={1}&timestamp={2}&url={3}", tic, noncestr, timestamp, url);
+            var ret = WechatHelper.GetSha1Str(cpyString);
+            return ret;
         }
 
     }
