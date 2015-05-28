@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "打假投诉";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<input type="hidden" id="hei" value="@ViewBag.openid" />
+<script type="text/javascript">
+    location.href = "FakeComplaints#openid=" + $("#hei").val();
+</script>
+

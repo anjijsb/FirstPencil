@@ -126,14 +126,18 @@
     <img src="~/Images/bj/jt1.png" />
 </div>
 <script type="text/javascript">
+    var code;
     $(document).ready(function () {
         $("#num").hide();
         var hei = $(window).height();
         $("#centent").css("top", hei);
         $("#centent").css("height", hei);
-
         paimaibool();
-        //$(".bar1").css("width",@e+"%");
+
+        code=getUrlParam('openid');
+        alert(code);
+
+
     });
     var topn = 0;
     $(".divimg").click(function () {
@@ -175,13 +179,13 @@
     })
 
     $("#msq").click(function () {
-        if($("#msqimg").attr("src")=="../../Images/bj/xiexie.png"){
+        if($("#msqimg").attr("src")=="http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png"){
             return;
         }
         $("#num").show();
     })
     $("#but").click(function () {
-        $("#msqimg").attr("src","../../Images/bj/xiexie.png");
+        $("#msqimg").attr("src","http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png");
         $("#num").hide();
         buy();
     })
@@ -190,9 +194,6 @@
         var lnum=@d;
         var id=@auction.AuctionId;
         var openid=$("#open").val();
-        //var openid="o-ZC8sxsIpHFrOORZjNmVL_u29oI";.
-        //alert(openid);
-        @*var openid=@open;*@
         var count=$("#auctioncount").val();
         if(count==""||count==null||count=="0"||count<0){
             msg("请填写数量！");
@@ -205,7 +206,7 @@
         if(openid==null||openid==""){
             return;
         }
-        auctionbuy(id,openid,count);
+        auctionbuy(id,code,count);
     }
 
     //警告
@@ -215,25 +216,14 @@
     }
 
 
-    function auctionbuy(id,openid,count){
-
-        $.ajax({
-            url: "/Business/AuctionBuy",
-            dataType: "json",
-            type: "POST",
-            data: { id: id,oid:openid,count:count },
-            success: function (data) {
-                if(data.msg=="true"){
-                    msg("拍卖成功！")
-                    $("#msqimg").attr("src","../../Images/bj/xiexie.png");
-                }else{
-                    msg("拍卖失败！")
-                }
-            },
-            error:function(textStatus){
-                alert(textStatus.textStatus);
+    function auctionbuy(id,code,count){
+        $.get("http://www.anjismart.com/FirstPencilService/api/Auction/AddOrder/"+id+"?openid="+code+"&count="+count,function(data){
+            if(data=="true"){
+                msg("拍卖成功!");
+                $("#prop").load(location.href+" #prop>*","");
+            }else{
+                msg("拍卖失败!");
             }
-
         })
     }
 
@@ -247,16 +237,22 @@
             data: { auctionId: id,openid:openid},
             success: function (data) {
                 if(data.msg=="false"){
-                    $("#msqimg").attr("src","../../Images/bj/xiexie.png");
+                    $("#msqimg").attr("src","http://www.anjismart.com/FirstPencilWeb/Images/bj/xiexie.png");
                 }else{
 
                 }
             },
             error:function(textStatus){
-                alert(21)
             }
 
         })
+    }
+
+    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
     }
 
 </script>

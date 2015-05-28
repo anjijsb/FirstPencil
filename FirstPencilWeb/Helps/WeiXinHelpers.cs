@@ -70,6 +70,33 @@ namespace FirstPencilWeb.Helps
         }
 
         /// <summary>
+        /// 获取jsapi_ticket
+        /// </summary>
+        /// <returns></returns>
+        public static string GetJsapiTicket(string access_token)
+        {
+            access_token = access_token.Replace("\"", "");
+            string url = string.Format(WeiXinConst.Jsapi_TicketUrl, access_token);
+            string result = HttpClientHelper.GetResponse(url);
+            if (string.IsNullOrEmpty(result))
+            {
+                return null;
+            }
+            WeiXinTicket info = JsonConvert.DeserializeObject<WeiXinTicket>(result);
+            if (info == null)
+            {
+                return null;
+            }
+            else
+            {
+                return info.ticket;
+            }
+        }
+
+
+
+
+        /// <summary>
         /// 创建新的AccessToken并或回去用户信息
         /// </summary>
         /// <param name="openId"></param>
@@ -81,6 +108,8 @@ namespace FirstPencilWeb.Helps
             WeiXinUserInfo info = HttpClientHelper.GetResponse<WeiXinUserInfo>(url);
             return info;
         }
+
+
 
         #endregion
     }
@@ -257,6 +286,12 @@ namespace FirstPencilWeb.Helps
         /// 公众号 获取Token的Url
         /// </summary>
         public static string WeiXin_AccessTokenUrl { get { return string.Format(AccessToken_Url, AppId, Secret); } }
+
+        /// <summary>
+        /// 公众号 获取Jsapi_Ticket的url
+        /// </summary>
+        public const string Jsapi_TicketUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi";
+
 
         #endregion
 
@@ -458,6 +493,17 @@ namespace FirstPencilWeb.Helps
         /// 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段
         /// </summary>
         public string UnionId { get; set; }
+    }
+
+    /// <summary>
+    /// jsapi_ticket
+    /// </summary>
+    public class WeiXinTicket
+    {
+        public int errcode { get; set; }
+        public string errmsg { get; set; }
+        public string ticket { get; set; }
+        public string expires_in { get; set; }
     }
 
     /// <summary>

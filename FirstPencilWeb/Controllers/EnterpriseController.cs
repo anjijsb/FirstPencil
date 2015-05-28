@@ -17,7 +17,7 @@ namespace FirstPencilWeb.Controllers
         }
 
         /// <summary>
-        /// 企业介绍
+        /// 企业介绍加载等待页面
         /// </summary>
         /// <returns></returns>
 
@@ -25,6 +25,11 @@ namespace FirstPencilWeb.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 企业介绍
+        /// </summary>
+        /// <returns></returns>
         public ActionResult qyshoe()
         {
             return View();

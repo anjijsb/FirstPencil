@@ -8,6 +8,7 @@ using FirstPencilWeb.Models;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace FirstPencilWeb.Controllers
 {
@@ -21,25 +22,54 @@ namespace FirstPencilWeb.Controllers
         private static List<Message> mold = new List<Message>();
         private static int maxmsgid;
 
+        private static string openid;
         // GET: Function
         public ActionResult Index()
         {
             return View();
         }
 
+
         /// <summary>
         /// 打假投诉
         /// </summary>
         /// <returns></returns>
-        public ActionResult FakeComplaints()
+        public ActionResult FakeComplaints(string openid)
         {
             HttpClient client = new HttpClient();
-            var cl = client.GetStringAsync(string.Format("{0}api/Helper/GetAccessToken", this.ip)).Result;
+            var cl = client.GetStringAsync(string.Format("{0}api/Helper/GetJsApiSignature?url={1}&noncestr={2}&timestamp={3}", this.ip, "http://www.anjismart.com/FirstPencilWeb/Function/FakeComplaints", "2nDgiWM7gCxhL8v0", "1420774989")).Result;
             cl = cl.Replace("\"", "");
-            ViewBag.token = cl.ToString();
+            ViewBag.signature = cl.ToString();
+            ViewBag.openid = openid;
             return View();
         }
 
+        /// <summary>
+        /// 打假投诉提交
+        /// </summary>
+        public JsonResult AddFake(string Title, string Addres, string text, string serviceis, string oid)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Complain/AddComplain?title={1}&address={2}&content={3}&ImgId={4}&openid={5}", this.ip, Title, Addres, text, serviceis, oid)).Result;
+            return Json(new { msg = "0" });
+        }
+
+        /// <summary>
+        /// 打假投诉提交页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddFakeComplaints(string code)
+        {
+            WeiXinUserInfo info = new WeiXinUserInfo();
+            if (!string.IsNullOrEmpty(code))
+            {
+                string co = WeiXinHelpers.GetUserOpenId(code);
+                info = WeiXinHelpers.GetUserInfo(co);
+                openid = info.OpenId;
+            }
+            ViewBag.openid = info.OpenId;
+            return View();
+        }
         /// <summary>
         /// 防伪查询
         /// </summary>
@@ -88,6 +118,7 @@ namespace FirstPencilWeb.Controllers
             }
         }
 
+        #region 抽奖相关
         /// <summary>
         /// 摇奖
         /// </summary>
@@ -133,7 +164,9 @@ namespace FirstPencilWeb.Controllers
             return Json(new { name = name }, JsonRequestBehavior.AllowGet);
         }
 
+        #endregion
 
+        #region 留言相关
         /// <summary>
         /// 留言墙
         /// </summary>
@@ -215,6 +248,74 @@ namespace FirstPencilWeb.Controllers
             return Json(new { Headimgurl = m.User.Headimgurl, NickName = m.User.NickName, Content = m.Content, CreateDate = m.CreateDate, i = mold.Count() }, JsonRequestBehavior.AllowGet);
         }
 
+        #endregion
+
+        #region 公告相关
+        /// <summary>
+        /// 公告列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Notice(string code)
+        {
+            WeiXinUserInfo info = new WeiXinUserInfo();
+            if (!string.IsNullOrEmpty(code))
+            {
+                string co = WeiXinHelpers.GetUserOpenId(code);
+
+                info = WeiXinHelpers.GetUserInfo(co);
+            }
+            openid = info.OpenId;
+
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Attention/GetAttentionList", this.ip)).Result;
+            List<FirstPencilService.Models.Attention> attention = JsonHelp.todui<List<FirstPencilService.Models.Attention>>(cl);
+            ViewBag.attentionlist = attention;
+            return View();
+        }
+
+        /// <summary>
+        /// 公告详细展示
+        /// </summary>
+        /// <param name="attentionid"></param>
+        /// <returns></returns>
+        public ActionResult NoticeShow(string attentionid)
+        {
+
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Attention/GetAttentionInfo?attentionId={1}", this.ip, attentionid)).Result;
+            FirstPencilService.Models.Attention attention = JsonHelp.todui<FirstPencilService.Models.Attention>(cl);
+            var cl1 = client.GetStringAsync(string.Format("{0}api/Attention/AllowRegister?openId={1}&attentionId={2}", this.ip, openid, attentionid)).Result;
+            ViewBag.istrue = cl1.ToString();
+            ViewBag.attention = attention;
+            return View();
+        }
+
+
+        /// <summary>
+        /// 对公告进行签到
+        /// </summary>
+        /// <param name="attentionid"></param>
+        /// <returns></returns>
+        public JsonResult NoticeRegister(string attentionid)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Attention/Register?openId={1}&attentionId={2}", this.ip, openid, attentionid)).Result;
+            return Json(new { msg = cl.ToString() }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 判断用户是否已签到
+        /// </summary>
+        /// <param name="attentionid"></param>
+        /// <returns></returns>
+        public JsonResult NoticeAllowRegister(string attentionid)
+        {
+            HttpClient client = new HttpClient();
+            var cl = client.GetStringAsync(string.Format("{0}api/Attention/AllowRegister?openId={1}&attentionId={2}", this.ip, openid, attentionid)).Result;
+            return Json(new { msg = cl.ToString() }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
 
         /// <summary>
         /// 大会介绍
@@ -224,6 +325,29 @@ namespace FirstPencilWeb.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 微信js jdk demo
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult weixin()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 使用sha1进行签名
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        private static string SHA1(string text)
+        {
+            byte[] cleanBytes = Encoding.Default.GetBytes(text);
+            byte[] hashedBytes = System.Security.Cryptography.SHA1.Create().ComputeHash(cleanBytes);
+            return BitConverter.ToString(hashedBytes).Replace("-", "");
+        }
+
 
     }
 }

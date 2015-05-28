@@ -39,9 +39,12 @@
         top: 0;
     }
 
-    h5 {
+    h5,h4 {
         color: white;
-        margin-bottom: 2em;
+        margin-bottom: 0.5em;
+    }
+    h5{
+        color:#373636;
     }
 
     .lxts {
@@ -72,34 +75,69 @@
 
     #img1 {
         position: absolute;
-        top: 0;
+        top: -18%;
         left: 57%;
+        width: 15%;
     }
-    #lvdiv{
-        position:relative;
+
+    #lvdiv {
+        position: relative;
     }
-    #lv{
-        position:absolute;
-        top:0;
-        left:41%;
+
+    #lv {
+        width: 50%;
+        position: absolute;
+        top: 0;
+        left: 25%;
     }
+    .hero-unit{
+        padding:0;
+        text-align:center;
+        background: rgba(255,255,255,0.5);
+    }
+     .hero-unit .table td, .hero-unit .table th{
+         text-align:center;
+     }
+     .hero-unit1{
+         padding-top:0px;
+     }
 </style>
 <img src="~/Images/bj/jxbj.png" class="bj" />
 <div class="hero-unit1" style="text-align:center">
     <br />
     <div id="imgdiv">
-        <img src="~/Images/mrtx.jpg" id="img0" class="img-circle" width="30%" />
-        <img src="~/Images/hg/s_crown_1.gif" id="img1" />
+        <img src="@ViewBag.headimgurl" id="img0" class="img-circle" width="30%" />
+        <img src="@ViewBag.url" id="img1" />
     </div>
-    <h5>经销商中心</h5>
+    <h4>@ViewBag.username</h4>
+    <h5>@ViewBag.djname 用户 @ViewBag.openid</h5>
     <div id="lvdiv" class="progress progress-striped active" style="height:0.9em;line-height:0.9em;">
-        <div class="bar" style="width:30%;"></div><div id="lv">30/100</div>
+        <div class="bar" style="width:@ViewBag.dj%;"></div><div id="lv"><span>@ViewBag.poits</span><span>@ViewBag.num</span></div>
     </div>
-    <pre>经销商姓名：张三
-联系电话：13061960808
-联系地址：上海市静安区长乐路1226号
-所在单位：第一铅笔经销商
-</pre>
+    <div class="hero-unit">
+        <table class="table table-striped">
+            <tr>
+                <th>排名</th>
+                <th>姓名</th>
+                <th>经验</th>
+            </tr>
+            @{
+                var i = 1;
+                if (@ViewBag.userslist != null)
+                {
+                    foreach (FirstPencilService.Models.User m in @ViewBag.userslist as List<FirstPencilService.Models.User>)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@m.Salesman.Name</td>
+                            <td>@m.Point</td>
+                        </tr>
+                        i++;
+                    }
+                }
+            }
+        </table>
+    </div>
 </div>
 <div class="lxts"><a id="lianxi">联系我们</a><span>|</span><a id="tousu">升级规则</a> </div>
 <script type="text/javascript">
